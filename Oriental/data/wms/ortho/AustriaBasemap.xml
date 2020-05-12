@@ -1,5 +1,0 @@
-<GDAL_WMTS>
-  <GetCapabilitiesUrl>https://maps.wien.gv.at/basemap/1.0.0/WMTSCapabilities.xml</GetCapabilitiesUrl>
-  <Layer>bmaporthofoto30cm</Layer>
-  <Cache />
-</GDAL_WMTS>
