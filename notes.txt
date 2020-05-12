@@ -1,0 +1,71 @@
+Sensor 6000x4000
+f = 18mm
+
+
+Automatic Tie Points
+	825:
+	# TODO Once a good enough interior image orientation is known,
+	# automatically compute additional tie points.
+
+
+	859:
+	# If residuals are large, then the probability of this feature match being an outlier is high.
+	# TODO But how large is *large*?
+	
+Distortion model:
+	132:
+	# TODO Lens distortion parameters, not (yet) used here. Adapt this number to your distortion model.
+	# Set number of parameters in chosen distortion model
+	172:
+	# A parameter block for distortion parameters is already defined here, but not (yet) used.
+	# TODO Choose an appropriate distortion model,
+	#      adapt the expected size of that parameter block in parameterBlockSizes above,
+	#      and actually use that parameter block here in the computation of residuals.
+	
+Näherungswerte ior
+	716:
+	# TODO initial parameter values of the interior orientation
+	# For the principal point, the image center is usually a good approximation.
+    # For the focal length in [pixel], we extract the focal length equivalent to 35mm film [mm]
+    # from the Exif image meta data e.g. using IrfanView.
+
+Distortion Parameters
+	737
+	# TODO Distortion parameters.
+    # Choose an appropriate model.
+    # The number of distortion parameters stated here must match the number of distortion parameters that
+    # `PerspectiveCamera` expects. The preliminary number given here only serves as a placeholder.
+	
+Datum definition
+	747:
+	# TODO Datum points.
+
+	901:
+	# Define the parameter blocks for which all elements shall be kept constant.
+    # The A-matrix queried below will not contain columns for these parameter blocks.
+	
+	idsConstantBlocks = [id(el) for el in (objPts['02'],
+									   objPts['03'],
+									   ior, # TODO Set ior constant?
+									   distortion, # TODO Set distortion constant?
+									  )]
+									  
+	918:
+	subset = oriental.adjust.local_parameterization.Subset(3, np.array([0])) # idx auf passende Koordinate ändern (X = 0, Y = 1, Z = 2)
+    block.SetParameterization(objPts['01'], subset)
+	
+	# Set specific distortion parameters constant?
+	
+LSM iteration:
+
+	988:
+	# When shall the iteration loop be terminated?
+    # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
+	
+Significance and correlation of ior and distortion parameters
+	1047:
+	# TODO Check the significance, correlations, etc. of the parameters of the interior orientation and lens distortion.
+
+Calculate the wanted distances
+	1049:
+	# TODO Derive the wanted distances at the object and their precisions.
