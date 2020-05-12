@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Definitions" href="definitions.html" />
+    <link rel="prev" title="OrientAL manual" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#supported-operating-systems">Supported Operating Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites-for-installations-on-windows">Prerequisites for Installations on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#procedure">Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ubuntu">Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#license-file">License file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oriental-shell">OrientAL shell</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#user-scripts">User scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-installed-3rd-party-python-packages">Pre-Installed 3rd-Party Python Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-of-additional-python-packages">Installation of Additional Python Packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#keeping-oriental-portable-on-windows">Keeping <span class="xref std std-term">OrientAL</span> Portable on Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#licenses-of-linked-3rd-party-software-libraries">Licenses of linked 3<sup>rd</sup> party software libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oriental.html">Python Package <em>oriental</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<span id="chapter-installation"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="supported-operating-systems">
+<h2>Supported Operating Systems<a class="headerlink" href="#supported-operating-systems" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> is tested to run on <a class="reference external" href="https://en.wikipedia.org/wiki/X86-64">x64</a>-installations of <a class="reference external" href="https://en.wikipedia.org/wiki/Windows_10">Microsoft Windows 10</a> and on <a class="reference external" href="https://en.wikipedia.org/wiki/Ubuntu_version_history#1804">Ubuntu 18.04 LTS</a>. <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> may run on other versions of Windows and Ubuntu or other Linux distributions, but this is not tested.</p>
+</div>
+<div class="section" id="prerequisites-for-installations-on-windows">
+<span id="section-installation-prerequisites"></span><h2>Prerequisites for Installations on Windows<a class="headerlink" href="#prerequisites-for-installations-on-windows" title="Permalink to this headline">¶</a></h2>
+<p>The latest Microsoft Visual C++ Redistributable Package for Visual Studio 2019 and the x64-architecture needs to be installed on the PC where <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> shall be executed. Repeated installations of this package will do no harm to your PC. Thus, if unsure whether this package has already been installed, just execute the respective installer in order to avoid trouble. The installer can be downloaded from <a class="reference external" href="https://www.visualstudio.com/downloads/">Microsoft</a>. For your convenience, it comes bundled with <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a>, to be found <a class="reference download internal" download="" href="_downloads/351711e0568059b2eb52285a09fb40e8/vc_redist.x64.exe"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+<p>Should this package be missing from your PC, then you will encounter the infamous (since unspecific) error <a class="reference internal" href="glossary.html#term-DLL-load-failed-The-specified-module-could-not-be-found"><span class="xref std std-term">DLL load failed: The specified module could not be found</span></a>.</p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> is shipped as the single self-extracting archive <code class="file docutils literal notranslate"><span class="pre">OrientAL_&lt;build-date&gt;&lt;build-options&gt;.exe</span></code>. Extract the archive by double-clicking onto it. In the dialog that opens, select an <strong>empty</strong> directory of your choice into which your installation of <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> shall be extracted. This manual refers to that directory as <a class="reference internal" href="glossary.html#term-ORIENTAL"><span class="xref std std-term">$ORIENTAL</span></a>. Having confirmed the dialog, your installation of <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> becomes available there. Once you have <a class="reference internal" href="#section-installation-licensefile"><span class="std std-ref">put your license file into the proper sub-directory</span></a>, your installation of <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> is ready. <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> is <strong>portable</strong> software, which can therefore be moved and executed to/in any other location of any other PC, without re-extracting the archive.</p>
+</div>
+<div class="section" id="ubuntu">
+<h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> is shipped as the compressed archive <code class="file docutils literal notranslate"><span class="pre">oriental_&lt;build-date&gt;&lt;build-options&gt;.tar.xz</span></code>, together with the similarly named installation script <code class="file docutils literal notranslate"><span class="pre">oriental_&lt;build-date&gt;&lt;build-options&gt;_install.sh</span></code>. Place the archive and your <a class="reference internal" href="#section-installation-licensefile"><span class="std std-ref">License file</span></a> into the same directory of your choice and execute the installation script in a shell. The installation directory defaults to <code class="file docutils literal notranslate"><span class="pre">./oriental</span></code>, but may be given as command-line argument. Additionally, the installation script installs necessary 3rd-party packages and copies your license file to the proper location.</p>
+</div>
+<div class="section" id="license-file">
+<span id="section-installation-licensefile"></span><h3>License file<a class="headerlink" href="#license-file" title="Permalink to this headline">¶</a></h3>
+<p>To be able to run <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a>, the file <code class="file docutils literal notranslate"><span class="pre">oriental.key</span></code> needs to be present in the directory <a class="reference internal" href="glossary.html#term-ORIENTAL"><span class="xref std std-term">$ORIENTAL</span></a>/data. Contact <a class="reference external" href="mailto:wilfried&#46;karel&#37;&#52;&#48;geo&#46;tuwien&#46;ac&#46;at">wilfried<span>&#46;</span>karel<span>&#64;</span>geo<span>&#46;</span>tuwien<span>&#46;</span>ac<span>&#46;</span>at</a> to receive it.</p>
+</div>
+</div>
+<div class="section" id="directory-structure">
+<span id="section-installation-directorystructure"></span><h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<pre class="literal-block"><a class="reference internal" href="glossary.html#term-ORIENTAL"><span class="xref std std-term">$ORIENTAL</span></a>/                            # installation directory.
+    <a class="reference internal" href="index.html#chapter-index"><span class="std std-ref">OrientALManual.html</span></a>               # Link to this documentation.
+    OrientALShell.bat (Windows) or OrientAL (Ubuntu), see <a class="reference internal" href="#section-installation-orientalshell"><span class="std std-ref">OrientAL shell</span></a>
+    MonoScope.bat (Windows) or MonoScope (Ubuntu) to start <a class="reference internal" href="monoscope.html#chapter-monoscope"><span class="std std-ref">MonoScope</span></a>
+    <a class="reference internal" href="glossary.html#term-PyScripter"><span class="xref std std-term">PyScripter.bat</span></a> (Windows)
+    data/
+        <a class="reference internal" href="glossary.html#term-cameras.sqlite"><span class="xref std std-term">cameras.sqlite</span></a>
+        <a class="reference internal" href="glossary.html#term-lba.sqlite"><span class="xref std std-term">lba.sqlite</span></a>
+        <a class="reference internal" href="#section-installation-licensefile"><span class="std std-ref">oriental.key</span></a>                  # To be placed here manually.
+        wms/                          # WMS services as <a class="reference external" href="http://gdal.org/frmt_wms.html">GDAL data sources in XML format</a>
+            ortho/                    # XML-files that specify orthophoto mosaics
+            dtm/                      # XML-files that specify <a class="reference internal" href="glossary.html#term-DTM"><span class="xref std std-term">DTM</span></a>s
+    doc/                              # This documentation
+    <a class="reference internal" href="oriental.html#module-oriental" title="oriental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental</span></code></a>/
+        <a class="reference internal" href="oriental.html#module-oriental._oriental" title="oriental._oriental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental._oriental</span></code></a>
+        oriental.psproj               # <a class="reference internal" href="glossary.html#term-PyScripter"><span class="xref std std-term">PyScripter</span></a>-project for <a class="reference internal" href="oriental.html#module-oriental" title="oriental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental</span></code></a>
+        <a class="reference internal" href="oriental/absOri.html#module-oriental.absOri" title="oriental.absOri"><code class="xref py py-mod docutils literal notranslate"><span class="pre">absOri</span></code></a>/                       # Python-package for Script <a class="reference internal" href="Scripts/absOri.html#section-scripts-absori"><span class="std std-ref">absOri</span></a>
+        <a class="reference internal" href="oriental/adjust.html#module-oriental.adjust" title="oriental.adjust"><code class="xref py py-mod docutils literal notranslate"><span class="pre">adjust</span></code></a>/
+            <a class="reference internal" href="oriental/adjust.html#module-oriental.adjust._adjust" title="oriental.adjust._adjust"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_adjust.pyd</span></code></a>
+            <a class="reference internal" href="oriental/adjust/parameters.html#module-oriental.adjust.parameters" title="oriental.adjust.parameters"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters.py</span></code></a>
+            <a class="reference internal" href="oriental/adjust/cost.html#module-oriental.adjust.cost" title="oriental.adjust.cost"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cost</span></code></a>/
+                <a class="reference internal" href="oriental/adjust/cost.html#module-oriental.adjust.cost._cost" title="oriental.adjust.cost._cost"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_cost.pyd</span></code></a>
+            <a class="reference internal" href="oriental/adjust/examples.html#module-oriental.adjust.examples" title="oriental.adjust.examples"><code class="xref py py-mod docutils literal notranslate"><span class="pre">examples</span></code></a>/
+                <a class="reference internal" href="oriental/adjust/examples/customCost.html#module-oriental.adjust.examples.customCost" title="oriental.adjust.examples.customCost"><code class="xref py py-mod docutils literal notranslate"><span class="pre">customCost.py</span></code></a>
+                <a class="reference internal" href="oriental/adjust/examples/photo.html#module-oriental.adjust.examples.photo" title="oriental.adjust.examples.photo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">photo.py</span></code></a>
+            <a class="reference internal" href="oriental/adjust/localParameterization.html#module-oriental.adjust.local_parameterization" title="oriental.adjust.local_parameterization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">local_parameterization</span></code></a>/
+                <a class="reference internal" href="oriental/adjust/localParameterization.html#module-oriental.adjust.local_parameterization._local_parameterization" title="oriental.adjust.local_parameterization._local_parameterization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_local_parameterization.pyd</span></code></a>
+            <a class="reference internal" href="oriental/adjust/loss.html#module-oriental.adjust.loss" title="oriental.adjust.loss"><code class="xref py py-mod docutils literal notranslate"><span class="pre">loss</span></code></a>/
+                <a class="reference internal" href="oriental/adjust/loss.html#module-oriental.adjust.loss._loss" title="oriental.adjust.loss._loss"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_loss.pyd</span></code></a>
+        <a class="reference internal" href="oriental/graph.html#module-oriental.graph" title="oriental.graph"><code class="xref py py-mod docutils literal notranslate"><span class="pre">graph</span></code></a>
+            <a class="reference internal" href="oriental/graph.html#module-oriental.graph._graph" title="oriental.graph._graph"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_graph.pyd</span></code></a>
+        <a class="reference internal" href="oriental/log.html#module-oriental.log" title="oriental.log"><code class="xref py py-mod docutils literal notranslate"><span class="pre">log</span></code></a>
+            <a class="reference internal" href="oriental/log.html#module-oriental.log._log" title="oriental.log._log"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_log.pyd</span></code></a>
+        <a class="reference internal" href="oriental/match.html#module-oriental.match" title="oriental.match"><code class="xref py py-mod docutils literal notranslate"><span class="pre">match</span></code></a>
+            <a class="reference internal" href="oriental/match.html#module-oriental.match._match" title="oriental.match._match"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_match.pyd</span></code></a>
+        <a class="reference internal" href="oriental/ori.html#module-oriental.ori" title="oriental.ori"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ori</span></code></a>
+            <a class="reference internal" href="oriental/ori.html#module-oriental.ori._ori" title="oriental.ori._ori"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_ori.pyd</span></code></a>
+        <a class="reference internal" href="oriental/relOri.html#module-oriental.relOri" title="oriental.relOri"><code class="xref py py-mod docutils literal notranslate"><span class="pre">relOri</span></code></a>/                       # Python-package for Script <a class="reference internal" href="Scripts/relOri.html#section-scripts-relori"><span class="std std-ref">relOri</span></a>
+        tests/                        # unit tests for <a class="reference internal" href="oriental.html#module-oriental" title="oriental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental</span></code></a>
+        <a class="reference internal" href="oriental/utils.html#module-oriental.utils" title="oriental.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code></a>/                        # various utility functionalities
+    python/                           # The portable Python installation that comes with <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a>
+       ...
+       Lib/
+           <a class="reference internal" href="#section-installation-preinstalledpythonpackages"><span class="std std-ref">site-packages</span></a>/             # directory of pre-installed 3rd-party Python packages
+       Scripts/                       # directory of pre-installed 3rd-party Python scripts
+       ...
+       python.exe                     # The executable used to start the Python interpreter
+       ...
+    <a class="reference internal" href="scripts.html#chapter-scripts"><span class="std std-ref">Scripts</span></a>/
+    bin/                              # Directory of non-Python binaries
+        <a class="reference internal" href="monoscope.html#chapter-monoscope"><span class="std std-ref">MonoScope</span></a>
+        <a class="reference internal" href="glossary.html#term-SpatiaLite"><span class="xref std std-term">spatialite_gui.exe</span></a>            # GUI application for the management of <a class="reference internal" href="glossary.html#term-SpatiaLite"><span class="xref std std-term">SpatiaLite</span></a> data bases
+        <a class="reference internal" href="glossary.html#term-SQLite"><span class="xref std std-term">sqlite3.exe</span></a>                   # Console application for the management of <a class="reference internal" href="glossary.html#term-SQLite"><span class="xref std std-term">SQLite</span></a> data bases</pre>
+</div>
+<div class="section" id="oriental-shell">
+<span id="section-installation-orientalshell"></span><h2>OrientAL shell<a class="headerlink" href="#oriental-shell" title="Permalink to this headline">¶</a></h2>
+<p>To setup the appropriate environment and avoid errors due to other installed software, it is strongly recommended to start the <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> Python interpreter and all <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> scripts and executables only from within an OrientAL shell. To start this shell, double-click onto <a class="reference external" href="glossary.html?/OrientALShell.bat#term-oriental-root">$ORIENTAL/OrientALShell.bat</a> (Windows) or <a class="reference external" href="glossary.html?/OrientAL#term-oriental-root">$ORIENTAL/OrientAL</a> (Ubuntu).</p>
+<p>As an exception, <a class="reference internal" href="monoscope.html#chapter-monoscope"><span class="std std-ref">MonoScope</span></a> may be started directly by double-clicking onto <a class="reference internal" href="glossary.html#term-ORIENTAL"><span class="xref std std-term">$ORIENTAL</span></a>/MonoScope.bat (Windows) or <a class="reference internal" href="glossary.html#term-ORIENTAL"><span class="xref std std-term">$ORIENTAL</span></a>/MonoScope (Ubuntu).</p>
+<div class="section" id="user-scripts">
+<h3>User scripts<a class="headerlink" href="#user-scripts" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="#section-installation-orientalshell"><span class="std std-ref">OrientAL shell</span></a> executes its arguments, if present. Thus, users may <abbr title="exempli gratia">e.g.</abbr> prepare <code class="file docutils literal notranslate"><span class="pre">process.bat</span></code> as custom batch file on Windows and execute it from a standard Windows console as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OrientALShell</span><span class="o">.</span><span class="n">bat</span> <span class="n">process</span><span class="o">.</span><span class="n">bat</span>
+</pre></div>
+</div>
+<p>This executes <code class="file docutils literal notranslate"><span class="pre">process.bat</span></code> within the <a class="reference internal" href="#section-installation-orientalshell"><span class="std std-ref">OrientAL shell</span></a>.</p>
+</div>
+</div>
+<div class="section" id="pre-installed-3rd-party-python-packages">
+<span id="section-installation-preinstalledpythonpackages"></span><h2>Pre-Installed 3rd-Party Python Packages<a class="headerlink" href="#pre-installed-3rd-party-python-packages" title="Permalink to this headline">¶</a></h2>
+<p>The Python installation that <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> comes with contains the following 3rd-party packages (not mentioning their dependencies):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://pypi.python.org/pypi/setuptools">setuptools</a></p></li>
+<li><p><a class="reference external" href="https://pip.pypa.io/en/latest/">pip</a></p></li>
+<li><p><a class="reference external" href="http://www.gdal.org/">GDAL</a></p></li>
+<li><p><a class="reference external" href="http://opencv.org/">OpenCV</a></p></li>
+<li><p><a class="reference external" href="https://www.gaia-gis.it/fossil/libspatialite/">SpatiaLite</a></p></li>
+<li><p><a class="reference external" href="http://ipython.org/">IPython</a></p></li>
+<li><p><a class="reference external" href="http://www.numpy.org">NumPy</a></p></li>
+<li><p><a class="reference external" href="http://www.scipy.org">SciPy</a></p></li>
+<li><p><a class="reference external" href="http://matplotlib.org">matplotlib</a></p></li>
+<li><p><a class="reference external" href="http://pillow.readthedocs.org/">Pillow</a></p></li>
+<li><p><a class="reference external" href="http://andreacensi.github.io/contracts/">PyContracts</a></p></li>
+<li><p><a class="reference external" href="http://github.com/zeromq/pyzmq">PyZMQ</a></p></li>
+<li><p><a class="reference external" href="https://github.com/uqfoundation/dill">dill</a></p></li>
+<li><p><a class="reference external" href="http://www.h5py.org/">h5py</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="installation-of-additional-python-packages">
+<span id="section-installation-additionalpythonpackages"></span><h2>Installation of Additional Python Packages<a class="headerlink" href="#installation-of-additional-python-packages" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://pip.pypa.io/">pip</a> supports the administration (installation, upgrade, etc.) of Python package distributions, and it is among the <a class="reference internal" href="#section-installation-preinstalledpythonpackages"><span class="std std-ref">Pre-Installed 3rd-Party Python Packages</span></a>. Such Python packages may consist of Python and/or C/C++ source code and/or binaries. Binaries, however, must be shipped in the <a class="reference external" href="http://wheel.readthedocs.org">wheel</a> format. If the Python package to be installed consists of Python source code only, or if its repository provides a binary distribution in the <a class="reference external" href="http://wheel.readthedocs.org">wheel</a> format, then its installation can easily be done within an <a class="reference internal" href="#section-installation-orientalshell"><span class="std std-ref">OrientAL shell</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">PySide</span>
+</pre></div>
+</div>
+<p>would <abbr title="exempli gratia">e.g.</abbr> download a (binary) <a class="reference external" href="http://wheel.readthedocs.org">wheel</a> of the latest stable version of <a class="reference external" href="http://pyside.github.io/docs/pyside/">PySide</a>, a Python-binding for <a class="reference external" href="http://qt-project.org/">Qt</a>, via the <a class="reference external" href="https://pypi.python.org/">Python Package Index (PyPI)</a>,  and add it to the Python installation used by <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a>.</p>
+<div class="section" id="keeping-oriental-portable-on-windows">
+<h3>Keeping <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> Portable on Windows<a class="headerlink" href="#keeping-oriental-portable-on-windows" title="Permalink to this headline">¶</a></h3>
+<p>Additional Python packages are installed into the directory <a class="reference external" href="glossary.html?/python/Lib/site-packages/#term-oriental-root">$ORIENTAL/python/Lib/site-packages/</a>. However, depending on the package, the installation procedure may also install package scripts into the directory <a class="reference external" href="glossary.html?/python/Scripts/#term-oriental-root">$ORIENTAL/python/Scripts/</a> in addition to the package itself, which <cite>pip</cite> reports in its output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Installing</span> <span class="o">...</span> <span class="n">script</span> <span class="n">to</span> <span class="o">...</span>\<span class="n">python</span>\<span class="n">Scripts</span>
+</pre></div>
+</div>
+<p>Note that package scripts installed this way will not be portable: having moved your installation of <a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> to another location, calling such an additional package script will either invoke the wrong Python interpreter (<code class="file docutils literal notranslate"><span class="pre">python.exe</span></code>), thus affecting another Python installation on your PC, or result in the not-so-helpful error message:</p>
+<pre class="literal-block"><a class="reference internal" href="glossary.html#term-failed-to-create-process."><span class="xref std std-term">failed to create process.</span></a></pre>
+<p>In order to overcome this problem, open the respective package scripts (matching <a class="reference external" href="glossary.html?/python/Scripts/*-script.py#term-oriental-root">$ORIENTAL/python/Scripts/*-script.py</a>) in a text editor. You will find the absolute file path to <code class="file docutils literal notranslate"><span class="pre">python.exe</span></code> at the time when <code class="file docutils literal notranslate"><span class="pre">pip.exe</span></code> installed the package, <abbr title="exempli gratia">e.g.</abbr>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!C:\OrientAL\python\python.exe</span>
+</pre></div>
+</div>
+<p>Simply remove the directories, leaving only <code class="file docutils literal notranslate"><span class="pre">python.exe</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!python.exe</span>
+</pre></div>
+</div>
+<p>save the script file, and try to run the script again.</p>
+</div>
+</div>
+<div class="section" id="licenses-of-linked-3rd-party-software-libraries">
+<h2>Licenses of linked 3<sup>rd</sup> party software libraries<a class="headerlink" href="#licenses-of-linked-3rd-party-software-libraries" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="_downloads/8395c42f50f84b1ae9865ff54e2164aa/LICENSE_1_0.txt"><code class="xref download docutils literal notranslate"><span class="pre">Boost</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/91546b9cc907f50959ea3b8437adc4ca/LICENSE"><code class="xref download docutils literal notranslate"><span class="pre">Ceres</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/09a6a1a19003a3c21649ae2b559784b9/LICENSE"><code class="xref download docutils literal notranslate"><span class="pre">COIN-OR</span> <span class="pre">CLP,</span> <span class="pre">CoinUtils,</span> <span class="pre">OSI</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/41c54f67adb8d4d4d866bc22891ce070/COPYING.MPL2"><code class="xref download docutils literal notranslate"><span class="pre">Eigen</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/7f3d2ef421d034bebc6d11876da6d754/COPYING"><code class="xref download docutils literal notranslate"><span class="pre">FLANN</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/35c3a74fc4257991aef5d0ce79e384ea/COPYING"><code class="xref download docutils literal notranslate"><span class="pre">glog</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/1819d80c1f57ac977d2eec69940be20d/COPYING.txt"><code class="xref download docutils literal notranslate"><span class="pre">gflags</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/ee48063728de064e66ec52170b8a9654/LICENSE.TXT"><code class="xref download docutils literal notranslate"><span class="pre">GDAL</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/5a0ea25e1f07bfb25a65971b3a4c63ae/COPYING"><code class="xref download docutils literal notranslate"><span class="pre">HDF5</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/66c36b2d12d618e77948002beb0dfe0d/LICENSE"><code class="xref download docutils literal notranslate"><span class="pre">OpenBLAS</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/2b57023f0c3cd4124ee0d64ff73887a8/LICENSE"><code class="xref download docutils literal notranslate"><span class="pre">OpenCV</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/2ab517dd20bf0c718b83f1e3efd7ef8c/LICENSE.txt"><code class="xref download docutils literal notranslate"><span class="pre">Python</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/a12de15138f6d9cfcda4377ecb107384/LICENSE.LGPLv3"><code class="xref download docutils literal notranslate"><span class="pre">QT</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/719f95b38c8f3bc7323a8d50ec02f048/LICENSE.txt"><code class="xref download docutils literal notranslate"><span class="pre">SuiteSparse</span></code></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="definitions.html" class="btn btn-neutral float-right" title="Definitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="OrientAL manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

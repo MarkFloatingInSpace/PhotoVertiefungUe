@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>loss &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="parameters" href="parameters.html" />
+    <link rel="prev" title="local_parameterization" href="localParameterization.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="../../_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../definitions.html">Definitions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../oriental.html">Python Package <em>oriental</em></a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../absOri.html">absOri</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../adjust.html">adjust</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SolverOptions.html">Solver.Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cost.html">cost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html">examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localParameterization.html">local_parameterization</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-oriental.adjust.loss">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html">parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adjust.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adjust.html#module-oriental.adjust">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blocks.html">blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph.html">graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log.html">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../match.html">match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ori.html">ori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../relOri.html">relOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#module-oriental">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../oriental.html">Python Package <em>oriental</em></a> &raquo;</li>
+        
+          <li><a href="../adjust.html">adjust</a> &raquo;</li>
+        
+      <li>loss</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="loss">
+<h1>loss<a class="headerlink" href="#loss" title="Permalink to this headline">¶</a></h1>
+<div class="graphviz"><object data="../../_images/inheritance-1b54af1b5dd842a193dfc0f37482faf8e897d5cb.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of oriental.adjust.loss._loss</p></object></div>
+<p>loss functors for oriental.adjust</p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="oriental.adjust.loss._summary">
+<code class="sig-name descname">_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#oriental.adjust.loss._summary" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils align-default">
+<colgroup>
+<col style="width: 59%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Arctan" title="oriental.adjust.loss._loss.Arctan"><code class="xref py py-class docutils literal notranslate"><span class="pre">Arctan</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Cauchy" title="oriental.adjust.loss._loss.Cauchy"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cauchy</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Composed" title="oriental.adjust.loss._loss.Composed"><code class="xref py py-class docutils literal notranslate"><span class="pre">Composed</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Huber" title="oriental.adjust.loss._loss.Huber"><code class="xref py py-class docutils literal notranslate"><span class="pre">Huber</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.IUser" title="oriental.adjust.loss._loss.IUser"><code class="xref py py-class docutils literal notranslate"><span class="pre">IUser</span></code></a></p></td>
+<td><p>Loss and its derivatives computed by user</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Scaled" title="oriental.adjust.loss._loss.Scaled"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scaled</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.SoftLOne" title="oriental.adjust.loss._loss.SoftLOne"><code class="xref py py-class docutils literal notranslate"><span class="pre">SoftLOne</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Tolerant" title="oriental.adjust.loss._loss.Tolerant"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tolerant</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Trivial" title="oriental.adjust.loss._loss.Trivial"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trivial</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Tukey" title="oriental.adjust.loss._loss.Tukey"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tukey</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.adjust.loss._loss.Wrapper" title="oriental.adjust.loss._loss.Wrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">Wrapper</span></code></a></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-oriental.adjust.loss">
+<span id="api"></span><h2>API<a class="headerlink" href="#module-oriental.adjust.loss" title="Permalink to this headline">¶</a></h2>
+<p>loss functors for oriental.adjust</p>
+<div class="figure align-default">
+<img alt="../../_images/loss-1.svg" src="../../_images/loss-1.svg" /></div>
+<p>Note that <a class="reference internal" href="../adjust.html#module-oriental.adjust" title="oriental.adjust"><code class="xref py py-mod docutils literal notranslate"><span class="pre">adjust</span></code></a> considers the first and second derivatives of loss functions. Thus, to ease convergence, a good loss function should not only be smooth, but also have smooth first and second derivatives.</p>
+<div class="figure align-default">
+<img alt="../../_images/loss-2.svg" src="../../_images/loss-2.svg" /></div>
+<div class="figure align-default">
+<img alt="../../_images/loss-3.svg" src="../../_images/loss-3.svg" /></div>
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Base">
+<em class="property">class </em><code class="sig-name descname">Base</code><a class="headerlink" href="#oriental.adjust.loss._loss.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+<p>Raises an exception
+This class cannot be instantiated from Python</p>
+<dl class="py method">
+<dt id="oriental.adjust.loss._loss.Base.Evaluate">
+<code class="sig-name descname">Evaluate</code><span class="sig-paren">(</span><em class="sig-param">(Base)arg1</em>, <em class="sig-param">(object)arg2</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.adjust.loss._loss.Base.Evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Trivial">
+<em class="property">class </em><code class="sig-name descname">Trivial</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Trivial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Tolerant">
+<em class="property">class </em><code class="sig-name descname">Tolerant</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(object)a</em>, <em class="sig-param">(object)b</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Tolerant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<div class="figure align-default">
+<img alt="../../_images/loss-4.svg" src="../../_images/loss-4.svg" /></div>
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Huber">
+<em class="property">class </em><code class="sig-name descname">Huber</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(object)a</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Huber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<div class="figure align-default">
+<img alt="../../_images/loss-5.svg" src="../../_images/loss-5.svg" /></div>
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.SoftLOne">
+<em class="property">class </em><code class="sig-name descname">SoftLOne</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(object)a</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.SoftLOne" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<div class="figure align-default">
+<img alt="../../_images/loss-6.svg" src="../../_images/loss-6.svg" /></div>
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Cauchy">
+<em class="property">class </em><code class="sig-name descname">Cauchy</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(object)a</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Cauchy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<div class="figure align-default">
+<img alt="../../_images/loss-7.svg" src="../../_images/loss-7.svg" /></div>
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Arctan">
+<em class="property">class </em><code class="sig-name descname">Arctan</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(object)a</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Arctan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<div class="figure align-default">
+<img alt="../../_images/loss-8.svg" src="../../_images/loss-8.svg" /></div>
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Tukey">
+<em class="property">class </em><code class="sig-name descname">Tukey</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(object)a</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Tukey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<div class="figure align-default">
+<img alt="../../_images/loss-9.svg" src="../../_images/loss-9.svg" /></div>
+<span class="target" id="module-oriental.adjust.loss._loss"></span><p><a class="reference internal" href="#module-oriental.adjust.loss._loss" title="oriental.adjust.loss._loss"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss</span></code></a> contains functionality implemented in C++. For convenience, all its attributes are also made available directly from <a class="reference internal" href="#module-oriental.adjust.loss" title="oriental.adjust.loss"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.adjust.loss</span></code></a></p>
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Composed">
+<em class="property">class </em><code class="sig-name descname">Composed</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(Base)f</em>, <em class="sig-param">(Base)g</em>, <em class="sig-param">(Ownership)ownership_f</em>, <em class="sig-param">(Ownership)ownership_g</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Composed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.IUser">
+<em class="property">class </em><code class="sig-name descname">IUser</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.IUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+<p>Loss and its derivatives computed by user</p>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyLoss</span><span class="p">(</span> <span class="n">IUser</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">Evaluate</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">sq_norm</span><span class="p">,</span> <span class="n">out</span> <span class="p">):</span>
+        <span class="c1"># Trivial loss would be:</span>
+        <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sq_norm</span>
+        <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+        <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="oriental.adjust.loss._loss.IUser.Evaluate">
+<code class="sig-name descname">Evaluate</code><span class="sig-paren">(</span><em class="sig-param">(IUser)arg1</em>, <em class="sig-param">(object)sq_norm</em>, <em class="sig-param">(numpy.ndarray)out</em><span class="sig-paren">)</span> &#x2192; None :<a class="headerlink" href="#oriental.adjust.loss._loss.IUser.Evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">sq_norm</span></code> is the 2-norm of the residual vector. Set the 3 elements of <code class="docutils literal notranslate"><span class="pre">out</span></code> based on <code class="docutils literal notranslate"><span class="pre">sq_norm</span></code> and my loss function. The i-th element of <code class="docutils literal notranslate"><span class="pre">out</span></code> shall contain the i-th derivative of the user-defined loss-function, evaluated at <code class="docutils literal notranslate"><span class="pre">sq_norm</span></code></p>
+<p>Evaluate( (object)arg1, (object)arg2, (numpy.ndarray)arg3) -&gt; None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Scaled">
+<em class="property">class </em><code class="sig-name descname">Scaled</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(Base)rho</em>, <em class="sig-param">(object)a</em><span class="optional">[</span>, <em class="sig-param">(Ownership)ownership</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Scaled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.loss._loss.Wrapper">
+<em class="property">class </em><code class="sig-name descname">Wrapper</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em>, <em class="sig-param">(Base)rho</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.loss._loss.Base" title="oriental.adjust.loss._loss.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.loss._loss.Base</span></code></a></p>
+<dl class="py method">
+<dt id="oriental.adjust.loss._loss.Wrapper.Reset">
+<code class="sig-name descname">Reset</code><span class="sig-paren">(</span><em class="sig-param">(Wrapper)arg1</em>, <em class="sig-param">(Base)arg2</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.adjust.loss._loss.Wrapper.Reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.adjust.loss._loss.Wrapper.wrapped">
+<code class="sig-name descname">wrapped</code><span class="sig-paren">(</span><em class="sig-param">(Wrapper)arg1</em><span class="sig-paren">)</span> &#x2192; Base<a class="headerlink" href="#oriental.adjust.loss._loss.Wrapper.wrapped" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="parameters.html" class="btn btn-neutral float-right" title="parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="localParameterization.html" class="btn btn-neutral float-left" title="local_parameterization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

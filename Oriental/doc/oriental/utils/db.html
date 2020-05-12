@@ -1,0 +1,459 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>db &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="exif" href="exif.html" />
+    <link rel="prev" title="utils" href="../utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="../../_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../definitions.html">Definitions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../oriental.html">Python Package <em>oriental</em></a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../absOri.html">absOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adjust.html">adjust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blocks.html">blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph.html">graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log.html">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../match.html">match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ori.html">ori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../relOri.html">relOri</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../utils.html">utils</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">db</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-oriental.utils.db">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="exif.html">exif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdal.html">gdal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lsm.html">lsm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openCV.html">openCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyplot.html">pyplot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#module-oriental">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../oriental.html">Python Package <em>oriental</em></a> &raquo;</li>
+        
+          <li><a href="../utils.html">utils</a> &raquo;</li>
+        
+      <li>db</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="db">
+<h1>db<a class="headerlink" href="#db" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="oriental.utils.db._summary">
+<code class="sig-name descname">_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#oriental.utils.db._summary" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils align-default">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 62%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.utils.db._db.Access" title="oriental.utils.db._db.Access"><code class="xref py py-class docutils literal notranslate"><span class="pre">Access</span></code></a></p></td>
+<td><p>Choose the access rights.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.utils.db._db.ConfigNames" title="oriental.utils.db._db.ConfigNames"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigNames</span></code></a></p></td>
+<td><p>Generally supported entries in column config.name; use their string representations for access, without risk of typos.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.utils.db.columnNamesForTable" title="oriental.utils.db.columnNamesForTable"><code class="xref py py-func docutils literal notranslate"><span class="pre">columnNamesForTable</span></code></a></p></td>
+<td><dl class="field-list simple">
+<dt class="field-odd">param connection</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.utils.db._db.createUpdateSchema" title="oriental.utils.db._db.createUpdateSchema"><code class="xref py py-func docutils literal notranslate"><span class="pre">createUpdateSchema</span></code></a></p></td>
+<td><p>createUpdateSchema( (str)fn [, (Access)access=oriental.utils.db._db.Access.readWriteCreate]) -&gt; bool</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.utils.db.initDataBase" title="oriental.utils.db.initDataBase"><code class="xref py py-func docutils literal notranslate"><span class="pre">initDataBase</span></code></a></p></td>
+<td><p>Spatially enable the connection’s db, and correct Tranformation Parameters</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.utils.db.packPointZ" title="oriental.utils.db.packPointZ"><code class="xref py py-func docutils literal notranslate"><span class="pre">packPointZ</span></code></a></p></td>
+<td><p>represent a point as binary WKT of a 3-D point without m-value</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.utils.db.tableExists" title="oriental.utils.db.tableExists"><code class="xref py py-func docutils literal notranslate"><span class="pre">tableExists</span></code></a></p></td>
+<td><dl class="field-list simple">
+<dt class="field-odd">param connection</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#oriental.utils.db.tableHasColumn" title="oriental.utils.db.tableHasColumn"><code class="xref py py-func docutils literal notranslate"><span class="pre">tableHasColumn</span></code></a></p></td>
+<td><dl class="field-list simple">
+<dt class="field-odd">param connection</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oriental.utils.db.uri4sqlite" title="oriental.utils.db.uri4sqlite"><code class="xref py py-func docutils literal notranslate"><span class="pre">uri4sqlite</span></code></a></p></td>
+<td><p>SQLite supports file URIs only with authority being empty or ‘localhost’,</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-oriental.utils.db">
+<span id="api"></span><h2>API<a class="headerlink" href="#module-oriental.utils.db" title="Permalink to this headline">¶</a></h2>
+<p>util functions for data base access</p>
+<dl class="py function">
+<dt id="oriental.utils.db.packPointZ">
+<code class="sig-name descname">packPointZ</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pt</span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.utils.db.packPointZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>represent a point as binary WKT of a 3-D point without m-value</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.utils.db.uri4sqlite">
+<code class="sig-name descname">uri4sqlite</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.8)">pathlib.Path</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.utils.db.uri4sqlite" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>SQLite supports file URIs only with authority being empty or ‘localhost’,</dt><dd><p>except if compiled with SQLITE_ALLOW_URI_AUTHORITY - which is not the case by default,
+and not the case for Python’s sqlite.dll
+However, one can trick SQLite to accept URIs of network files
+by passing URIs that start with 4 slashes!</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<code class="docutils literal notranslate"><span class="pre">Path</span></code>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.utils.db.tableExists">
+<code class="sig-name descname">tableExists</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">connection</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection" title="(in Python v3.8)">sqlite3.Connection</a></span></em>, <em class="sig-param"><span class="n">tableName</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="headerlink" href="#oriental.utils.db.tableExists" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<code class="docutils literal notranslate"><span class="pre">Connection</span></code>) – </p></li>
+<li><p><strong>tableName</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.utils.db.tableHasColumn">
+<code class="sig-name descname">tableHasColumn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">connection</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection" title="(in Python v3.8)">sqlite3.Connection</a></span></em>, <em class="sig-param"><span class="n">tableName</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">columnName</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="headerlink" href="#oriental.utils.db.tableHasColumn" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<code class="docutils literal notranslate"><span class="pre">Connection</span></code>) – </p></li>
+<li><p><strong>tableName</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
+<li><p><strong>columnName</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.utils.db.columnNamesForTable">
+<code class="sig-name descname">columnNamesForTable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">connection</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection" title="(in Python v3.8)">sqlite3.Connection</a></span></em>, <em class="sig-param"><span class="n">tableName</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a><a class="headerlink" href="#oriental.utils.db.columnNamesForTable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<code class="docutils literal notranslate"><span class="pre">Connection</span></code>) – </p></li>
+<li><p><strong>tableName</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.utils.db.initDataBase">
+<code class="sig-name descname">initDataBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">connection</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection" title="(in Python v3.8)">sqlite3.Connection</a></span></em>, <em class="sig-param"><span class="n">readOnly</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.utils.db.initDataBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spatially enable the connection’s db, and correct Tranformation Parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<code class="docutils literal notranslate"><span class="pre">Connection</span></code>) – </p></li>
+<li><p><strong>readOnly</strong> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-oriental.utils.db._db"></span><p><a class="reference internal" href="#module-oriental.utils.db._db" title="oriental.utils.db._db"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.utils.db._db</span></code></a> contains functionality implemented in C++. For convenience, all its attributes are also made available directly from <a class="reference internal" href="#module-oriental.utils.db" title="oriental.utils.db"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.utils.db</span></code></a></p>
+<dl class="py class">
+<dt id="oriental.utils.db._db.Access">
+<em class="property">class </em><code class="sig-name descname">Access</code><a class="headerlink" href="#oriental.utils.db._db.Access" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.enum</span></code></p>
+<p>Choose the access rights.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>readOnly</p></td>
+<td><p>Queries only.</p></td>
+</tr>
+<tr class="row-odd"><td><p>readWrite</p></td>
+<td><p>Queries and modifications.</p></td>
+</tr>
+<tr class="row-even"><td><p>readWriteCreate</p></td>
+<td><p>Queries, modifications, and data base creation.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.db._db.ConfigNames">
+<em class="property">class </em><code class="sig-name descname">ConfigNames</code><a class="headerlink" href="#oriental.utils.db._db.ConfigNames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.enum</span></code></p>
+<p>Generally supported entries in column config.name; use their string representations for access, without risk of typos.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CoordinateSystemWkt</p></td>
+<td><p>WKT of the project coordinate system.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.utils.db._db.createUpdateSchema">
+<code class="sig-name descname">createUpdateSchema</code><span class="sig-paren">(</span><em class="sig-param">(str)fn</em><span class="optional">[</span>, <em class="sig-param">(Access)access=oriental.utils.db._db.Access.readWriteCreate</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="headerlink" href="#oriental.utils.db._db.createUpdateSchema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="exif.html" class="btn btn-neutral float-right" title="exif" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../utils.html" class="btn btn-neutral float-left" title="utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<GDAL_WMS>
+  <Service name="WMS">
+    <Version>1.1.1</Version>
+    <ServerUrl>http://map.sitr.regione.sicilia.it/ArcGIS/services/WGS84_F33/DTM_2m_f33/MapServer/WMSServer?SERVICE=WMS</ServerUrl>
+    <Layers>0</Layers>
+    <SRS>EPSG:32633</SRS>
+    <ImageFormat>image/jpeg</ImageFormat>
+    <Transparent>FALSE</Transparent>
+    <BBoxOrder>xyXY</BBoxOrder>
+  </Service>
+  <DataWindow>
+    <UpperLeftX>224680.471982</UpperLeftX>
+    <UpperLeftY>4296076.467186</UpperLeftY>
+    <LowerRightX>558319.747495</LowerRightX>
+    <LowerRightY>3929148.073119</LowerRightY>
+    <SizeX>976224256</SizeX>
+    <SizeY>1073741824</SizeY>
+  </DataWindow>
+  <BandsCount>3</BandsCount>
+  <BlockSizeX>1024</BlockSizeX>
+  <BlockSizeY>1024</BlockSizeY>
+  <OverviewCount>20</OverviewCount>
+</GDAL_WMS>

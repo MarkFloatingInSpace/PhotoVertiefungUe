@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>parameters &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="blocks" href="../blocks.html" />
+    <link rel="prev" title="loss" href="loss.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="../../_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../definitions.html">Definitions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../oriental.html">Python Package <em>oriental</em></a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../absOri.html">absOri</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../adjust.html">adjust</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SolverOptions.html">Solver.Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cost.html">cost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html">examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localParameterization.html">local_parameterization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="loss.html">loss</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adjust.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adjust.html#module-oriental.adjust">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blocks.html">blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph.html">graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log.html">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../match.html">match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ori.html">ori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../relOri.html">relOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#module-oriental">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../oriental.html">Python Package <em>oriental</em></a> &raquo;</li>
+        
+          <li><a href="../adjust.html">adjust</a> &raquo;</li>
+        
+      <li>parameters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parameters">
+<h1>parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
+<div class="graphviz"><object data="../../_images/inheritance-c1bc7535ab65f3a08d3542a4371d992a0ec403c0.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of oriental.adjust.parameters</p></object></div>
+<dl class="py class">
+<dt id="oriental.adjust.parameters.Array">
+<em class="property">class </em><code class="sig-name descname">Array</code><a class="headerlink" href="#oriental.adjust.parameters.Array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
+<p>Sub-class of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> that can be constructed using the signature of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.array()</span></code></a></p>
+<dl class="py method">
+<dt id="oriental.adjust.parameters.Array.names">
+<em class="property">property </em><code class="sig-name descname">names</code><a class="headerlink" href="#oriental.adjust.parameters.Array.names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.ParPar">
+<em class="property">class </em><code class="sig-name descname">ParPar</code><a class="headerlink" href="#oriental.adjust.parameters.ParPar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.Array" title="oriental.adjust.parameters.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.Array</span></code></a></p>
+<p>A <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> with the additional dict-attribute <a class="reference internal" href="#oriental.adjust.parameters.ParPar.parpar" title="oriental.adjust.parameters.ParPar.parpar"><code class="xref py py-attr docutils literal notranslate"><span class="pre">parpar</span></code></a>.</p>
+<p><a class="reference internal" href="#oriental.adjust.parameters.ParPar.parpar" title="oriental.adjust.parameters.ParPar.parpar"><code class="xref py py-attr docutils literal notranslate"><span class="pre">parpar</span></code></a> itself holds <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>s that provide C-pointers to be used in C++. 
+Don’t use directly, but only derived classes.</p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ParPar.a">
+<code class="sig-name descname">a</code><a class="headerlink" href="#oriental.adjust.parameters.ParPar.a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ParPar.p">
+<code class="sig-name descname">p</code><a class="headerlink" href="#oriental.adjust.parameters.ParPar.p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ParPar.parpar">
+<code class="sig-name descname">parpar</code><a class="headerlink" href="#oriental.adjust.parameters.ParPar.parpar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ParPar.r">
+<code class="sig-name descname">r</code><a class="headerlink" href="#oriental.adjust.parameters.ParPar.r" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.Info">
+<em class="property">class </em><code class="sig-name descname">Info</code><a class="headerlink" href="#oriental.adjust.parameters.Info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a></p>
+<p>Meta-class for parameters that adds an additional attribute <em>info</em>.</p>
+<p><em>info</em> may be of arbitrary type.</p>
+</dd></dl>
+
+<span class="target" id="module-oriental.adjust.parameters"></span><dl class="py class">
+<dt id="oriental.adjust.parameters.ADP">
+<em class="property">class </em><code class="sig-name descname">ADP</code><a class="headerlink" href="#oriental.adjust.parameters.ADP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.ParPar" title="oriental.adjust.parameters.ParPar"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.ParPar</span></code></a></p>
+<p>9-element vector marking the parameter block as camera distortion.</p>
+<p>Holds additional <a class="reference internal" href="#oriental.adjust.parameters.ParPar.parpar" title="oriental.adjust.parameters.ParPar.parpar"><code class="xref py py-attr docutils literal notranslate"><span class="pre">parpar</span></code></a>s <em>normalizationRadius</em> and <em>referencePoint</em></p>
+<p>Initialize with given normalizationRadius and referencePoint. Optionally pass an array with initial values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>normalizationRadius</strong> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) – </p></li>
+<li><p><strong>referencePoint</strong> (<code class="docutils literal notranslate"><span class="pre">AdpReferencePoint</span></code>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ADP.name">
+<code class="sig-name descname">name</code><em class="property"> = 'Adp'</em><a class="headerlink" href="#oriental.adjust.parameters.ADP.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ADP.staticNames">
+<code class="sig-name descname">staticNames</code><em class="property"> = ('sk', 'scY', 'r3', 'r5', 't1', 't2', 'r7', 'r9', 'r11')</em><a class="headerlink" href="#oriental.adjust.parameters.ADP.staticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.adjust.parameters.ADP.normalizationRadius">
+<em class="property">property </em><code class="sig-name descname">normalizationRadius</code><a class="headerlink" href="#oriental.adjust.parameters.ADP.normalizationRadius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of zero radial distortion, see <a class="reference internal" href="../adjust.html#oriental.adjust._adjust.PhotoDistortion" title="oriental.adjust._adjust.PhotoDistortion"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhotoDistortion</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="oriental.adjust.parameters.ADP.referencePoint">
+<em class="property">property </em><code class="sig-name descname">referencePoint</code><a class="headerlink" href="#oriental.adjust.parameters.ADP.referencePoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>see <a class="reference internal" href="../adjust.html#oriental.adjust._adjust.AdpReferencePoint" title="oriental.adjust._adjust.AdpReferencePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdpReferencePoint</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">AdpReferencePoint</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.InfoADP">
+<em class="property">class </em><code class="sig-name descname">InfoADP</code><a class="headerlink" href="#oriental.adjust.parameters.InfoADP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.ADP" title="oriental.adjust.parameters.ADP"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.ADP</span></code></a></p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.InfoADP.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#oriental.adjust.parameters.InfoADP.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arbitrary additional information</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.EulerAngles">
+<em class="property">class </em><code class="sig-name descname">EulerAngles</code><a class="headerlink" href="#oriental.adjust.parameters.EulerAngles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.ParPar" title="oriental.adjust.parameters.ParPar"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.ParPar</span></code></a></p>
+<p>3-element vector marking the parameter block as rotation angles.</p>
+<p>Holds additional <a class="reference internal" href="#oriental.adjust.parameters.ParPar.parpar" title="oriental.adjust.parameters.ParPar.parpar"><code class="xref py py-attr docutils literal notranslate"><span class="pre">parpar</span></code></a> <em>parametrization</em>.</p>
+<p>Initialize with given parametrization. Optionally pass an array with initial values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parametrization</strong> (<code class="docutils literal notranslate"><span class="pre">EulerAngles</span></code>) – </p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.EulerAngles.name">
+<code class="sig-name descname">name</code><em class="property"> = 'Rot'</em><a class="headerlink" href="#oriental.adjust.parameters.EulerAngles.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.EulerAngles.staticNames">
+<code class="sig-name descname">staticNames</code><em class="property"> = ('r1', 'r2', 'r3')</em><a class="headerlink" href="#oriental.adjust.parameters.EulerAngles.staticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.adjust.parameters.EulerAngles.names">
+<em class="property">property </em><code class="sig-name descname">names</code><a class="headerlink" href="#oriental.adjust.parameters.EulerAngles.names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.adjust.parameters.EulerAngles.parametrization">
+<em class="property">property </em><code class="sig-name descname">parametrization</code><a class="headerlink" href="#oriental.adjust.parameters.EulerAngles.parametrization" title="Permalink to this definition">¶</a></dt>
+<dd><p>see <a class="reference internal" href="../adjust.html#oriental.adjust._adjust.EulerAngles" title="oriental.adjust._adjust.EulerAngles"><code class="xref py py-class docutils literal notranslate"><span class="pre">EulerAngles</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">EulerAngles</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.InfoEulerAngles">
+<em class="property">class </em><code class="sig-name descname">InfoEulerAngles</code><a class="headerlink" href="#oriental.adjust.parameters.InfoEulerAngles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.EulerAngles" title="oriental.adjust.parameters.EulerAngles"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.EulerAngles</span></code></a></p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.InfoEulerAngles.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#oriental.adjust.parameters.InfoEulerAngles.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arbitrary additional information</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.Ior">
+<em class="property">class </em><code class="sig-name descname">Ior</code><a class="headerlink" href="#oriental.adjust.parameters.Ior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.Array" title="oriental.adjust.parameters.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.Array</span></code></a></p>
+<p>3-element vector marking the parameter block as interior orientation.</p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.Ior.name">
+<code class="sig-name descname">name</code><em class="property"> = 'Ior'</em><a class="headerlink" href="#oriental.adjust.parameters.Ior.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.Ior.staticNames">
+<code class="sig-name descname">staticNames</code><em class="property"> = ('x0', 'y0', 'z0')</em><a class="headerlink" href="#oriental.adjust.parameters.Ior.staticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.InfoIor">
+<em class="property">class </em><code class="sig-name descname">InfoIor</code><a class="headerlink" href="#oriental.adjust.parameters.InfoIor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.Ior" title="oriental.adjust.parameters.Ior"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.Ior</span></code></a></p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.InfoIor.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#oriental.adjust.parameters.InfoIor.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arbitrary additional information</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.Prc">
+<em class="property">class </em><code class="sig-name descname">Prc</code><a class="headerlink" href="#oriental.adjust.parameters.Prc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.Array" title="oriental.adjust.parameters.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.Array</span></code></a></p>
+<p>3-element vector marking the parameter block as projection center position.</p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.Prc.name">
+<code class="sig-name descname">name</code><em class="property"> = 'Prc'</em><a class="headerlink" href="#oriental.adjust.parameters.Prc.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.Prc.staticNames">
+<code class="sig-name descname">staticNames</code><em class="property"> = ('X0', 'Y0', 'Z0')</em><a class="headerlink" href="#oriental.adjust.parameters.Prc.staticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.InfoPrc">
+<em class="property">class </em><code class="sig-name descname">InfoPrc</code><a class="headerlink" href="#oriental.adjust.parameters.InfoPrc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.Prc" title="oriental.adjust.parameters.Prc"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.Prc</span></code></a></p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.InfoPrc.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#oriental.adjust.parameters.InfoPrc.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arbitrary additional information</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.ObjectPoint">
+<em class="property">class </em><code class="sig-name descname">ObjectPoint</code><a class="headerlink" href="#oriental.adjust.parameters.ObjectPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.Array" title="oriental.adjust.parameters.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.Array</span></code></a></p>
+<p>3-element vector marking the parameter block as object point.</p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ObjectPoint.name">
+<code class="sig-name descname">name</code><em class="property"> = 'Obj'</em><a class="headerlink" href="#oriental.adjust.parameters.ObjectPoint.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ObjectPoint.staticNames">
+<code class="sig-name descname">staticNames</code><em class="property"> = ('X', 'Y', 'Z')</em><a class="headerlink" href="#oriental.adjust.parameters.ObjectPoint.staticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.InfoObjectPoint">
+<em class="property">class </em><code class="sig-name descname">InfoObjectPoint</code><a class="headerlink" href="#oriental.adjust.parameters.InfoObjectPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.ObjectPoint" title="oriental.adjust.parameters.ObjectPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.ObjectPoint</span></code></a></p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.InfoObjectPoint.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#oriental.adjust.parameters.InfoObjectPoint.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arbitrary additional information</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.TiePoint">
+<em class="property">class </em><code class="sig-name descname">TiePoint</code><a class="headerlink" href="#oriental.adjust.parameters.TiePoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.ObjectPoint" title="oriental.adjust.parameters.ObjectPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.ObjectPoint</span></code></a></p>
+<p>3-element vector marking the parameter block as tie object point.</p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.TiePoint.name">
+<code class="sig-name descname">name</code><em class="property"> = 'TP'</em><a class="headerlink" href="#oriental.adjust.parameters.TiePoint.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.InfoTiePoint">
+<em class="property">class </em><code class="sig-name descname">InfoTiePoint</code><a class="headerlink" href="#oriental.adjust.parameters.InfoTiePoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.TiePoint" title="oriental.adjust.parameters.TiePoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.TiePoint</span></code></a></p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.InfoTiePoint.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#oriental.adjust.parameters.InfoTiePoint.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arbitrary additional information</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.ControlPoint">
+<em class="property">class </em><code class="sig-name descname">ControlPoint</code><a class="headerlink" href="#oriental.adjust.parameters.ControlPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.ObjectPoint" title="oriental.adjust.parameters.ObjectPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.ObjectPoint</span></code></a></p>
+<p>3-element vector marking the parameter block as ground control point.</p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.ControlPoint.name">
+<code class="sig-name descname">name</code><em class="property"> = 'GCP'</em><a class="headerlink" href="#oriental.adjust.parameters.ControlPoint.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.InfoControlPoint">
+<em class="property">class </em><code class="sig-name descname">InfoControlPoint</code><a class="headerlink" href="#oriental.adjust.parameters.InfoControlPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.ControlPoint" title="oriental.adjust.parameters.ControlPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.ControlPoint</span></code></a></p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.InfoControlPoint.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#oriental.adjust.parameters.InfoControlPoint.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arbitrary additional information</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.CheckPoint">
+<em class="property">class </em><code class="sig-name descname">CheckPoint</code><a class="headerlink" href="#oriental.adjust.parameters.CheckPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.ObjectPoint" title="oriental.adjust.parameters.ObjectPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.ObjectPoint</span></code></a></p>
+<p>3-element vector marking the parameter block as (ground) check point.</p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.CheckPoint.name">
+<code class="sig-name descname">name</code><em class="property"> = 'CP'</em><a class="headerlink" href="#oriental.adjust.parameters.CheckPoint.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.adjust.parameters.InfoCheckPoint">
+<em class="property">class </em><code class="sig-name descname">InfoCheckPoint</code><a class="headerlink" href="#oriental.adjust.parameters.InfoCheckPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#oriental.adjust.parameters.CheckPoint" title="oriental.adjust.parameters.CheckPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">oriental.adjust.parameters.CheckPoint</span></code></a></p>
+<dl class="py attribute">
+<dt id="oriental.adjust.parameters.InfoCheckPoint.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#oriental.adjust.parameters.InfoCheckPoint.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arbitrary additional information</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../blocks.html" class="btn btn-neutral float-right" title="blocks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="loss.html" class="btn btn-neutral float-left" title="loss" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

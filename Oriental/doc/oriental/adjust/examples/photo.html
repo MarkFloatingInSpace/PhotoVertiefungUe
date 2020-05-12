@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Photo observations &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Custom cost functions" href="customCost.html" />
+    <link rel="prev" title="examples" href="../examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="../../../_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../definitions.html">Definitions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../oriental.html">Python Package <em>oriental</em></a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../absOri.html">absOri</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../adjust.html">adjust</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../SolverOptions.html">Solver.Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cost.html">cost</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../examples.html">examples</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Photo observations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="customCost.html">Custom cost functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../localParameterization.html">local_parameterization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../loss.html">loss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parameters.html">parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adjust.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adjust.html#module-oriental.adjust">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../blocks.html">blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../graph.html">graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../log.html">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../match.html">match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ori.html">ori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../relOri.html">relOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html">utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../oriental.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../oriental.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../oriental.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../oriental.html#module-oriental">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../oriental.html">Python Package <em>oriental</em></a> &raquo;</li>
+        
+          <li><a href="../../adjust.html">adjust</a> &raquo;</li>
+        
+          <li><a href="../examples.html">examples</a> &raquo;</li>
+        
+      <li>Photo observations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-oriental.adjust.examples.photo"></span><div class="section" id="photo-observations">
+<h1>Photo observations<a class="headerlink" href="#photo-observations" title="Permalink to this headline">¶</a></h1>
+<p>In this example, the exterior orientation of a photograph is adjusted, using image observations of 4 control points. For that purpose, the built-in cost <a class="reference internal" href="../cost.html#oriental.adjust.cost._cost.PhotoTorlegard" title="oriental.adjust.cost._cost.PhotoTorlegard"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhotoTorlegard</span></code></a> is used, which follows ORIENT’s definitions and considers Torlegards distortion parameters. In order to pass parametrizations of parameter blocks (<abbr title="exempli gratia">e.g.</abbr> the parametrization of the rotation matrix), classes derived from <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html#arrays-ndarray" title="(in NumPy v1.17)"><span class="xref std std-ref">numpy.ndarray</span></a> must be used, which are found in <a class="reference internal" href="../parameters.html#module-oriental.adjust.parameters" title="oriental.adjust.parameters"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.adjust.parameters</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">example_photo</span><span class="p">():</span>
+    
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">adjust</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">EulerAngles</span><span class="p">(</span> <span class="n">parametrization</span><span class="o">=</span><span class="n">adjust</span><span class="o">.</span><span class="n">EulerAngles</span><span class="o">.</span><span class="n">omfika</span><span class="p">,</span>
+                                            <span class="n">array</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span><span class="o">-.</span><span class="mi">02</span><span class="p">,</span><span class="o">.</span><span class="mi">3</span><span class="p">])</span> <span class="p">)</span>
+    <span class="n">prjCtr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span> <span class="p">])</span>
+    <span class="n">ior</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">150.</span><span class="p">,</span> <span class="o">-</span><span class="mf">150.</span><span class="p">,</span> <span class="mf">100.</span> <span class="p">])</span>
+    <span class="n">adp</span>    <span class="o">=</span> <span class="n">adjust</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">ADP</span><span class="p">(</span> <span class="n">normalizationRadius</span><span class="o">=</span><span class="mf">75.</span> <span class="p">)</span>
+    
+    <span class="n">angles_apri</span> <span class="o">=</span> <span class="n">angles</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">prjCtr_apri</span> <span class="o">=</span> <span class="n">prjCtr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span>  <span class="mf">10.</span><span class="p">,</span>  <span class="mf">10.</span><span class="p">,</span> <span class="mf">0.</span> <span class="p">],</span>
+                        <span class="p">[</span> <span class="o">-</span><span class="mf">10.</span><span class="p">,</span>  <span class="mf">10.</span><span class="p">,</span> <span class="mf">0.</span> <span class="p">],</span>
+                        <span class="p">[</span> <span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">0.</span> <span class="p">],</span>
+                        <span class="p">[</span>  <span class="mf">10.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">0.</span> <span class="p">]</span> <span class="p">]</span> <span class="p">)</span>
+
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span> <span class="n">ior</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="mf">100.</span><span class="o">+.</span><span class="mi">432</span><span class="p">,</span> <span class="n">ior</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span><span class="mf">100.</span><span class="o">+.</span><span class="mi">472</span> <span class="p">],</span>
+                     <span class="p">[</span> <span class="n">ior</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span><span class="mf">100.</span><span class="o">-.</span><span class="mi">654</span><span class="p">,</span> <span class="n">ior</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span><span class="mf">100.</span><span class="o">+.</span><span class="mi">581</span> <span class="p">],</span>
+                     <span class="p">[</span> <span class="n">ior</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span><span class="mf">100.</span><span class="o">+.</span><span class="mi">589</span><span class="p">,</span> <span class="n">ior</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span><span class="mf">100.</span><span class="o">+.</span><span class="mi">240</span> <span class="p">],</span>
+                     <span class="p">[</span> <span class="n">ior</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="mf">100.</span><span class="o">-.</span><span class="mi">487</span><span class="p">,</span> <span class="n">ior</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span><span class="mf">100.</span><span class="o">+.</span><span class="mi">541</span> <span class="p">]</span> <span class="p">]</span> <span class="p">)</span>
+        
+        
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">adjust</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">Trivial</span><span class="p">()</span>
+
+    <span class="n">problem</span> <span class="o">=</span> <span class="n">adjust</span><span class="o">.</span><span class="n">Problem</span><span class="p">()</span>
+        
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">):</span>
+        <span class="c1"># 1 residual block per image point</span>
+        <span class="n">problem</span><span class="o">.</span><span class="n">AddResidualBlock</span><span class="p">(</span> <span class="n">adjust</span><span class="o">.</span><span class="n">cost</span><span class="o">.</span><span class="n">PhotoTorlegard</span><span class="p">(</span> <span class="n">obs</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">obs</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="p">),</span>
+                                  <span class="n">loss</span><span class="p">,</span>
+                                  <span class="n">prjCtr</span><span class="p">,</span>
+                                  <span class="n">angles</span><span class="p">,</span>
+                                  <span class="n">ior</span><span class="p">,</span>
+                                  <span class="n">adp</span><span class="p">,</span>
+                                  <span class="n">points</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="p">)</span>
+        <span class="n">problem</span><span class="o">.</span><span class="n">SetParameterBlockConstant</span><span class="p">(</span> <span class="n">points</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="p">)</span>
+
+    <span class="n">problem</span><span class="o">.</span><span class="n">SetParameterBlockConstant</span><span class="p">(</span> <span class="n">ior</span> <span class="p">)</span>
+    <span class="n">problem</span><span class="o">.</span><span class="n">SetParameterBlockConstant</span><span class="p">(</span> <span class="n">adp</span> <span class="p">)</span>
+
+    <span class="n">residuals_apri</span><span class="p">,</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">Evaluate</span><span class="p">();</span>
+
+    <span class="n">options</span> <span class="o">=</span> <span class="n">adjust</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">Options</span><span class="p">()</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">adjust</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">Summary</span><span class="p">()</span>
+    
+    <span class="n">adjust</span><span class="o">.</span><span class="n">Solve</span><span class="p">(</span> <span class="n">options</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">summary</span> <span class="p">)</span>
+  
+    <span class="n">residuals_apost</span><span class="p">,</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">Evaluate</span><span class="p">();</span>
+      
+    <span class="nb">print</span><span class="p">(</span> <span class="n">summary</span><span class="o">.</span><span class="n">BriefReport</span><span class="p">()</span> <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;prjCtr: </span><span class="si">{}</span><span class="s2"> -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">prjCtr_apri</span><span class="p">,</span> <span class="n">prjCtr</span> <span class="p">)</span> <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;angles: </span><span class="si">{}</span><span class="s2"> -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">angles_apri</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;residuals:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n">residuals_apri</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span> <span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">residuals_apri</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="n">residuals_apost</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+    
+    <span class="k">assert</span> <span class="n">summary</span><span class="o">.</span><span class="n">final_cost</span> <span class="o">&lt;</span> <span class="n">summary</span><span class="o">.</span><span class="n">initial_cost</span><span class="p">,</span> <span class="s2">&quot;adjustment failed&quot;</span>
+</pre></div>
+</div>
+<p>The output should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ceres</span> <span class="n">Solver</span> <span class="n">Report</span><span class="p">:</span> <span class="n">Iterations</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Initial</span> <span class="n">cost</span><span class="p">:</span> <span class="mf">3.337899e+000</span><span class="p">,</span> <span class="n">Final</span> <span class="n">cost</span><span class="p">:</span> <span class="mf">5.537401e-003</span><span class="p">,</span> <span class="n">Termination</span><span class="p">:</span> <span class="n">FUNCTION_TOLERANCE</span><span class="o">.</span>
+<span class="n">prjCtr</span><span class="p">:</span> <span class="p">[</span>  <span class="mf">0.</span>   <span class="mf">0.</span>  <span class="mf">10.</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.01763011</span>  <span class="mf">0.06208183</span>  <span class="mf">9.99647262</span><span class="p">]</span>
+<span class="n">angles</span><span class="p">:</span> <span class="p">[</span> <span class="mf">0.1</span>  <span class="o">-</span><span class="mf">0.02</span>  <span class="mf">0.3</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.34357828</span> <span class="o">-</span><span class="mf">0.06558545</span> <span class="o">-</span><span class="mf">0.04132407</span><span class="p">]</span>
+<span class="n">residuals</span><span class="p">:</span>
+<span class="p">[</span><span class="o">-</span><span class="mf">0.18292016</span> <span class="o">-</span><span class="mf">1.28823005</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span> <span class="mf">0.04911647</span> <span class="o">-</span><span class="mf">0.01777635</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">1.21897282</span> <span class="o">-</span><span class="mf">0.39369658</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.0174128</span>  <span class="o">-</span><span class="mf">0.04909595</span><span class="p">]</span>
+<span class="p">[</span><span class="o">-</span><span class="mf">1.28115708</span> <span class="o">-</span><span class="mf">0.11284313</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.04996219</span>  <span class="mf">0.0176794</span> <span class="p">]</span>
+<span class="p">[</span> <span class="mf">0.10785676</span> <span class="o">-</span><span class="mf">1.29467345</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span> <span class="mf">0.01804601</span>  <span class="mf">0.04998317</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The complete code used in this example can be found in <a class="reference external" href="glossary.html?/oriental/adjust/examples/photo.py#term-oriental-root">$ORIENTAL/oriental/adjust/examples/photo.py</a>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="customCost.html" class="btn btn-neutral float-right" title="Custom cost functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../examples.html" class="btn btn-neutral float-left" title="examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

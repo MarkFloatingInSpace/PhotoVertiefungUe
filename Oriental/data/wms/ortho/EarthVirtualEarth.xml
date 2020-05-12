@@ -1,0 +1,14 @@
+<GDAL_WMS>
+  <Service name="VirtualEarth">
+    <ServerUrl>http://a${server_num}.ortho.tiles.virtualearth.net/tiles/a${quadkey}.jpeg?g=90</ServerUrl>
+  </Service>
+  <DataWindow>
+    <UpperLeftX> -20037508.3427892</UpperLeftX>
+    <UpperLeftY>  20037508.3427892</UpperLeftY>
+    <LowerRightX> 20037508.3427892</LowerRightX>
+    <LowerRightY>-20037508.3427892</LowerRightY>
+    <TileLevel>19</TileLevel>
+  </DataWindow>
+  <MaxConnections>4</MaxConnections>
+  <Cache />
+</GDAL_WMS>

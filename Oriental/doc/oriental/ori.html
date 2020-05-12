@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ori &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="transform" href="ori/transform.html" />
+    <link rel="prev" title="match" href="match.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="../_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../definitions.html">Definitions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../oriental.html">Python Package <em>oriental</em></a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="absOri.html">absOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adjust.html">adjust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blocks.html">blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log.html">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="match.html">match</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ori</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ori/transform.html">transform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="relOri.html">relOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oriental.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oriental.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oriental.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oriental.html#module-oriental">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../oriental.html">Python Package <em>oriental</em></a> &raquo;</li>
+        
+      <li>ori</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ori">
+<h1>ori<a class="headerlink" href="#ori" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Sub-packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ori/transform.html">transform</a></li>
+</ul>
+</div>
+<span class="target" id="module-oriental.ori"></span><p>one- and two-view geometry</p>
+<dl class="py function">
+<dt id="oriental.ori.Fmatrix">
+<code class="sig-name descname">Fmatrix</code><span class="sig-paren">(</span><em class="sig-param">p1: array[Nx2](float)</em>, <em class="sig-param">p2: array[Nx2](float)</em>, <em class="sig-param">enforceRank2: bool = True) -&gt; array[3x3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.Fmatrix" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p></li>
+<li><p><strong>p2</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p></li>
+<li><p><strong>enforceRank2</strong> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.adpParam2Struct">
+<code class="sig-name descname">adpParam2Struct</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">adp</span><span class="p">:</span> <span class="n"><a class="reference internal" href="adjust/parameters.html#oriental.adjust.parameters.ADP" title="oriental.adjust.parameters.ADP">oriental.adjust.parameters.ADP</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.adpParam2Struct" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>adp</strong> (<code class="docutils literal notranslate"><span class="pre">ADP</span></code>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.algebraicError">
+<code class="sig-name descname">algebraicError</code><span class="sig-paren">(</span><em class="sig-param">p1: array[Nx2](float)</em>, <em class="sig-param">p2: array[Nx2](float)</em>, <em class="sig-param">F: array[3x3](float)</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><a class="headerlink" href="#oriental.ori.algebraicError" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p></li>
+<li><p><strong>p2</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p></li>
+<li><p><strong>F</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.alzeka">
+<code class="sig-name descname">alzeka</code><span class="sig-paren">(</span><em class="sig-param">arg: array[3](float) | array[3x3](float)) -&gt; array[3x3](float) | array[3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.alzeka" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arg</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)|array[3x3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)|array[3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.cameraMatrix">
+<code class="sig-name descname">cameraMatrix</code><span class="sig-paren">(</span><em class="sig-param">ior: array[3](float)) -&gt; array[3x3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.cameraMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ior</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.crossProductMatrix">
+<code class="sig-name descname">crossProductMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">array[3](float)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.crossProductMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)</span></code>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.euler2matrix">
+<code class="sig-name descname">euler2matrix</code><span class="sig-paren">(</span><em class="sig-param">eulerAngles: array[3](float)) -&gt; array[3x3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.euler2matrix" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eulerAngles</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.fiomka">
+<code class="sig-name descname">fiomka</code><span class="sig-paren">(</span><em class="sig-param">arg: array[3](float) | array[3x3](float)) -&gt; array[3x3](float) | array[3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.fiomka" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arg</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)|array[3x3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)|array[3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.fitPlaneSVD">
+<code class="sig-name descname">fitPlaneSVD</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">XYZ</span><span class="p">:</span> <span class="n">array[Nx3](float)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.fitPlaneSVD" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>returns plane in Hesse normal form, computed with SVD</dt><dd><p>returns [n d]
+where
+x.dot(n)==d
+holds for points x in the plane and
+||n|| == 1</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>XYZ</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[4](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.get_epipole">
+<code class="sig-name descname">get_epipole</code><span class="sig-paren">(</span><em class="sig-param">F: array[3x3](float)</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.get_epipole" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>F</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.matrix2euler">
+<code class="sig-name descname">matrix2euler</code><span class="sig-paren">(</span><em class="sig-param">R: array[3x3](float)) -&gt; array[3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.matrix2euler" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>R</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.maxNumItersRANSAC">
+<code class="sig-name descname">maxNumItersRANSAC</code><span class="sig-paren">(</span><em class="sig-param">nModelPoints: int</em>, <em class="sig-param">nDataPoints: int</em>, <em class="sig-param">inlierRatio: float</em>, <em class="sig-param">&gt;0</em>, <em class="sig-param">&lt;1</em>, <em class="sig-param">confidence: float</em>, <em class="sig-param">&gt;0</em>, <em class="sig-param">&lt;1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><a class="headerlink" href="#oriental.ori.maxNumItersRANSAC" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nModelPoints</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – </p></li>
+<li><p><strong>nDataPoints</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – </p></li>
+<li><p><strong>inlierRatio</strong> (<code class="docutils literal notranslate"><span class="pre">float,&gt;0,&lt;1</span></code>) – </p></li>
+<li><p><strong>confidence</strong> (<code class="docutils literal notranslate"><span class="pre">float,&gt;0,&lt;1</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.maxReprojectionErrorSquared">
+<code class="sig-name descname">maxReprojectionErrorSquared</code><span class="sig-paren">(</span><em class="sig-param">x1: array[Nx2](float)</em>, <em class="sig-param">x2: array[Nx2](float)</em>, <em class="sig-param">F: array[3x3](float)</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><a class="headerlink" href="#oriental.ori.maxReprojectionErrorSquared" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x1</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p></li>
+<li><p><strong>x2</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p></li>
+<li><p><strong>F</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.omfika">
+<code class="sig-name descname">omfika</code><span class="sig-paren">(</span><em class="sig-param">arg: array[3](float) | array[3x3](float)) -&gt; array[3x3](float) | array[3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.omfika" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arg</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)|array[3x3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)|array[3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.omfika_py">
+<code class="sig-name descname">omfika_py</code><span class="sig-paren">(</span><em class="sig-param">arg: array[3](float) | array[3x3](float)) -&gt; array[3x3](float) | array[3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.omfika_py" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arg</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)|array[3x3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)|array[3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.oriRotTrans2projectionMat">
+<code class="sig-name descname">oriRotTrans2projectionMat</code><span class="sig-paren">(</span><em class="sig-param">R: array[3x3](float)</em>, <em class="sig-param">t: array[3](float)</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.oriRotTrans2projectionMat" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>R</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code>) – </p></li>
+<li><p><strong>t</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)</span></code>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.projection">
+<code class="sig-name descname">projection</code><span class="sig-paren">(</span><em class="sig-param">P: array[3](float)|array[Nx3](float)</em>, <em class="sig-param">PRC: array[3](float)</em>, <em class="sig-param">eulerAnglesOrR: array[3](float)|array[3x3](float)</em>, <em class="sig-param">ior: array[3](float)</em>, <em class="sig-param">adp=None) -&gt; array[2](float)|array[Nx2](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute the residual according to ORIENT</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>P</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)|array[Nx3](float)</span></code>) – </p></li>
+<li><p><strong>PRC</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)</span></code>) – </p></li>
+<li><p><strong>eulerAnglesOrR</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)|array[3x3](float)</span></code>) – </p></li>
+<li><p><strong>ior</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[2](float)|array[Nx2](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.projectionMat2oriRotTrans">
+<code class="sig-name descname">projectionMat2oriRotTrans</code><span class="sig-paren">(</span><em class="sig-param">P: array[3x4](float)</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.projectionMat2oriRotTrans" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>P</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x4](float)</span></code>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.r2d">
+<code class="sig-name descname">r2d</code><span class="sig-paren">(</span><em class="sig-param">angle: float) -&gt; array[2x2](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.r2d" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>angle</strong> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[2x2](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.recoverPose">
+<code class="sig-name descname">recoverPose</code><span class="sig-paren">(</span><em class="sig-param">essentialMatrix: array[3x3](float)</em>, <em class="sig-param">ptNormalized1: array[2xN](float)</em>, <em class="sig-param">ptNormalized2: array[2xN](float)) -&gt; array[3x4](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.recoverPose" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>recover R and t from the given essentialMatrix, using the passed image observations</dt><dd><p>to check which combination of R and t results in object points that are located
+in front of both cameras
+ptNormalized1,ptNormalized2: image observations that have been normalized to a focal length==1 and a principal point at (0,0)
+alternative: use cv2.recoverPose
+drawback of cv2.recoverPose: it uses a hard-coded threshold for maximum object point distances, beyond which,
+object points are considered to lie close to infinity, and thus, no decision can be made if they lie in front of or behind the camera
+-&gt; they are excluded from the decision.
+However, in aerial photogrammetry, a base-to-height ratio greater than 50 is no exception!</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>essentialMatrix</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code>) – </p></li>
+<li><p><strong>ptNormalized1</strong> (<code class="docutils literal notranslate"><span class="pre">array[2xN](float)</span></code>) – </p></li>
+<li><p><strong>ptNormalized2</strong> (<code class="docutils literal notranslate"><span class="pre">array[2xN](float)</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x4](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.recoverPose2">
+<code class="sig-name descname">recoverPose2</code><span class="sig-paren">(</span><em class="sig-param">essentialMatrix: array[3x3](float)</em>, <em class="sig-param">ptNormalized1: array[Nx2](float)</em>, <em class="sig-param">ptNormalized2: array[Nx2](float)) -&gt; tuple( int</em>, <em class="sig-param">array[3x3](float)</em>, <em class="sig-param">array[3](float)</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.recoverPose2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>essentialMatrix</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code>) – </p></li>
+<li><p><strong>ptNormalized1</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p></li>
+<li><p><strong>ptNormalized2</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">tuple(int,array[3x3](float),array[3](float))</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.reduction">
+<code class="sig-name descname">reduction</code><span class="sig-paren">(</span><em class="sig-param">p1: array[Nx2](float)) -&gt; array[3x3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.reduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>reduction matrix: T*p1 -&gt; ~N( 0, sqrt(2) )</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p1</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.rodrigues">
+<code class="sig-name descname">rodrigues</code><span class="sig-paren">(</span><em class="sig-param">R: array[3](float) | array[3x3](float)</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.rodrigues" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>R</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)|array[3x3](float)</span></code>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.ropiyaw">
+<code class="sig-name descname">ropiyaw</code><span class="sig-paren">(</span><em class="sig-param">arg: array[3](float) | array[3x3](float)) -&gt; array[3x3](float) | array[3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.ropiyaw" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arg</strong> (<code class="docutils literal notranslate"><span class="pre">array[3](float)|array[3x3](float)</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)|array[3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.rx">
+<code class="sig-name descname">rx</code><span class="sig-paren">(</span><em class="sig-param">angle: float) -&gt; array[3x3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.rx" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>angle</strong> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.ry">
+<code class="sig-name descname">ry</code><span class="sig-paren">(</span><em class="sig-param">angle: float) -&gt; array[3x3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.ry" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>angle</strong> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.rz">
+<code class="sig-name descname">rz</code><span class="sig-paren">(</span><em class="sig-param">angle: float) -&gt; array[3x3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.rz" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>angle</strong> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3x3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.similarityTrafo">
+<code class="sig-name descname">similarityTrafo</code><span class="sig-paren">(</span><em class="sig-param">x: array[RxC](float)</em>, <em class="sig-param">(R=C|R&gt;C)</em>, <em class="sig-param">(C=2|C=3)</em>, <em class="sig-param">y: array[RxC](float)</em>, <em class="sig-param">(R=C|R&gt;C)</em>, <em class="sig-param">(C=2|C=3)) -&gt; tuple(float</em>, <em class="sig-param">array[CxC](float)</em>, <em class="sig-param">array[C](float)</em>, <em class="sig-param">float)</em>, <em class="sig-param">(C=2|C=3</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.similarityTrafo" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>Compute a 2-D or 3-D similarity transformation such that y=s*R.dot(x-x0)</dt><dd><p>has the minimum mean squared error</p>
+<p>Photogr.Manual 5th ed. p828</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<code class="docutils literal notranslate"><span class="pre">array[RxC](float),(R=C|R&gt;C),(C=2|C=3)</span></code>) – </p></li>
+<li><p><strong>y</strong> (<code class="docutils literal notranslate"><span class="pre">array[RxC](float),(R=C|R&gt;C),(C=2|C=3)</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">tuple(float,array[CxC](float),array[C](float),float),(C=2|C=3)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.triangulate">
+<code class="sig-name descname">triangulate</code><span class="sig-paren">(</span><em class="sig-param">P1: array[3x4](float)</em>, <em class="sig-param">P2: array[3x4](float)</em>, <em class="sig-param">x1: array[NxM](float) | array[N](float)</em>, <em class="sig-param">((N=2)|(N=3))</em>, <em class="sig-param">x2: array[NxM](float) | array[N](float)</em>, <em class="sig-param">((N=2)|(N=3))</em>, <em class="sig-param">homogeneous: bool = True</em>, <em class="sig-param">normalize=True) -&gt; array[3xM](float) | array[3](float</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.triangulate" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>P1</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x4](float)</span></code>) – </p></li>
+<li><p><strong>P2</strong> (<code class="docutils literal notranslate"><span class="pre">array[3x4](float)</span></code>) – </p></li>
+<li><p><strong>x1</strong> (<code class="docutils literal notranslate"><span class="pre">array[NxM](float)|array[N](float),(N=2|N=3)</span></code>) – </p></li>
+<li><p><strong>x2</strong> (<code class="docutils literal notranslate"><span class="pre">array[NxM](float)|array[N](float),(N=2|N=3)</span></code>) – </p></li>
+<li><p><strong>homogeneous</strong> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[3xM](float)|array[3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori.triangulatePoints">
+<code class="sig-name descname">triangulatePoints</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pt1</span><span class="p">:</span> <span class="n">array[Nx2](float) | array[2](float)</span></em>, <em class="sig-param"><span class="n">pt2</span><span class="p">:</span> <span class="n">array[Nx2](float) | array[2](float)</span></em>, <em class="sig-param"><span class="n">camParams1</span></em>, <em class="sig-param"><span class="n">camParams2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.ori.triangulatePoints" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pt1</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)|array[2](float)</span></code>) – </p></li>
+<li><p><strong>pt2</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx2](float)|array[2](float)</span></code>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">array[Nx3](float)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-oriental.ori._ori"></span><p><a class="reference internal" href="#module-oriental.ori._ori" title="oriental.ori._ori"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.ori._ori</span></code></a> contains functionality implemented in C++. For convenience, all its attributes are also made available directly from <a class="reference internal" href="#module-oriental.ori" title="oriental.ori"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.ori</span></code></a></p>
+<dl class="py class">
+<dt id="oriental.ori._ori.DistortionCorrection">
+<em class="property">class </em><code class="sig-name descname">DistortionCorrection</code><a class="headerlink" href="#oriental.ori._ori.DistortionCorrection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.enum</span></code></p>
+<p>application of distortion correction</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dist</p></td>
+<td><p>return observed i.e. distorted points. This way requires an iterative computation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>distOnly</p></td>
+<td><p>return the distortion values to get the observed i.e. distorted points. This way requires an iterative computation.</p></td>
+</tr>
+<tr class="row-even"><td><p>undist</p></td>
+<td><p>return the central-perspective i.e. undistorted points</p></td>
+</tr>
+<tr class="row-odd"><td><p>undistOnly</p></td>
+<td><p>return the distortion values to get the central-perspective i.e. undistorted points. This is the direct way, for which the adpars are defined. The adpars are functions of the distorted image points.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.ori._ori.Plane">
+<em class="property">class </em><code class="sig-name descname">Plane</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.ori._ori.Plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+<dl class="py method">
+<dt id="oriental.ori._ori.Plane.eigenValues">
+<em class="property">property </em><code class="sig-name descname">eigenValues</code><a class="headerlink" href="#oriental.ori._ori.Plane.eigenValues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.ori._ori.Plane.nUsedPts">
+<em class="property">property </em><code class="sig-name descname">nUsedPts</code><a class="headerlink" href="#oriental.ori._ori.Plane.nUsedPts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.ori._ori.Plane.normal">
+<em class="property">property </em><code class="sig-name descname">normal</code><a class="headerlink" href="#oriental.ori._ori.Plane.normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.ori._ori.Plane.offset">
+<em class="property">property </em><code class="sig-name descname">offset</code><a class="headerlink" href="#oriental.ori._ori.Plane.offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.ori._ori.PlaneEstimator">
+<em class="property">class </em><code class="sig-name descname">PlaneEstimator</code><a class="headerlink" href="#oriental.ori._ori.PlaneEstimator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.enum</span></code></p>
+<p>Type of plane estimator</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tls</p></td>
+<td><p>Simple Total Least Squares estimation of the normals. Fast, but not robust.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mcd</p></td>
+<td><p>Minimum Covariance Determinant estimator of surface normals. Robust, slow.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.adjustPlane">
+<code class="sig-name descname">adjustPlane</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)pts</em><span class="optional">[</span>, <em class="sig-param">(PlaneEstimator)estimatorType=oriental.ori._ori.PlaneEstimator.mcd</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; Plane<a class="headerlink" href="#oriental.ori._ori.adjustPlane" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.alZeKaToRotationMatrix">
+<code class="sig-name descname">alZeKaToRotationMatrix</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.ori._ori.alZeKaToRotationMatrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.distortion">
+<code class="sig-name descname">distortion</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)imgPts</em>, <em class="sig-param">(numpy.ndarray)ior</em>, <em class="sig-param">(numpy.ndarray)adp</em>, <em class="sig-param">(DistortionCorrection)method</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.ori._ori.distortion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.distortion_inplace">
+<code class="sig-name descname">distortion_inplace</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)imgPts</em>, <em class="sig-param">(numpy.ndarray)ior</em>, <em class="sig-param">(numpy.ndarray)adp</em>, <em class="sig-param">(DistortionCorrection)method</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.ori._ori.distortion_inplace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.fiOmKaToRotationMatrix">
+<code class="sig-name descname">fiOmKaToRotationMatrix</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.ori._ori.fiOmKaToRotationMatrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.filterMatchesByEMatrix">
+<code class="sig-name descname">filterMatchesByEMatrix</code><span class="sig-paren">(</span><em class="sig-param">(dict)edge2matches</em>, <em class="sig-param">(list)allKeypoints</em>, <em class="sig-param">(list)iors</em>, <em class="sig-param">(object)maxEpipolarDist</em>, <em class="sig-param">(object)nMinMatches</em>, <em class="sig-param">(object)inlierRatio</em><span class="optional">[</span>, <em class="sig-param">(object)confidenceLevel=0.999</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#oriental.ori._ori.filterMatchesByEMatrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.mayOverlap">
+<code class="sig-name descname">mayOverlap</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)fieldsOfView</em><span class="optional">[</span>, <em class="sig-param">(object)minZ=nan</em><span class="optional">[</span>, <em class="sig-param">(object)maxZ=nan</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.ori._ori.mayOverlap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.omFiKaToRotationMatrix">
+<code class="sig-name descname">omFiKaToRotationMatrix</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.ori._ori.omFiKaToRotationMatrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.rotationMatrixToAlZeKa">
+<code class="sig-name descname">rotationMatrixToAlZeKa</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.ori._ori.rotationMatrixToAlZeKa" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.rotationMatrixToFiOmKa">
+<code class="sig-name descname">rotationMatrixToFiOmKa</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.ori._ori.rotationMatrixToFiOmKa" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="oriental.ori._ori.rotationMatrixToOmFiKa">
+<code class="sig-name descname">rotationMatrixToOmFiKa</code><span class="sig-paren">(</span><em class="sig-param">(numpy.ndarray)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)">numpy.ndarray</a><a class="headerlink" href="#oriental.ori._ori.rotationMatrixToOmFiKa" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ori/transform.html" class="btn btn-neutral float-right" title="transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="match.html" class="btn btn-neutral float-left" title="match" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<GDAL_WMS>
+  <!-- Web Map Services for Sicily:
+       http://www.sitr.regione.sicilia.it/geoportale/it/Home/ServiceCatalog#
+       They provide different protocols:
+         for orthophotos:
+         - OGC - WMS 1.3.0
+         - Esri -Map Service REST
+       Their OGC - WMS does not really work with GDAL, because their OGC - WMS specifies a coordinate system defined by Esri (Well-known ID 102100),
+       which is equivalent to EPSG:3785, but unknown to GDAL. Thus, GDAL datasets will have an undefined coordinate system and thus be useless for our purposes.
+       Also, OGC - WMS does not define reduced resolutions. Thus, MonoScope's GraphicsView will open only the full-resolution dataset.
+       When zooming out, the resolution of the requested image will be too large to be allocated.
+       To support OGC - WMS for zooming out, it may help to tell dataSet->RasterIO to write into a reduced-resolution buffer.
+       However, the CS would still be undefined, and so we just use the Esri REST protocol.
+
+       Using the URL, create a GDAL-XML-file using:
+       gdal_translate "http://map.sitr.regione.sicilia.it/ArcGIS/rest/services/CACHED/ortofoto_ata20122013_webmercatore/MapServer?f=json" rest.xml -of WMS
+       and paste the XML below. -->
+  <Service name="TMS">
+    <ServerUrl>http://map.sitr.regione.sicilia.it/ArcGIS/rest/services/CACHED/ortofoto_ata20122013_webmercatore/MapServer/tile/${z}/${y}/${x}</ServerUrl>
+  </Service>
+  <DataWindow>
+    <UpperLeftX> -20037508.34278700</UpperLeftX>
+    <UpperLeftY>  20037508.34278700</UpperLeftY>
+    <LowerRightX> 20037508.34278100</LowerRightX>
+    <LowerRightY>-20037508.34278100</LowerRightY>
+    <TileLevel>20</TileLevel>
+    <YOrigin>top</YOrigin>
+  </DataWindow>
+  <Projection>EPSG:3857</Projection>
+  <BlockSizeX>256</BlockSizeX>
+  <BlockSizeY>256</BlockSizeY>
+  <Cache />
+  <orientalBbox>1054856.269750 4178527.207579 2006829.383616 4744808.210076</orientalBbox>
+</GDAL_WMS>

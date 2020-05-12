@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lsm &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="openCV" href="openCV.html" />
+    <link rel="prev" title="gdal" href="gdal.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="../../_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../definitions.html">Definitions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../oriental.html">Python Package <em>oriental</em></a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../absOri.html">absOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adjust.html">adjust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blocks.html">blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph.html">graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log.html">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../match.html">match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ori.html">ori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../relOri.html">relOri</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../utils.html">utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="db.html">db</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exif.html">exif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdal.html">gdal</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">lsm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openCV.html">openCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyplot.html">pyplot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#module-oriental">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../oriental.html">Python Package <em>oriental</em></a> &raquo;</li>
+        
+          <li><a href="../utils.html">utils</a> &raquo;</li>
+        
+      <li>lsm</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-oriental.utils.lsm">
+<span id="lsm"></span><h1>lsm<a class="headerlink" href="#module-oriental.utils.lsm" title="Permalink to this headline">¶</a></h1>
+<p>Hierarchical least squares multi image matching</p>
+<span class="target" id="module-oriental.utils.lsm._lsm"></span><p><a class="reference internal" href="#module-oriental.utils.lsm._lsm" title="oriental.utils.lsm._lsm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.utils.lsm._lsm</span></code></a> contains functionality implemented in C++. For convenience, all its attributes are also made available directly from <a class="reference internal" href="#module-oriental.utils.lsm" title="oriental.utils.lsm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental.utils.lsm</span></code></a></p>
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.GeometricTrafo">
+<em class="property">class </em><code class="sig-name descname">GeometricTrafo</code><a class="headerlink" href="#oriental.utils.lsm._lsm.GeometricTrafo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.enum</span></code></p>
+<p>Geometric transformation type.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>translation</p></td>
+<td><p>Adjust 2 shifts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rigid</p></td>
+<td><p>Adjust 2 shifts, 1 angle.</p></td>
+</tr>
+<tr class="row-even"><td><p>similarity</p></td>
+<td><p>Adjust 2 shifts, 1 angle, 1 scale.</p></td>
+</tr>
+<tr class="row-odd"><td><p>affine</p></td>
+<td><p>Adjust 2 shifts, 2 angles, 2 scales.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.Image">
+<em class="property">class </em><code class="sig-name descname">Image</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.utils.lsm._lsm.Image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+<p>How to access image data, and how to transform it into the master image.</p>
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.Image.brightness">
+<em class="property">property </em><code class="sig-name descname">brightness</code><a class="headerlink" href="#oriental.utils.lsm._lsm.Image.brightness" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.Image.contrast">
+<em class="property">property </em><code class="sig-name descname">contrast</code><a class="headerlink" href="#oriental.utils.lsm._lsm.Image.contrast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.Image.dataSetPath">
+<em class="property">property </em><code class="sig-name descname">dataSetPath</code><a class="headerlink" href="#oriental.utils.lsm._lsm.Image.dataSetPath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.Image.id">
+<em class="property">property </em><code class="sig-name descname">id</code><a class="headerlink" href="#oriental.utils.lsm._lsm.Image.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.Image.mask">
+<em class="property">property </em><code class="sig-name descname">mask</code><a class="headerlink" href="#oriental.utils.lsm._lsm.Image.mask" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.Image.master2slave">
+<em class="property">property </em><code class="sig-name descname">master2slave</code><a class="headerlink" href="#oriental.utils.lsm._lsm.Image.master2slave" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.IterationSummary">
+<em class="property">class </em><code class="sig-name descname">IterationSummary</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+<p>Summary of a single iteration.</p>
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.cost">
+<em class="property">property </em><code class="sig-name descname">cost</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.cost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.cost_change">
+<em class="property">property </em><code class="sig-name descname">cost_change</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.cost_change" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.gradient_max_norm">
+<em class="property">property </em><code class="sig-name descname">gradient_max_norm</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.gradient_max_norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.gradient_norm">
+<em class="property">property </em><code class="sig-name descname">gradient_norm</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.gradient_norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.iteration">
+<em class="property">property </em><code class="sig-name descname">iteration</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.iteration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.lm_radius">
+<em class="property">property </em><code class="sig-name descname">lm_radius</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.lm_radius" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.relative_decrease">
+<em class="property">property </em><code class="sig-name descname">relative_decrease</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.relative_decrease" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.step_is_successful">
+<em class="property">property </em><code class="sig-name descname">step_is_successful</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.step_is_successful" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.step_is_valid">
+<em class="property">property </em><code class="sig-name descname">step_is_valid</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.step_is_valid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.step_max_norm">
+<em class="property">property </em><code class="sig-name descname">step_max_norm</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.step_max_norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.IterationSummary.step_norm">
+<em class="property">property </em><code class="sig-name descname">step_norm</code><a class="headerlink" href="#oriental.utils.lsm._lsm.IterationSummary.step_norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.Lsm">
+<em class="property">class </em><code class="sig-name descname">Lsm</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="optional">[</span>, <em class="sig-param">(SolveOptions)options=SolveOptions(function_tolerance=1e-06</em>, <em class="sig-param">geometricTrafo=affine</em>, <em class="sig-param">gradient_tolerance=1e-10</em>, <em class="sig-param">initial_lm_radius=10000.0</em>, <em class="sig-param">max_lm_diagonal=1e+32</em>, <em class="sig-param">max_lm_radius=1e+16</em>, <em class="sig-param">max_num_consecutive_invalid_steps=5</em>, <em class="sig-param">max_num_iterations=50</em>, <em class="sig-param">min_lm_diagonal=1e-06</em>, <em class="sig-param">min_lm_radius=1e-32</em>, <em class="sig-param">min_num_pix=256</em>, <em class="sig-param">min_relative_decrease=0.001</em>, <em class="sig-param">nThreads=0</em>, <em class="sig-param">parameter_tolerance=1e-08</em>, <em class="sig-param">preprocess_shifts_master_window_factor=3.0</em>, <em class="sig-param">radiometricTrafo=affine</em>, <em class="sig-param">storeFinalCuts=False)</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.utils.lsm._lsm.Lsm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.RadiometricTrafo">
+<em class="property">class </em><code class="sig-name descname">RadiometricTrafo</code><a class="headerlink" href="#oriental.utils.lsm._lsm.RadiometricTrafo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.enum</span></code></p>
+<p>Radiometric transformation type. out=in*contrast+brightness</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>identity</p></td>
+<td><p>Constant brightness and contrast.</p></td>
+</tr>
+<tr class="row-odd"><td><p>translation</p></td>
+<td><p>Adjust brightness.</p></td>
+</tr>
+<tr class="row-even"><td><p>affine</p></td>
+<td><p>Adjust brightness and contrast.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary">
+<em class="property">class </em><code class="sig-name descname">ResolutionLevelSummary</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+<p>Summary of a single resolution level</p>
+<p>Raises an exception
+This class cannot be instantiated from Python</p>
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.ccoeffsPost">
+<em class="property">property </em><code class="sig-name descname">ccoeffsPost</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.ccoeffsPost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pearson’s cross correlation coefficient for each image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.ccoeffsPre">
+<em class="property">property </em><code class="sig-name descname">ccoeffsPre</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.ccoeffsPre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pearson’s cross correlation coefficient for each image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.cols">
+<em class="property">property </em><code class="sig-name descname">cols</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.cuts">
+<em class="property">property </em><code class="sig-name descname">cuts</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.cuts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.failedImgId">
+<em class="property">property </em><code class="sig-name descname">failedImgId</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.failedImgId" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.final_cost">
+<em class="property">property </em><code class="sig-name descname">final_cost</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.final_cost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.initial_cost">
+<em class="property">property </em><code class="sig-name descname">initial_cost</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.initial_cost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.iterations">
+<em class="property">property </em><code class="sig-name descname">iterations</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.iterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>IterationSummary for each iteration in order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.level">
+<em class="property">property </em><code class="sig-name descname">level</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.message">
+<em class="property">property </em><code class="sig-name descname">message</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.num_successful_steps">
+<em class="property">property </em><code class="sig-name descname">num_successful_steps</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.num_successful_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.num_valid_steps">
+<em class="property">property </em><code class="sig-name descname">num_valid_steps</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.num_valid_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.ResolutionLevelSummary.rows">
+<em class="property">property </em><code class="sig-name descname">rows</code><a class="headerlink" href="#oriental.utils.lsm._lsm.ResolutionLevelSummary.rows" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.SolveOptions">
+<em class="property">class </em><code class="sig-name descname">SolveOptions</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+<p>LSM solve options.</p>
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.function_tolerance">
+<em class="property">property </em><code class="sig-name descname">function_tolerance</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.function_tolerance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.geometricTrafo">
+<em class="property">property </em><code class="sig-name descname">geometricTrafo</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.geometricTrafo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.gradient_tolerance">
+<em class="property">property </em><code class="sig-name descname">gradient_tolerance</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.gradient_tolerance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.initial_lm_radius">
+<em class="property">property </em><code class="sig-name descname">initial_lm_radius</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.initial_lm_radius" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.max_lm_diagonal">
+<em class="property">property </em><code class="sig-name descname">max_lm_diagonal</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.max_lm_diagonal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.max_lm_radius">
+<em class="property">property </em><code class="sig-name descname">max_lm_radius</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.max_lm_radius" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.max_num_consecutive_invalid_steps">
+<em class="property">property </em><code class="sig-name descname">max_num_consecutive_invalid_steps</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.max_num_consecutive_invalid_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.max_num_iterations">
+<em class="property">property </em><code class="sig-name descname">max_num_iterations</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.max_num_iterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.min_lm_diagonal">
+<em class="property">property </em><code class="sig-name descname">min_lm_diagonal</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.min_lm_diagonal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.min_lm_radius">
+<em class="property">property </em><code class="sig-name descname">min_lm_radius</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.min_lm_radius" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.min_num_pix">
+<em class="property">property </em><code class="sig-name descname">min_num_pix</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.min_num_pix" title="Permalink to this definition">¶</a></dt>
+<dd><p>if positive, then process at increasing resolutions, starting from this one.
+if zero, choose the minimum which is still solvable (according to pure redundancy, not considering the image content).
+if negative, process at full resolution only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.min_relative_decrease">
+<em class="property">property </em><code class="sig-name descname">min_relative_decrease</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.min_relative_decrease" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.nThreads">
+<em class="property">property </em><code class="sig-name descname">nThreads</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.nThreads" title="Permalink to this definition">¶</a></dt>
+<dd><p>0 -&gt; use #cores</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.parameter_tolerance">
+<em class="property">property </em><code class="sig-name descname">parameter_tolerance</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.parameter_tolerance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.preprocess_shifts_master_window_factor">
+<em class="property">property </em><code class="sig-name descname">preprocess_shifts_master_window_factor</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.preprocess_shifts_master_window_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>if &gt; 1: before LSM, do a brute-force search for the best initial shifts.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.radiometricTrafo">
+<em class="property">property </em><code class="sig-name descname">radiometricTrafo</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.radiometricTrafo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveOptions.storeFinalCuts">
+<em class="property">property </em><code class="sig-name descname">storeFinalCuts</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveOptions.storeFinalCuts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store the warped image patches a posteriori for the highest resolution level, if successful.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.SolveSummary">
+<em class="property">class </em><code class="sig-name descname">SolveSummary</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+<p>Summary of a whole LSM-run.</p>
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveSummary.num_successful_steps">
+<em class="property">property </em><code class="sig-name descname">num_successful_steps</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveSummary.num_successful_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveSummary.num_valid_steps">
+<em class="property">property </em><code class="sig-name descname">num_valid_steps</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveSummary.num_valid_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.SolveSummary.resolutionLevels">
+<em class="property">property </em><code class="sig-name descname">resolutionLevels</code><a class="headerlink" href="#oriental.utils.lsm._lsm.SolveSummary.resolutionLevels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="oriental.utils.lsm._lsm.TrafoAffine2D">
+<em class="property">class </em><code class="sig-name descname">TrafoAffine2D</code><span class="sig-paren">(</span><em class="sig-param">(object)arg1</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#oriental.utils.lsm._lsm.TrafoAffine2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Boost.Python.instance</span></code></p>
+<p>Affine 2-dimensional transformation.</p>
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.TrafoAffine2D.A">
+<em class="property">property </em><code class="sig-name descname">A</code><a class="headerlink" href="#oriental.utils.lsm._lsm.TrafoAffine2D.A" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.TrafoAffine2D.tPost">
+<em class="property">property </em><code class="sig-name descname">tPost</code><a class="headerlink" href="#oriental.utils.lsm._lsm.TrafoAffine2D.tPost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="oriental.utils.lsm._lsm.TrafoAffine2D.tPre">
+<em class="property">property </em><code class="sig-name descname">tPre</code><a class="headerlink" href="#oriental.utils.lsm._lsm.TrafoAffine2D.tPre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="openCV.html" class="btn btn-neutral float-right" title="openCV" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gdal.html" class="btn btn-neutral float-left" title="gdal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

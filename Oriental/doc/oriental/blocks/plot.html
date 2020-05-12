@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>plot &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="qxx" href="qxx.html" />
+    <link rel="prev" title="log" href="log.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="../../_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../definitions.html">Definitions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../oriental.html">Python Package <em>oriental</em></a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../absOri.html">absOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adjust.html">adjust</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../blocks.html">blocks</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="calibrate.html">calibrate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="db.html">db</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deactivate.html">deactivate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="export.html">export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html">footprint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="log.html">log</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qxx.html">qxx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../graph.html">graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../log.html">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../match.html">match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ori.html">ori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../relOri.html">relOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oriental.html#module-oriental">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../oriental.html">Python Package <em>oriental</em></a> &raquo;</li>
+        
+          <li><a href="../blocks.html">blocks</a> &raquo;</li>
+        
+      <li>plot</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-oriental.blocks.plot">
+<span id="plot"></span><h1>plot<a class="headerlink" href="#module-oriental.blocks.plot" title="Permalink to this headline">¶</a></h1>
+<p>block plot functions</p>
+<dl class="py class">
+<dt id="oriental.blocks.plot.ColoredBins">
+<em class="property">class </em><code class="sig-name descname">ColoredBins</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nColors</span><span class="o">=</span><span class="default_value">7</span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.blocks.plot.ColoredBins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="oriental.blocks.plot.ColoredBins.getBin">
+<code class="sig-name descname">getBin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nMatches</span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.blocks.plot.ColoredBins.getBin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.blocks.plot.connectivity2dMetric">
+<code class="sig-name descname">connectivity2dMetric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.8)">pathlib.Path</a></span></em>, <em class="sig-param"><span class="n">imgId2nObj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em>, <em class="sig-param"><span class="n">imgPairIds2nObj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em>, <em class="sig-param"><span class="n">images</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.blocks.plot.connectivity2dMetric" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<code class="docutils literal notranslate"><span class="pre">Path</span></code>) – </p></li>
+<li><p><strong>imgId2nObj</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – </p></li>
+<li><p><strong>imgPairIds2nObj</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – </p></li>
+<li><p><strong>images</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.blocks.plot.connectivityGraph">
+<code class="sig-name descname">connectivityGraph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.8)">pathlib.Path</a></span></em>, <em class="sig-param"><span class="n">imgId2nObj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em>, <em class="sig-param"><span class="n">imgPairIds2nObj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em>, <em class="sig-param"><span class="n">images</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em>, <em class="sig-param"><span class="n">embedSvgImgs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">cleanUp</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.blocks.plot.connectivityGraph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<code class="docutils literal notranslate"><span class="pre">Path</span></code>) – </p></li>
+<li><p><strong>imgId2nObj</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – </p></li>
+<li><p><strong>imgPairIds2nObj</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – </p></li>
+<li><p><strong>images</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – </p></li>
+<li><p><strong>embedSvgImgs</strong> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – </p></li>
+<li><p><strong>cleanUp</strong> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.blocks.plot.objResiduals2d">
+<code class="sig-name descname">objResiduals2d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn</span><span class="p">:</span> <span class="n">Path | seq(Path)</span></em>, <em class="sig-param"><span class="n">currentPositions</span><span class="p">:</span> <span class="n">array<span class="p">[</span>Nx3<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">residuals</span><span class="p">:</span> <span class="n">array<span class="p">[</span>Nx3<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">names</span><span class="p">:</span> <span class="n">seq[N](str | Path)</span></em>, <em class="sig-param"><span class="n">plotScale</span><span class="p">:</span> <span class="n">number | None</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">legendScaleLog10</span><span class="p">:</span> <span class="n">int | None</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.blocks.plot.objResiduals2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot the 3d residuals of object points in 2d</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<code class="docutils literal notranslate"><span class="pre">Path|seq(Path)</span></code>) – </p></li>
+<li><p><strong>currentPositions</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx3]</span></code>) – </p></li>
+<li><p><strong>residuals</strong> (<code class="docutils literal notranslate"><span class="pre">array[Nx3]</span></code>) – </p></li>
+<li><p><strong>names</strong> (<code class="docutils literal notranslate"><span class="pre">seq[N](str|Path)</span></code>) – </p></li>
+<li><p><strong>plotScale</strong> (<code class="docutils literal notranslate"><span class="pre">number|None</span></code>) – </p></li>
+<li><p><strong>legendScaleLog10</strong> (<code class="docutils literal notranslate"><span class="pre">int|None</span></code>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="oriental.blocks.plot.overlap">
+<code class="sig-name descname">overlap</code><span class="sig-paren">(</span><em class="sig-param">fn: pathlib.Path</em>, <em class="sig-param">footprints: list[A]( $(array[Bx2](float)) )</em>, <em class="sig-param">gsd=0.1</em>, <em class="sig-param">bbox: array[2x2](float)|None = None</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">nColors: int</em>, <em class="sig-param">&gt;0 = 10</em><span class="sig-paren">)</span><a class="headerlink" href="#oriental.blocks.plot.overlap" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<code class="docutils literal notranslate"><span class="pre">Path</span></code>) – </p></li>
+<li><p><strong>footprints</strong> (<code class="docutils literal notranslate"><span class="pre">list[A]($(array[Bx2](float)))</span></code>) – </p></li>
+<li><p><strong>bbox</strong> (<code class="docutils literal notranslate"><span class="pre">array[2x2](float)|None</span></code>) – </p></li>
+<li><p><strong>nColors</strong> (<code class="docutils literal notranslate"><span class="pre">int,&gt;0</span></code>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="qxx.html" class="btn btn-neutral float-right" title="qxx" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="log.html" class="btn btn-neutral float-left" title="log" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

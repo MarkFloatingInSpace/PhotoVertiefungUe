@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OrientAL manual &mdash; OrientAL manual</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/oriental.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/oriental.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> OrientAL
+          
+
+          
+            
+            <img src="_static/oriental.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2020-04-29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oriental.html">Python Package <em>oriental</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_layout.html">Database Layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">OrientAL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>OrientAL manual</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oriental-manual">
+<span id="chapter-index"></span><h1>OrientAL manual<a class="headerlink" href="#oriental-manual" title="Permalink to this headline">¶</a></h1>
+<dl class="simple">
+<dt><a class="reference internal" href="glossary.html#term-OrientAL"><span class="xref std std-term">OrientAL</span></a> aims to provide the necessary tools for <strong>manual</strong>, semi- and fully <strong>automatic</strong>, <strong>photogrammetric</strong> <strong>image orientation</strong>, <strong>camera calibration</strong>, and <strong>object reconstruction</strong>. It provides functionality</dt><dd><ul class="simple">
+<li><p>as high-level <strong>command-line</strong> <a class="reference internal" href="scripts.html#chapter-scripts"><span class="std std-ref">Scripts</span></a>,</p></li>
+<li><p>as lower level functions of the <strong>Python-package</strong> <a class="reference internal" href="oriental.html#module-oriental" title="oriental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">oriental</span></code></a>, and</p></li>
+<li><p>by the <strong>GUI-program</strong> <a class="reference internal" href="monoscope.html#chapter-monoscope"><span class="std std-ref">MonoScope</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#supported-operating-systems">Supported Operating Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites-for-installations-on-windows">Prerequisites for Installations on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#procedure">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#oriental-shell">OrientAL shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#pre-installed-3rd-party-python-packages">Pre-Installed 3rd-Party Python Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-of-additional-python-packages">Installation of Additional Python Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#licenses-of-linked-3rd-party-software-libraries">Licenses of linked 3<sup>rd</sup> party software libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#coordinate-systems">Coordinate Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#units">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#spatial-similarity-transformation">Spatial Similarity Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#perspective-transformation">Perspective Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definitions.html#parametrization-of-rotation-matrices">Parametrization of Rotation Matrices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oriental.html">Python Package <em>oriental</em></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oriental/absOri.html">absOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental/adjust.html">adjust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental/blocks.html">blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental/graph.html">graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental/log.html">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental/match.html">match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental/ori.html">ori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental/relOri.html">relOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental/utils.html">utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oriental.html#module-oriental">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/absOri.html">absOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/adjust.html">adjust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/dense.html">dense</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/export.html">export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/import.html">import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/logStats.html">logStats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/ortho.html">ortho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/relOri.html">relOri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/stereo.html">stereo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/transform.html">transform</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="monoscope.html">MonoScope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_layout.html">Database Layout</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Change Log</a></li>
+</ul>
+</div>
+<p>Please send bug reports and feature requests to <a class="reference external" href="mailto:wilfried&#46;karel&#37;&#52;&#48;geo&#46;tuwien&#46;ac&#46;at">wilfried<span>&#46;</span>karel<span>&#64;</span>geo<span>&#46;</span>tuwien<span>&#46;</span>ac<span>&#46;</span>at</a> .</p>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 GEO - Dept. of Geodesy and Geoinformation, TU Wien, and VIAS - Vienna Institute for Archaeological Science, Univ. Vienna, Austria
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
