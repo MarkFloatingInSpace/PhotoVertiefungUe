@@ -58,7 +58,7 @@ oriental.log.setLogFileName('')
 
 import oriental.utils.filePaths
 
-""""Ja servus!"""
+"""Ja servus!"""
 
 
 import os
