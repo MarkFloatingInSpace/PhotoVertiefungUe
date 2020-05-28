@@ -66,8 +66,9 @@ from pathlib import Path
 
 # The file path of the data base of image measurements done in MonoScope.
 # Assumes that it lies in the directory of this script, and that the default file name is used.
-dataBasePath = Path(os.path.abspath(__file__)).parent / 'MonoScope.sqlite'
-
+dataBasePath = Path(os.path.abspath(__file__)).parent /'..\data\MonoScope.sqlite'
+# dataBasePath = Path(r'..\data\picked_pts\MonoScope.sqlite')
+print(dataBasePath)
 # Make the directory of the data base file the current working directory
 # to ensure that the relative file paths to the image files are correct.
 os.chdir( dataBasePath.parent )
