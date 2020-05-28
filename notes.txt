@@ -1,16 +1,14 @@
 Sensor 6000x4000
-f = 18mm
+f = 18mm --> 4843
+Image sensor size	22.3 × 14.9 mm (APS-C format)
 
 
-Automatic Tie Points
-	825:
-	# TODO Once a good enough interior image orientation is known,
-	# automatically compute additional tie points.
 
+MonoScope DB file
+	69:
+	Philip: DB file uf git stellen
+	Pfad zum DB file einstellen
 
-	859:
-	# If residuals are large, then the probability of this feature match being an outlier is high.
-	# TODO But how large is *large*?
 	
 Distortion model:
 	132:
@@ -39,6 +37,7 @@ Distortion Parameters
 Datum definition
 	747:
 	# TODO Datum points.
+	DONE
 
 	901:
 	# Define the parameter blocks for which all elements shall be kept constant.
@@ -60,7 +59,19 @@ LSM iteration:
 
 	988:
 	# When shall the iteration loop be terminated?
-    # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
+        # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
+	# DONE
+
+Automatic Tie Points
+	825:
+	# TODO Once a good enough interior image orientation is known,
+	# automatically compute additional tie points.
+
+
+	859:
+	# If residuals are large, then the probability of this feature match being an outlier is high.
+	# TODO But how large is *large*?
+
 	
 Significance and correlation of ior and distortion parameters
 	1047:

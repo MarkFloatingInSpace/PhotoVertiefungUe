@@ -211,6 +211,7 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
         # Return True to indicate a successful computation.
         return True
 
+
 def loadImageObservations():
     """returns the images points observed in MonoScope, ordered by photos.
 
@@ -231,7 +232,7 @@ def loadImageObservations():
     Use SQL for data base queries."""
 
     # Open a read-only connection to dataBasePaththe data base that has been created with MonoScope.
-    with sqlite3.dbapi2.connect(.as_uri() + '?mode=ro', uri=True) as connection:
+    with sqlite3.dbapi2.connect(dataBasePath.as_uri() + '?mode=ro', uri=True) as connection:
         connection.row_factory = sqlite3.dbapi2.Row
 
         # Create a `dict` (associative array) that maps image file paths to the corresponding image point observations.
@@ -733,7 +734,7 @@ def bundleBlock():
     # The nominal image area of 35mm film is: 36 x 24mm (width x height)
     ior = np.array([ 0.,   # x_0
                      0.,    # y_0
-                     0. # c [px]
+                     4843 # c [px]
                    ], float )
     #ior = np.array([+1976.642, -1627.440, +3160.776])
     
@@ -761,7 +762,7 @@ def bundleBlock():
     objPts['04'] = np.array([0.6, 0., 0.], float)
     objPts['02'] = np.array([0., 0., 1.589], float)
 
-    # TODO chenge to False once initial orientation is calculated
+    # TODO change to False once initial orientation is calculated
     if True:
         # At the very beginning, let's derive the exterior image orientations via spatial resection.
         # For that purpose, we need object coordinates of at least 4 points manually observed in each image.
@@ -991,6 +992,9 @@ def bundleBlock():
 
         # When shall the iteration loop be terminated?
         # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
+        if residuals_aposteriori.T @ residuals_aposteriori - l.T @ l < 1e-5:
+            print('Stopping criterion met!')
+            break
     else:
         print("Warning: maximum number of iterations reached!")
 
