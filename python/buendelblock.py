@@ -761,7 +761,7 @@ def bundleBlock():
     # Introduce object point coordinates in units of meters.
     objPts['01'] = np.array([0., 0., 0.], float)
     objPts['04'] = np.array([0.6, 0., 0.], float)
-    objPts['02'] = np.array([0., 0., 1.589], float)
+    objPts['02'] = np.array([0, 0., 1.589], float)
 
     # TODO change to False once initial orientation is calculated
     if True:
@@ -898,16 +898,16 @@ def bundleBlock():
     print("Sum of squared errors: {}".format(residuals_apriori @ residuals_apriori))
     residualStatistics(block, residuals_apriori, k=10)
 
-    # Pass show=True to display the plots in windows, pass show=False to save memory.
-    residualPlots(block, residuals_apriori, ior, 'a priori', show=False, scale=1.)
-    plot3d('a priori', projectionCenters, rotationAngles, objPts)
+    # # Pass show=True to display the plots in windows, pass show=False to save memory.
+    # residualPlots(block, residuals_apriori, ior, 'a priori', show=False, scale=1.)
+    # plot3d('a priori', projectionCenters, rotationAngles, objPts)
 
     """ Datum definition """
 
     # Define the parameter blocks for which all elements shall be kept constant.
     # The A-matrix queried below will not contain columns for these parameter blocks.
-    idsConstantBlocks = [id(el) for el in (objPts['02'],
-                                           objPts['03'],
+    idsConstantBlocks = [id(el) for el in (objPts['01'],
+                                           objPts['04'],
                                            ior, # TODO Set ior constant?
                                            distortion, # TODO Set distortion constant?
                                           )]
@@ -922,7 +922,7 @@ def bundleBlock():
     # 2. a vector of indices of the elements to be set constant.
     # Indexing starts at 0, as usual. Hence, e.g. index 0 sets the X-coordinate constant.
     subset = oriental.adjust.local_parameterization.Subset(3, np.array([0]))
-    block.SetParameterization(objPts['01'], subset)
+    block.SetParameterization(objPts['02'], subset)
 
     # Set specific distortion parameters constant?
     #subset = oriental.adjust.local_parameterization.Subset(distortion.size, np.array([0, 1]))
@@ -994,7 +994,7 @@ def bundleBlock():
         # When shall the iteration loop be terminated?
         # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
         if residuals_aposteriori.T @ residuals_aposteriori - l.T @ l < 1e-5:
-            print('Stopping criterion met!')
+            print('Stopping criterion met! Iteration: {}'.format(iIter))
             break
     else:
         print("Warning: maximum number of iterations reached!")
@@ -1016,8 +1016,8 @@ def bundleBlock():
     printParameters(projectionCenters, rotationAngles, ior, distortion, objPts)
     residualStatistics(block, residuals_aposteriori, k=10)
     # Pass show=True to display the plots in windows, pass show=False to save memory.
-    residualPlots(block, residuals_aposteriori, ior, 'a posteriori', show=False, scale=50.)
-    plot3d('a posteriori', projectionCenters, rotationAngles, objPts)
+    # residualPlots(block, residuals_aposteriori, ior, 'a posteriori', show=False, scale=50.)
+    # plot3d('a posteriori', projectionCenters, rotationAngles, objPts)
 
     sumOfSquaredErrors = residuals_aposteriori @ residuals_aposteriori
 
