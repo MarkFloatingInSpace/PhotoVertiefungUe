@@ -28,7 +28,7 @@ from mpl_toolkits.mplot3d import Axes3D
 # OpenCV
 import cv2
 
-# oriental.adjust is the (bundle) adjustment package of OrientAL.
+# oriental.adjust is the (bundle) adjustment package of  DLL load failed while importing cv2OrientAL.
 import oriental.adjust
 # oriental.adjust.cost defines observation classes.
 import oriental.adjust.cost
@@ -230,8 +230,8 @@ def loadImageObservations():
     or Python's package `sqlite3`, as done here.
     Use SQL for data base queries."""
 
-    # Open a read-only connection to the data base that has been created with MonoScope.
-    with sqlite3.dbapi2.connect(dataBasePath.as_uri() + '?mode=ro', uri=True) as connection:
+    # Open a read-only connection to dataBasePaththe data base that has been created with MonoScope.
+    with sqlite3.dbapi2.connect(.as_uri() + '?mode=ro', uri=True) as connection:
         connection.row_factory = sqlite3.dbapi2.Row
 
         # Create a `dict` (associative array) that maps image file paths to the corresponding image point observations.
@@ -757,15 +757,16 @@ def bundleBlock():
     # can be fixed e.g. by setting 7 object point coordinates constant.
     # The distance observed with the measuring tape must be considered here.
     # Introduce object point coordinates in units of meters.
-    objPts['02'] = np.array([0., 0., 0.], float)
-    objPts['03'] = np.array([0., 0., 0.], float)
     objPts['01'] = np.array([0., 0., 0.], float)
+    objPts['04'] = np.array([0.6, 0., 0.], float)
+    objPts['02'] = np.array([0., 0., 1.589], float)
 
+    # TODO chenge to False once initial orientation is calculated
     if True:
         # At the very beginning, let's derive the exterior image orientations via spatial resection.
         # For that purpose, we need object coordinates of at least 4 points manually observed in each image.
         # Since the datum points do not suffice, define additional object coordinates here.
-        objPts['36'] = np.array([0., 0., 0.], float)
+        objPts['03'] = np.array([0.8, 0., 1.587], float)
         projectionCenters, rotationAngles = spatialResection(photo_obs, ior, objPts)
     else:
         # Once approximate exterior image orientations have been computed, copy them below and execute this branch.

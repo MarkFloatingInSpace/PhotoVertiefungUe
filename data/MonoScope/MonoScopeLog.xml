@@ -561,5 +561,9 @@ This file is self-contained.
 			<Record Time="2020-05-12 09:23:33.383907" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
 			<Record Time="2020-05-12 09:23:33.388897" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
 		</Run>
+		<Run>
+			<Record Time="2020-05-28 15:16:38.634391" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-05-28 15:16:38.651377" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+		</Run>
 	</oriental:Log>
 </xsl:stylesheet>
