@@ -308,6 +308,7 @@ def spatialResection(photo_obs, ior, objPts):
 
     return projectionCenters, rotationAngles
 
+
 def getAutomaticTiePoints(imageFilePaths):
     """Automatically compute additional tie points.
     Tie points and their matches do not depend on exterior image orientations, and their computation is elaborate.
