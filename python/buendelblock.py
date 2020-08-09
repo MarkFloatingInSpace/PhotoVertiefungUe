@@ -57,10 +57,6 @@ import oriental.log
 oriental.log.setLogFileName('')
 
 import oriental.utils.filePaths
-
-"""Ja servus!"""
-
-
 import os
 from pathlib import Path
 
@@ -68,7 +64,7 @@ from pathlib import Path
 # Assumes that it lies in the directory of this script, and that the default file name is used.
 dataBasePath = Path(os.path.abspath(__file__)).parent /'..\data\MonoScope.sqlite'
 # dataBasePath = Path(r'..\data\picked_pts\MonoScope.sqlite')
-print(dataBasePath)
+print("Path for the monoscope DB file: {}".format(dataBasePath))
 # Make the directory of the data base file the current working directory
 # to ensure that the relative file paths to the image files are correct.
 os.chdir( dataBasePath.parent )
@@ -179,7 +175,7 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
         #      and actually use that parameter block here in the computation of residuals.
         distortion = parameterBlocks[3]
 
-        objPt = parameterBlocks[4] # Object point.
+        objPt = parameterBlocks[4]  # Object point.
 
 
         # Elements of the interior orientation.
@@ -204,6 +200,21 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
         # Project the reduced, rotated point into the image plane.
         x_projected = x_0 - c * camPt[0] / camPt[2]
         y_projected = y_0 - c * camPt[1] / camPt[2]
+
+        # Markus: calculate distortion correction:
+        x_ = x_projected - x_0
+        y_ = y_projected - y_0
+        rho = (x_**2 + y_**2) ** (1/2)
+
+        k1 = distortion[0]
+        k2 = distortion[1]
+        p1 = distortion[2]
+        p2 = distortion[3]
+        delta_x_dist = x_ * (k1 * rho ** 2 + k2 * rho ** 4) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
+        delta_y_dist = y_ * (k1 * rho ** 2 + k2 * rho ** 4) + 2 * p2 * x_ * y_ + p1 * (rho ** 2 + 2 * y_ ** 2)
+
+        # x_projected += delta_x_dist
+        # y_projected += delta_y_dist
 
         # Compute the residuals.
         residuals[0] = self.x_observed - x_projected
@@ -498,6 +509,7 @@ def forwardIntersectionGeometric( observations, projectionCenters, rotationAngle
     l, = block.Evaluate( residuals=True )
     return X, l.reshape((-1,2))
 
+
 def initializeObjectCoordinates( photo_obs, projectionCenters, rotationAngles, ior, distortion, objCoordinates ):
     """initialize the object point coordinates"""
 
@@ -528,6 +540,7 @@ def initializeObjectCoordinates( photo_obs, projectionCenters, rotationAngles, i
         # Initialize the object point coordinates.
         objCoordinates[ptName], _ = forwardIntersectionGeometric( observations, projectionCenters, rotationAngles, ior, distortion )
 
+
 def printParameters( projectionCenters, rotationAngles, ior, distortion, objPts ):
     def printArr(name, arr, single=False):
         print("r'{}' : np.array([{}]){}".format(name, ', '.join(f'{el:+8.3f}' for el in arr), '' if single else ','))
@@ -554,6 +567,7 @@ def printParameters( projectionCenters, rotationAngles, ior, distortion, objPts 
     if nAutoTiePoints:
         print(f'{nAutoTiePoints} automatic tie points not printed')
 
+
 def residualStatistics( block, residuals, k=10 ):
     squaredResidualNorms = residuals[0::2]**2 + residuals[1::2]**2
     k = min(k,len(squaredResidualNorms))
@@ -566,6 +580,7 @@ def residualStatistics( block, residuals, k=10 ):
         cost = block.GetCostFunctionForResidualBlock(residualBlock)
         residualNorm = squaredResidualNorms[iResidualNorm]**.5
         print(f'{cost.phoName}\t{cost.ptName}\t{residualNorm:.2f}')
+
 
 def residualHistogram( residuals, suffix, show ):
     tit = "Histogram of Residuals " + suffix
@@ -581,6 +596,7 @@ def residualHistogram( residuals, suffix, show ):
         plt.show(block=False)
     else:
         plt.close(fig)
+
 
 def residualPlots( block, residuals, ior, suffix, show, scale=1. ):
     plotDir = Path('residuals ' + suffix)
@@ -734,12 +750,12 @@ def bundleBlock():
     # - nominal focal length equivalent to 35mm film:
     #   26[mm]
     # The nominal image area of 35mm film is: 36 x 24mm (width x height)
-    ior = np.array([ 0.,   # x_0
-                     0.,    # y_0
-                     4843 # c [px]
-                   ], float )
+    ior = np.array([3000.,  # x_0
+                   -2000.,  # y_0
+                    4843.   # c [px]
+                    ], float)
     #ior = np.array([+1976.642, -1627.440, +3160.776])
-    
+
     # TODO Distortion parameters.
     # Choose an appropriate model.
     # The number of distortion parameters stated here must match the number of distortion parameters that
@@ -776,11 +792,20 @@ def bundleBlock():
 
         # `projectionCenters` contains for each photo the coordinates of its projection center in the object CS.
         # photoName :  np.array([X, Y, Z])
-        projectionCenters = {
-            r'20200411_150033.jpg': np.array([+1.532, +0.329, -0.649]),
-            r'20200411_150100.jpg': np.array([+1.146, +0.156, -0.229]),
-            r'20200411_150233.jpg': np.array([+1.249, +0.271, -1.020]),
-        }
+        # projectionCenters = {
+        #     r'20200411_150033.jpg': np.array([+1.532, +0.329, -0.649]),
+        #     r'20200411_150100.jpg': np.array([+1.146, +0.156, -0.229]),
+        #     r'20200411_150233.jpg': np.array([+1.249, +0.271, -1.020]),
+        # }
+
+        projectionCenters = {'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3811.JPG': array(
+            [0.24336323, -2.28193662, 0.28172138]),
+         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3812.JPG': array(
+             [0.50874874, -1.6972271, 0.47652172]),
+         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3815.JPG': array(
+             [-0.26366617, -1.94395016, 0.27073273]),
+         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3817.JPG': array(
+             [0.01803747, -1.61388478, 0.6092208])}
 
         # `rotationAngles` contains for each photo the rotation angles.
         # `PerspectiveCamera` expects them in units of [gon], parameterized for alpha-zeta-kappa.
@@ -790,11 +815,20 @@ def bundleBlock():
         # 3. the z-axis.
 
         # photoName : np.array([alpha, zeta, kappa])
-        rotationAngles = {
-            r'20200411_150033.jpg': np.array([+11.822, +96.323, +98.453]),
-            r'20200411_150100.jpg': np.array([+16.517, +83.882, +3.914]),
-            r'20200411_150233.jpg': np.array([+22.009, +112.667, +6.396]),
-        }
+        # rotationAngles = {
+        #     r'20200411_150033.jpg': np.array([+11.822, +96.323, +98.453]),
+        #     r'20200411_150100.jpg': np.array([+16.517, +83.882, +3.914]),
+        #     r'20200411_150233.jpg': np.array([+22.009, +112.667, +6.396]),
+        # }
+
+        rotationAngles = {'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3811.JPG': array(
+            [-101.6655284, 113.09651548, 94.34163806]),
+         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3812.JPG': array(
+             [-93.3407609, 106.56340776, -5.48839231]),
+         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3815.JPG': array(
+             [-116.14201029, 113.78471479, -105.75488384]),
+         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3817.JPG': array(
+             [-111.15246152, 108.67353606, 193.92749854])}
 
     # Using the initial values of interior and exterior orientations,
     # derive object point coordinates by spatial intersection.
@@ -900,8 +934,8 @@ def bundleBlock():
     residualStatistics(block, residuals_apriori, k=10)
 
     # # Pass show=True to display the plots in windows, pass show=False to save memory.
-    # residualPlots(block, residuals_apriori, ior, 'a priori', show=False, scale=1.)
-    # plot3d('a priori', projectionCenters, rotationAngles, objPts)
+    residualPlots(block, residuals_apriori, ior, 'a priori', show=False, scale=1.)
+    plot3d('a priori', projectionCenters, rotationAngles, objPts)
 
     """ Datum definition """
 
@@ -910,7 +944,7 @@ def bundleBlock():
     idsConstantBlocks = [id(el) for el in (objPts['01'],
                                            objPts['04'],
                                            ior, # TODO Set ior constant?
-                                           distortion, # TODO Set distortion constant?
+                                           distortion # TODO Set distortion constant?
                                           )]
 
     # Since the unconstrained datum definition shall be accomplished by setting constant 7 object point coordinates,
@@ -949,6 +983,7 @@ def bundleBlock():
 
     # Iteration loop. Defines a maximum number of iterations, but should be terminated before:
     for iIter in range(30):
+        print("------ Iteration: {}".format(iIter))
         # l consists of the concatenated results of `PerspectiveCamera.Evaluate`
         #   i.e. observed image position minus computed projection.
         #   The order of its rows is the one in which residual blocks have been added using `AddResidualBlock`.
@@ -994,7 +1029,9 @@ def bundleBlock():
 
         # When shall the iteration loop be terminated?
         # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
-        if residuals_aposteriori.T @ residuals_aposteriori - l.T @ l < 1e-5:
+        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l))  < 1e-5:
+            print('-->')
+            print(residuals_aposteriori.T @ residuals_aposteriori - l.T @ l)
             print('Stopping criterion met! Iteration: {}'.format(iIter))
             break
     else:
@@ -1017,8 +1054,8 @@ def bundleBlock():
     printParameters(projectionCenters, rotationAngles, ior, distortion, objPts)
     residualStatistics(block, residuals_aposteriori, k=10)
     # Pass show=True to display the plots in windows, pass show=False to save memory.
-    # residualPlots(block, residuals_aposteriori, ior, 'a posteriori', show=False, scale=50.)
-    # plot3d('a posteriori', projectionCenters, rotationAngles, objPts)
+    residualPlots(block, residuals_aposteriori, ior, 'a posteriori', show=False, scale=50.)
+    plot3d('a posteriori', projectionCenters, rotationAngles, objPts)
 
     sumOfSquaredErrors = residuals_aposteriori @ residuals_aposteriori
 
