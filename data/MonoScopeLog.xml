@@ -1,0 +1,581 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+XML log created by OrientAL.
+
+This XML log file contains specifications to transform itself into XHTML.
+Load it in a browser for a nice presentation of the log.
+Tested browsers: Firefox 70, Internet Explorer 11.
+To use recent versions of Google Chrome for display, start Chrome with option allow-file-access-from-files.
+
+The actual logging data is located at the end of this file.
+
+This file is self-contained.
+
+-->
+
+
+<?xml-stylesheet type='text/xsl' href='#'?>
+<xsl:stylesheet version='1.0'
+	xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+	xmlns:oriental='http://www.dummy.nowhere/'>
+	<xsl:output method='html' media-type='text/html' indent='no' encoding='UTF-8' doctype-public='-//W3C//DTD HTML 4.01//EN' doctype-system='http://www.w3.org/TR/html4/strict.dtd' /> 
+	<xsl:key name='threadID' match='oriental:Log/Run/Record' use='@Thread' />
+
+	<xsl:template match='xsl:stylesheet'>
+		<xsl:apply-templates select='oriental:Log' />
+	</xsl:template>
+
+	<xsl:template match='oriental:Log'>
+
+		<html>
+			<head>
+				<title>Log - OrientAL</title> 
+				<link rel='shortcut icon' href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gcGDRIHneMiEAAAAkhJREFUOMt9k09I02EYxz+vjszDMqYTtkMNYpIHabSDBy8RdPFkB/Egg+1ih0TwEITVwYO1DoGeFUeevIhFh64R4klR2DyMTSSc+222gyXYqu39dmg/Geb6wnN4eL7f5+/7GkmGC5DUA9wFrgEYYyqSMsaYykWu54J//+Tk5Pna2tq9dDpNsVgEIBQKEY1Gfw0PD3/2er0vgU/N1UzDXiwsLMjr9QrQyMiIlpeXlUqlNDo6KkBdXV2an5+XpFeuzk2QmJ2dFSBAS0tLP621zyT5rbV+SU9WV1d/eDweAZqZmZG19pGboHNra8txxZOTk5L0uKkz12LT09PnRTY3N79K6kTSg6mpqfNAJpPZv0RsJJlsNpt1eRMTE5L0sA2I7O7uAtDd3U1/f/8GLdDX17fh9/sB2NvbA7jdBlyp1WoA+Hw+jDHfaY1KMBgEoF6vA3jagGJvby8A5XIZSb7/JLheqfx9Co1OSki6ubKy8tudbXt7+8ha23HJDtqz2WzO5S0uLtYl3UKSOTs7ezs4OChAY2NjkvRGUnuzWNLreDwuQJFIRKenp+/dM45L+lAqlcpDQ0MCFI/HVSgUdiR1Wms7Dg8Pd2KxmAANDAxof3//m6SPksbJ5/PpcDgsx3G+1Go1ra+vKxQKaW5uTpKi1to7yWRSgUBAqVRK1WpVlUrlKBwOK5/Ppz0AuVyOQCBwo3lbjuMA9BpjasfHxziOQyKRIJFIAARbfaZzFAoFgB7AHhwctDyLaexg5J+AMVXgacNNSrp6CefdH+RQoakedXzxAAAAAElFTkSuQmCC' />
+
+				<script type='text/javascript'>
+					/* <![CDATA[ */
+					var stIsIE=!1;
+					sorttable={init:function(){arguments.callee.done||(arguments.callee.done=!0,_timer&&clearInterval(_timer),document.createElement&&document.getElementsByTagName&&(sorttable.DATE_RE=/^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/,forEach(document.getElementsByTagName("table"),function(a){-1!=a.className.search(/\bsortable\b/)&&sorttable.makeSortable(a)})))},makeSortable:function(a){0==a.getElementsByTagName("thead").length&&(the=document.createElement("thead"),the.appendChild(a.rows[0]),a.insertBefore(the,
+					a.firstChild));null==a.tHead&&(a.tHead=a.getElementsByTagName("thead")[0]);if(1==a.tHead.rows.length){sortbottomrows=[];for(var b=0;b<a.rows.length;b++)-1!=a.rows[b].className.search(/\bsortbottom\b/)&&(sortbottomrows[sortbottomrows.length]=a.rows[b]);if(sortbottomrows){null==a.tFoot&&(tfo=document.createElement("tfoot"),a.appendChild(tfo));for(b=0;b<sortbottomrows.length;b++)tfo.appendChild(sortbottomrows[b]);delete sortbottomrows}headrow=a.tHead.rows[0].cells;for(b=0;b<headrow.length;b++)headrow[b].className.match(/\bsorttable_nosort\b/)||
+					((mtch=headrow[b].className.match(/\bsorttable_([a-z0-9]+)\b/))&&(override=mtch[1]),headrow[b].sorttable_sortfunction=mtch&&"function"==typeof sorttable["sort_"+override]?sorttable["sort_"+override]:sorttable.guessType(a,b),headrow[b].sorttable_columnindex=b,headrow[b].sorttable_tbody=a.tBodies[0],dean_addEvent(headrow[b],"click",sorttable.innerSortFunction=function(a){if(-1!=this.className.search(/\bsorttable_sorted\b/))sorttable.reverse(this.sorttable_tbody),this.className=this.className.replace("sorttable_sorted",
+					"sorttable_sorted_reverse"),this.removeChild(document.getElementById("sorttable_sortfwdind")),sortrevind=document.createElement("span"),sortrevind.id="sorttable_sortrevind",sortrevind.innerHTML=stIsIE?'&nbsp<font face="webdings">5</font>':"&nbsp;&#x25B4;",this.appendChild(sortrevind);else if(-1!=this.className.search(/\bsorttable_sorted_reverse\b/))sorttable.reverse(this.sorttable_tbody),this.className=this.className.replace("sorttable_sorted_reverse","sorttable_sorted"),this.removeChild(document.getElementById("sorttable_sortrevind")),
+					sortfwdind=document.createElement("span"),sortfwdind.id="sorttable_sortfwdind",sortfwdind.innerHTML=stIsIE?'&nbsp<font face="webdings">6</font>':"&nbsp;&#x25BE;",this.appendChild(sortfwdind);else{theadrow=this.parentNode;forEach(theadrow.childNodes,function(a){1==a.nodeType&&(a.className=a.className.replace("sorttable_sorted_reverse",""),a.className=a.className.replace("sorttable_sorted",""))});(sortfwdind=document.getElementById("sorttable_sortfwdind"))&&sortfwdind.parentNode.removeChild(sortfwdind);
+					(sortrevind=document.getElementById("sorttable_sortrevind"))&&sortrevind.parentNode.removeChild(sortrevind);this.className+=" sorttable_sorted";sortfwdind=document.createElement("span");sortfwdind.id="sorttable_sortfwdind";sortfwdind.innerHTML=stIsIE?'&nbsp<font face="webdings">6</font>':"&nbsp;&#x25BE;";this.appendChild(sortfwdind);row_array=[];col=this.sorttable_columnindex;rows=this.sorttable_tbody.rows;for(a=0;a<rows.length;a++)row_array[row_array.length]=[sorttable.getInnerText(rows[a].cells[col]),
+					rows[a]];row_array.sort(this.sorttable_sortfunction);tb=this.sorttable_tbody;for(a=0;a<row_array.length;a++)tb.appendChild(row_array[a][1]);delete row_array}}))}},guessType:function(a,b){sortfn=sorttable.sort_alpha;for(var c=0;c<a.tBodies[0].rows.length;c++)if(text=sorttable.getInnerText(a.tBodies[0].rows[c].cells[b]),""!=text){if(text.match(/^-?[\ufffd$\ufffd]?[\d,.]+%?$/))return sorttable.sort_numeric;if(possdate=text.match(sorttable.DATE_RE)){first=parseInt(possdate[1]);second=parseInt(possdate[2]);
+					if(12<first)return sorttable.sort_ddmm;if(12<second)return sorttable.sort_mmdd;sortfn=sorttable.sort_ddmm}}return sortfn},getInnerText:function(a){if(!a)return"";hasInputs="function"==typeof a.getElementsByTagName&&a.getElementsByTagName("input").length;if(null!=a.getAttribute("sorttable_customkey"))return a.getAttribute("sorttable_customkey");if("undefined"==typeof a.textContent||hasInputs)if("undefined"==typeof a.innerText||hasInputs)if("undefined"==typeof a.text||hasInputs)switch(a.nodeType){case 3:if("input"==
+					a.nodeName.toLowerCase())return a.value.replace(/^\s+|\s+$/g,"");case 4:return a.nodeValue.replace(/^\s+|\s+$/g,"");case 1:case 11:for(var b="",c=0;c<a.childNodes.length;c++)b+=sorttable.getInnerText(a.childNodes[c]);return b.replace(/^\s+|\s+$/g,"");default:return""}else return a.text.replace(/^\s+|\s+$/g,"");else return a.innerText.replace(/^\s+|\s+$/g,"");else return a.textContent.replace(/^\s+|\s+$/g,"")},reverse:function(a){newrows=[];for(var b=0;b<a.rows.length;b++)newrows[newrows.length]=a.rows[b];
+					for(b=newrows.length-1;0<=b;b--)a.appendChild(newrows[b]);delete newrows},sort_numeric:function(a,b){aa=parseFloat(a[0].replace(/[^0-9.-]/g,""));isNaN(aa)&&(aa=0);bb=parseFloat(b[0].replace(/[^0-9.-]/g,""));isNaN(bb)&&(bb=0);return aa-bb},sort_alpha:function(a,b){return a[0]==b[0]?0:a[0]<b[0]?-1:1},sort_ddmm:function(a,b){mtch=a[0].match(sorttable.DATE_RE);y=mtch[3];m=mtch[2];d=mtch[1];1==m.length&&(m="0"+m);1==d.length&&(d="0"+d);dt1=y+m+d;mtch=b[0].match(sorttable.DATE_RE);y=mtch[3];m=mtch[2];d=
+					mtch[1];1==m.length&&(m="0"+m);1==d.length&&(d="0"+d);dt2=y+m+d;return dt1==dt2?0:dt1<dt2?-1:1},sort_mmdd:function(a,b){mtch=a[0].match(sorttable.DATE_RE);y=mtch[3];d=mtch[2];m=mtch[1];1==m.length&&(m="0"+m);1==d.length&&(d="0"+d);dt1=y+m+d;mtch=b[0].match(sorttable.DATE_RE);y=mtch[3];d=mtch[2];m=mtch[1];1==m.length&&(m="0"+m);1==d.length&&(d="0"+d);dt2=y+m+d;return dt1==dt2?0:dt1<dt2?-1:1},shaker_sort:function(a,b){for(var c=0,e=a.length-1,g=!0;g;){for(var g=!1,f=c;f<e;++f)0<b(a[f],a[f+1])&&(g=a[f],
+					a[f]=a[f+1],a[f+1]=g,g=!0);e--;if(!g)break;for(f=e;f>c;--f)0>b(a[f],a[f-1])&&(g=a[f],a[f]=a[f-1],a[f-1]=g,g=!0);c++}}};document.addEventListener&&document.addEventListener("DOMContentLoaded",sorttable.init,!1);if(/WebKit/i.test(navigator.userAgent))var _timer=setInterval(function(){/loaded|complete/.test(document.readyState)&&sorttable.init()},10);window.onload=sorttable.init;
+					function dean_addEvent(a,b,c){if(a.addEventListener)a.addEventListener(b,c,!1);else{c.$$guid||(c.$$guid=dean_addEvent.guid++);a.events||(a.events={});var e=a.events[b];e||(e=a.events[b]={},a["on"+b]&&(e[0]=a["on"+b]));e[c.$$guid]=c;a["on"+b]=handleEvent}}dean_addEvent.guid=1;function removeEvent(a,b,c){a.removeEventListener?a.removeEventListener(b,c,!1):a.events&&a.events[b]&&delete a.events[b][c.$$guid]}
+					function handleEvent(a){var b=!0;a=a||fixEvent(((this.ownerDocument||this.document||this).parentWindow||window).event);var c=this.events[a.type],e;for(e in c)this.$$handleEvent=c[e],!1===this.$$handleEvent(a)&&(b=!1);return b}function fixEvent(a){a.preventDefault=fixEvent.preventDefault;a.stopPropagation=fixEvent.stopPropagation;return a}fixEvent.preventDefault=function(){this.returnValue=!1};fixEvent.stopPropagation=function(){this.cancelBubble=!0};
+					Array.forEach||(Array.forEach=function(a,b,c){for(var e=0;e<a.length;e++)b.call(c,a[e],e,a)});Function.prototype.forEach=function(a,b,c){for(var e in a)"undefined"==typeof this.prototype[e]&&b.call(c,a[e],e,a)};String.forEach=function(a,b,c){Array.forEach(a.split(""),function(e,g){b.call(c,e,g,a)})};
+					var forEach=function(a,b,c){if(a){var e=Object;if(a instanceof Function)e=Function;else{if(a.forEach instanceof Function){a.forEach(b,c);return}"string"==typeof a?e=String:"number"==typeof a.length&&(e=Array)}e.forEach(a,b,c)}};
+					/* ]]> */
+				</script>
+
+				<script type='text/javascript'> 
+					var lastHash = <xsl:value-of select="concat( '&#34;#Run', count(Run), '&#34;' )" />
+					var levelCookieName	= 'maxLogLevel';
+					var threadCookieName = 'selectedThreads';
+					var currMaxSeverity	 = 2;
+					var staticMaxSeverity	= 4; 
+					var threadId2Active = {
+						<xsl:for-each select="Run/Record[generate-id() = generate-id(key('threadID',@Thread)[1])]">
+							<xsl:sort data-type='number' select='@Thread' />
+							'<xsl:value-of select="number(@Thread)" />' : true,
+							</xsl:for-each>
+					};
+					var threadsSel;
+					var threadStyleSheets = new Array( Object.keys(threadId2Active).length );
+					var severityStyleSheets = new Array( 5 ); 
+					<xsl:for-each select="Run/Record[generate-id() = generate-id(key('threadID',@Thread)[1])]">
+						<xsl:sort data-type='number' select='@Thread' />
+						{
+							var sheet = document.createElement('style');
+							sheet.innerHTML = 	'<xsl:value-of select="concat( '.thread', number(@Thread) )" />'
+																+ '{ display:none }';
+							sheet.disabled = true;
+							document.head.appendChild(sheet);
+							threadStyleSheets[ <xsl:value-of select='position()' /> ] = sheet;
+						}
+					</xsl:for-each> 
+					/* <![CDATA[ */
+					window.onload=function() { 
+						if(!location.hash)
+							location.replace(lastHash);
+						threadsSel = document.getElementById('SelectThreads');
+						for( var idx=0; idx < severityStyleSheets.length; ++idx ) {
+							severityStyleSheets[idx] = document.createElement('style');
+							if( idx < 4 ) {
+								var innerHTML = '';
+								switch(idx) {
+									case 0: innerHTML += '.warning,';
+									case 1: innerHTML += '.info,';
+									case 2: innerHTML += '.verbose,';
+									case 3: innerHTML += '.debug { display:none }';
+								}
+								severityStyleSheets[idx].innerHTML = innerHTML;
+							}
+							severityStyleSheets[idx].disabled = idx != 2;
+							document.head.appendChild( severityStyleSheets[idx] );
+						} 
+						for( var threadId in threadId2Active ) {
+							var opt = document.createElement('option');
+							opt.text = threadId;
+							opt.selected=1;
+							try {
+								threadsSel.add(opt,null);
+							}
+							catch(ex) {
+								threadsSel.add(opt);
+							}
+						} 
+						if(document.cookie) {
+							var cookies = document.cookie.split(';');
+							for( var iC=0; iC<cookies.length; ++iC ) {
+								var nameVal = cookies[iC].split('=');
+								if(nameVal.length!=2)
+									continue;
+								for( var iNv=0; iNv<nameVal.length; ++iNv ) { 
+									nameVal[iNv] = (nameVal[iNv].replace(/^\W+/,'')).replace(/\W+$/,'');
+								}
+								if(nameVal[0]==levelCookieName) {
+									var ll = parseInt( nameVal[1] );
+									if( ll != NaN && ll >= 0 && ll <= staticMaxSeverity ) {
+										currMaxSeverity = ll;
+									}
+								}
+								else {
+									if(nameVal[0]==threadCookieName) {
+										for( var iS=0; iS < threadsSel.length; ++iS )
+											threadsSel[iS].selected = 0;
+										var tIds = nameVal[1].split('/');
+										for( var iT=0; iT<tIds.length; ++iT )
+											for( var iS=0; iS < threadsSel.length; ++iS )
+												if( threadsSel[iS].text == tIds[iT] ) {
+													threadsSel[iS].selected = 1;
+													break;
+												}
+									}
+								}
+							}
+						}
+						updateThreads();
+						updateSeverity();
+						sorttable.init();
+					}
+					window.onunload=function() {
+						var str = levelCookieName + '=' + String(currMaxSeverity) + ';';
+						document.cookie = str;
+						str = threadCookieName + '=';
+						var nPushed=0;
+						for( var sI=0; sI < threadsSel.length; sI++ )
+							if( threadsSel[sI].selected == 1 ) {
+								if(nPushed>0)
+									str += '/';
+								str += threadsSel[sI].text;
+								nPushed++;
+							}
+						str += ';';
+						document.cookie = str; 
+						if( location.hash == lastHash )
+							location.replace('');
+					} 
+					function updateLocation() {
+						if( location.hash )
+							location.replace( location.hash );
+					}
+					function updateThreads() {
+						var someDeac=0;
+						for( var idx=0; idx < threadsSel.length; idx++ ) {
+							var isActive = threadsSel[idx].selected == 1;
+							threadId2Active[ Number(threadsSel[idx].text) ] = isActive;
+							if( !isActive )
+								someDeac=1;
+						}
+						var flyout = document.getElementById('ThreadFlyout');
+						if(someDeac==1)
+							flyout.style.color = 'red';
+						else
+							flyout.style.color = 'black';
+						for( var idx in threadStyleSheets )
+							threadStyleSheets[idx].disabled = threadId2Active[idx];
+					}
+					function updateSeverity() {
+						if(currMaxSeverity > staticMaxSeverity) {
+							currMaxSeverity = staticMaxSeverity;
+							return;
+						}
+						if(currMaxSeverity < 0) {
+								currMaxSeverity = 0;
+							return;
+						}
+						var txt;
+						switch( currMaxSeverity ) {
+							case 0: txt = 'error'; break;
+							case 1: txt = 'warning'; break;
+							case 2: txt = 'info'; break;
+							case 3: txt = 'verbose'; break;
+							case 4: txt = 'debug'; break;
+						}
+						document.getElementById('maxSeverity').firstChild.data = txt;
+						for( var idx in severityStyleSheets )
+							severityStyleSheets[idx].disabled = idx != currMaxSeverity;
+					}
+					function incrementSeverity() {
+						currMaxSeverity += 1;
+						updateSeverity();
+						updateLocation();
+					}
+					function decrementSeverity() {
+						currMaxSeverity -= 1;
+						updateSeverity();
+						updateLocation();
+					}
+					function threadsAltered() {
+						updateThreads();
+						updateLocation();
+					}
+					function forEachLongMsg( func ) {
+						var displays = document.getElementsByClassName('message-display');
+						for( var idx=0; idx < displays.length; idx++ )
+							func(displays[idx]);
+						updateLocation();
+					}
+					function expandLongMsgs() {
+						forEachLongMsg(expandLongMsg);
+					}
+					function collapseLongMsgs() {
+						forEachLongMsg(collapseLongMsg);
+					}
+					function toggleLongMsgs() {
+						forEachLongMsg(toggleLongMsg);
+					}
+					function toggleLongMsg(display) {
+						if(display.style.maxHeight != '' )
+							expandLongMsg(display);
+						else
+							collapseLongMsg(display);
+					}
+					function expandLongMsg(display) {
+						display.style.maxHeight='';
+					}
+					function collapseLongMsg(display) {
+						display.style.maxHeight='10em';
+					}
+					/* ]]> */
+				</script>
+
+				<style type='text/css'>
+					body		{ font: 12px Verdana, Arial, Helvetica, sans-serif }
+					div.top { padding: 10px }
+					#head { 
+						position: fixed;
+						z-index:1;
+						top: 0px; left: 0px;
+						width: 100%; height: 100px;
+						background-color: white;
+						border-bottom: 4px ridge silver; 
+						overflow: visible
+					}
+					#data {
+						position:absolute;
+						top: 100px; left: 0px;
+						width: 100%
+					}
+					.link 						{ position: relative; top: -120px }
+					div.flyOut				{ float:left; cursor:pointer; margin-right:15px }
+					div.flyOut:hover	{ font-weight:bold; font-variant:small-caps; font-style:oblique }
+					div.flyer					{ display:none; position:absolute; max-width:80%; max-height:200%; overflow:auto; background-color:white; padding:10px; border: 4px ridge silver }
+					div.flyOut:hover > div.flyer { display:block; font-weight:normal; font-variant:normal; font-style:normal; cursor: default }
+					h1, h2, table caption { color: #006699 }
+					h1							{ font-size: 35px; margin-top: 0px; margin-bottom: 0px }
+					h1 a:link, h1 a:visited { text-decoration:none; color:#006699 }
+					#head table, #head table td { border-width: 0px; margin: 0px; padding: 0px; max-width:100% }
+					table						{ margin: auto; margin-bottom: 20px; margin-top: 5px;
+														border-collapse: collapse;
+														border: none;	}
+					table caption 	{ margin-top: 15px; font: bold 20px sans-serif; }
+					.narrow					{ max-width: 100px; white-space:nowrap; overflow:hidden; text-align:right; direction:rtl }
+					td, th					{ border: 1px solid; padding: 3px 5px }
+					td							{ border-color: black }
+					.Log td					{ white-space:pre-wrap }
+					td.logmsg				{ text-align: left }
+					td.logmsg td		{ font-family:monospace; text-align:right }
+					.message-toggle { display:none; position:absolute; right:0; background-color:white; font-size:larger; cursor:pointer }
+					tr:hover .message-toggle { display:block }
+					th							{ color: white; background-color: #006699; border-color: #006699; text-align: left; padding: 3px 5px } 
+					.message-display table caption	{ margin-top: 0px; margin-bottom: 0px; font: bold 15px sans-serif }
+					.message-display table					{ margin-bottom: 5px; margin-top: 0px }
+					table.sortable th { cursor:pointer }
+					table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):after { content: ' \25B4\25BE' }
+					table.sortable tbody tr:hover	{ background-color: #E0E0E0 }
+					table.sortable tbody { counter-reset: sortabletablescope }
+					table.sortable thead tr:before { content: ''; display: table-cell }
+					table.sortable tbody tr:before { content: counter(sortabletablescope)' '; counter-increment: sortabletablescope;
+																					 display: table-cell; font-size: smaller; text-align: right; vertical-align: middle }
+					button 						{ background-color:transparent; outline-width: 0px; border-width: 0px; cursor:pointer }
+					.message-display	{ max-height: none; overflow: hidden; position:relative }
+					.error		{ color:red }
+					.warning	{ color:darkred }
+					.info			{ color: black }
+					.verbose	{ color: #424242 }
+					.debug		{ color:#848484 }
+				</style>
+
+			</head>
+
+			<body>
+				<div id='head'>
+					<div class='top'>
+						<h1 style='vertical-align:middle; text-align:center; text-shadow:gray 5px 7px 10px;'>
+							<a href='http://arap.univie.ac.at'>OrientAL Log</a>
+						</h1>
+						<p style='vertical-align:bottom; text-align:left; white-space:nowrap; margin-top:0px'>Range of timestamps: 
+							<xsl:call-template name='timeStampFormatter'>
+								<xsl:with-param name='timeStamp' select='Run[Record]/Record[1]/@Time' />
+							</xsl:call-template>
+							&#8194;-&#8194;
+							<xsl:call-template name='timeStampFormatter'>
+								<xsl:with-param name='timeStamp' select='Run[Record][last()]/Record[last()]/@Time' />
+								<xsl:with-param name='n-decimals' select='0' />
+							</xsl:call-template>
+						</p>
+						<div> 
+							<noscript>
+								<div style='position:absolute; left:0px; right:0px; bottom:1ex; text-align:center; color:red; font-weight:bold'>
+									Javascript is deactivated. <br /> Dynamic features cannot be provided.
+								</div>
+							</noscript>
+
+							<div class='flyOut'>
+								<xsl:value-of select='count(Run/Record)'/> record(s) from <xsl:value-of select='count(Run)'/> run(s) &#8711;
+								<div class='flyer'>
+									<xsl:for-each select='Run'>
+										<span style='margin:auto; float:left'>
+											<a>
+												<xsl:attribute name='href'>
+													<xsl:value-of select="concat( '#Run', position() )"/>
+												</xsl:attribute>
+												<xsl:variable name='time'>
+													<xsl:if test='Record/@Time'>
+														<xsl:text>&#8194;Start:&#8194;</xsl:text>
+														<xsl:call-template name='timeStampFormatter'>
+															<xsl:with-param name='timeStamp' select='Record/@Time' />
+															<xsl:with-param name='n-decimals' select='0' />
+														</xsl:call-template>
+													</xsl:if>
+												</xsl:variable>
+												<xsl:attribute name='title'>
+													<xsl:value-of select="concat( position(), '. Run', $time )" />
+												</xsl:attribute>
+												<xsl:value-of select="concat( position(), '. Run' )"/>
+											</a>
+											<span style='white-space: pre'><xsl:text>&#09;</xsl:text></span>
+										</span>
+									</xsl:for-each>
+								</div>
+							</div>
+
+							<div class='flyOut'>
+								Max. Log Severity &#8711;
+								<div class='flyer'>
+									<table align='center'>
+										<tr align='center' valign='middle' >
+											<td style='width:10px'><button type='button' onclick='decrementSeverity()'>&#x25bc;</button></td>
+											<td style='width:50px'><span id='maxSeverity'> loading... </span></td>
+											<td style='width:10px'><button type='button' onclick='incrementSeverity()'>&#x25b2;</button></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+							<div id='ThreadFlyout' class='flyOut'>
+								Threads shown &#8711;
+								<div class='flyer'>
+									<select style='text-align:right' id='SelectThreads' size='5' onchange='threadsAltered()' multiple='1'	/>
+								</div>
+							</div>
+
+							<div id='CollapseFlyout' class='flyOut'>
+							  Expand/Collapse &#8711;
+								<div class='flyer'>
+									<button onclick='expandLongMsgs()'> Expand all </button>
+									<button onclick='collapseLongMsgs()'> Collapse all </button>
+									<button onclick='toggleLongMsgs()'> Toggle all </button>
+								</div>
+							</div>
+
+							<xsl:if test="count(Run[Record/@Severity='warning'])">
+								<div class='flyOut' style='float:right; direction:rtl'>
+									<div style='color:darkred; direction:ltr'>Warnings! &#8711;</div>
+									<div class='flyer' style='direction:ltr'>
+										<xsl:for-each select='Run'>
+											<xsl:variable name='idxRun' select='position()' />
+											<xsl:for-each select='Record'>
+												<xsl:if test="@Severity='warning'" >
+													<span style='margin:auto; float:left'>
+														<a>
+															<xsl:attribute name='href'>
+																<xsl:value-of select="concat( '#', 'Log_', $idxRun, '_', position() )"/>
+															</xsl:attribute>
+															<xsl:value-of select="concat( $idxRun, '. Run' )"/>
+														</a>
+														<span style='white-space: pre'><xsl:text>&#09;</xsl:text></span>
+													</span>
+												</xsl:if>
+											</xsl:for-each>
+										</xsl:for-each>
+									</div>
+								</div>
+							</xsl:if>
+
+							<xsl:if test="count(Run[Record/@Severity='error'])">
+								<div class='flyOut' style='float:right; direction:rtl'>
+									<div style='color:red; font-weight:bold; direction:ltr'>Errors! &#8711;</div>
+									<div class='flyer' style='direction:ltr'>
+										<xsl:for-each select='Run'>
+											<xsl:variable name='idxRun' select='position()' />
+											<xsl:for-each select='Record'>
+												<xsl:if test="@Severity='error'" >
+													<span style='margin:auto; float:left'>
+														<a>
+															<xsl:attribute name='href'>
+																<xsl:value-of select="concat( '#', 'Log_', $idxRun, '_', position() )"/>
+															</xsl:attribute>
+															<xsl:value-of select="concat( $idxRun, '. Run' )"/>
+														</a>
+														<span style='white-space: pre'><xsl:text>&#09;</xsl:text></span>
+													</span>
+												</xsl:if>
+											</xsl:for-each>
+										</xsl:for-each>
+									</div>
+								</div>
+							</xsl:if>
+
+						</div>
+
+					</div>
+				</div>
+
+				<div id='data'>
+					<div class='top'>
+						<xsl:apply-templates select='Run' />
+					</div>
+				</div>
+
+			</body>
+		</html>
+
+	</xsl:template> 
+	<xsl:template name='timeStampFormatter'>
+		<xsl:param name='timeStamp' />
+		<xsl:param name='n-decimals' />
+		<xsl:choose>
+			<xsl:when test="contains($timeStamp, '.')">
+				<xsl:choose>
+					<xsl:when test='$n-decimals &gt; 0'>
+						<xsl:value-of select="concat( substring-before( $timeStamp, '.'), '.', substring( substring-after( $timeStamp, '.'), 1, $n-decimals ) )" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="substring-before( $timeStamp, '.')" />
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select='$timeStamp' />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match='Run'>
+		<xsl:variable name='idxRun' select='position()' />
+		<h2> <xsl:value-of select='$idxRun'/>. Run
+			<span class='link'>
+				<xsl:attribute name='id'>
+					<xsl:value-of select='concat( "Run", $idxRun )'/>
+				</xsl:attribute>
+			</span>
+		</h2>
+		<table	class='Log' title='Logs emitted during the run' style='width:100%; text-align:center; table-layout:fixed'>
+			<caption>Log</caption>
+			<thead>
+				<tr>
+					<th style='width:80px'>Timestamp</th>
+					<th style='width:50px'>Severity</th> 
+					<th style='width:20px' title='Thread'>Th.</th>
+					<th>Message</th>
+				</tr>
+			</thead>
+			<tbody>
+				<xsl:choose>
+					<xsl:when test='count(Record) = 0'> <tr><td colspan='5'>No record</td></tr></xsl:when>
+					<xsl:otherwise>
+						<xsl:for-each select='Record'>
+							<xsl:variable name='idxRecord' select='position()' />
+							<tr>
+								<xsl:attribute name='title'>Run #<xsl:value-of select='$idxRun'/> record #<xsl:value-of select='$idxRecord'/>
+									<xsl:text>@</xsl:text>
+									<xsl:call-template name='timeStampFormatter'>
+										<xsl:with-param name='timeStamp' select='@Time' />
+										<xsl:with-param name='n-decimals' select='0' />
+									</xsl:call-template>
+									<xsl:text>: </xsl:text>
+									<xsl:value-of select='@Severity'/>
+									<xsl:text> from thread </xsl:text>
+									<xsl:value-of select='@Thread'/>
+									<xsl:if test='@Tag'>
+										<xsl:text> Tag: </xsl:text>
+										<xsl:value-of select='@Tag'/>
+									</xsl:if>
+								</xsl:attribute> 
+								<xsl:attribute name='class'>
+									<xsl:value-of select='@Severity'/>
+									<xsl:text> thread</xsl:text>
+									<xsl:value-of select='number(@Thread)' />
+								</xsl:attribute>
+								<td>
+									<xsl:call-template name='timeStampFormatter'>
+										<xsl:with-param name='timeStamp' select='@Time' />
+										<xsl:with-param name='n-decimals' select='1' />
+									</xsl:call-template>
+								</td>
+								<td>
+									<xsl:if test="@Severity='warning' or @Severity='error'">
+										<div class='link'>
+											<xsl:attribute name='id'>
+												<xsl:value-of select="concat( 'Log_', $idxRun, '_', $idxRecord )" />
+											</xsl:attribute>
+										</div>
+									</xsl:if>
+									<xsl:value-of select='@Severity' />
+								</td> 
+								<td><xsl:value-of select='@Thread'/></td> 
+								<td class='logmsg'>
+									<div class='message-display' ondblclick='toggleLongMsg(this)'>
+										<div class='message-toggle' onclick='toggleLongMsg(this.parentElement)'> &#x2b0d; </div>
+										<xsl:if test='@Tag'>
+											<xsl:value-of select='@Tag'/>
+											<xsl:text>: </xsl:text>
+										</xsl:if>
+										<xsl:copy-of select='node()' />
+									</div>
+								</td> 
+							</tr>
+						</xsl:for-each>
+					</xsl:otherwise>
+				</xsl:choose>
+			</tbody>
+		</table>
+		<xsl:if test='position() != last()' >
+			<br/><hr style='width:100%'/><br/>
+		</xsl:if>
+	</xsl:template>
+
+	<!-- logging data -->
+	<oriental:Log>
+		<Run>
+			<Record Time="2020-08-04 17:45:33.761043" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-04 17:45:33.790129" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+		</Run>
+		<Run>
+			<Record Time="2020-08-10 22:58:57.081215" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-10 22:58:57.093181" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+		</Run>
+		<Run>
+			<Record Time="2020-08-16 18:27:44.519211" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-16 18:27:44.530083" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+		</Run>
+		<Run>
+			<Record Time="2020-08-17 15:08:54.030321" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-17 15:08:54.044283" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+		</Run>
+		<Run>
+			<Record Time="2020-08-17 15:22:23.346209" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-17 15:22:23.352194" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+		</Run>
+	</oriental:Log>
+</xsl:stylesheet>
