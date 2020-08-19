@@ -558,24 +558,50 @@ This file is self-contained.
 	<!-- logging data -->
 	<oriental:Log>
 		<Run>
-			<Record Time="2020-08-04 17:45:33.761043" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
-			<Record Time="2020-08-04 17:45:33.790129" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-18 15:27:54.947190" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-18 15:27:54.953024" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-18 15:27:58.942871" Severity="warning" Thread="1">C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3811.JPG: No such file or directory</Record>
 		</Run>
 		<Run>
-			<Record Time="2020-08-10 22:58:57.081215" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
-			<Record Time="2020-08-10 22:58:57.093181" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-18 15:33:38.033651" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-18 15:33:38.039507" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
 		</Run>
 		<Run>
-			<Record Time="2020-08-16 18:27:44.519211" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
-			<Record Time="2020-08-16 18:27:44.530083" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-18 16:55:06.901107" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-18 16:55:06.906963" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
 		</Run>
 		<Run>
-			<Record Time="2020-08-17 15:08:54.030321" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
-			<Record Time="2020-08-17 15:08:54.044283" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-19 17:54:11.157699" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-19 17:54:11.163555" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
 		</Run>
 		<Run>
-			<Record Time="2020-08-17 15:22:23.346209" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
-			<Record Time="2020-08-17 15:22:23.352194" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-19 18:08:40.024973" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-19 18:08:40.030830" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-19 18:08:42.046339" Severity="warning" Thread="1">C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3811.JPG: No such file or directory</Record>
+			<Record Time="2020-08-19 18:08:45.615392" Severity="error" Thread="1">You asked MonoScope to exit.</Record>
+		</Run>
+		<Run>
+			<Record Time="2020-08-19 18:08:55.883805" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-19 18:08:55.888683" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-19 18:08:58.318920" Severity="warning" Thread="1">C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3811.JPG: No such file or directory</Record>
+			<Record Time="2020-08-19 18:08:59.995732" Severity="error" Thread="1">You asked MonoScope to exit.</Record>
+		</Run>
+		<Run>
+			<Record Time="2020-08-19 18:09:16.281387" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-19 18:09:16.288220" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+			<Record Time="2020-08-19 18:09:57.305553" Severity="warning" Thread="1">C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3811.JPG: No such file or directory</Record>
+			<Record Time="2020-08-19 18:10:30.082280" Severity="warning" Thread="1">C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3812.JPG: No such file or directory</Record>
+			<Record Time="2020-08-19 18:10:39.803539" Severity="warning" Thread="1">C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3812.JPG: No such file or directory</Record>
+			<Record Time="2020-08-19 18:10:54.602009" Severity="warning" Thread="1">C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3815.JPG: No such file or directory</Record>
+			<Record Time="2020-08-19 18:11:14.936138" Severity="warning" Thread="1">C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3817.JPG: No such file or directory</Record>
+		</Run>
+		<Run>
+			<Record Time="2020-08-19 18:22:28.095474" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-19 18:22:28.101330" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+		</Run>
+		<Run>
+			<Record Time="2020-08-19 18:35:50.673964" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-19 18:35:50.678824" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
 		</Run>
 	</oriental:Log>
 </xsl:stylesheet>

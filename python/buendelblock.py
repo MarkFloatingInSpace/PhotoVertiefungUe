@@ -78,14 +78,14 @@ def alzeka2R(alzeka):
     typ = type(alzeka[0])
     # Trigonometric functions expect angles in radians, so convert.
     alpha, zeta, kappa = alzeka * np.pi / 200.
-    R_alpha = np.array([ [     1     ,      0     ,      0.    ],
-                         [     0     ,  cos(alpha), -sin(alpha)],
-                         [     0     ,  sin(alpha),  cos(alpha)], dtype=typ )
-
+    R_alpha = np.array([ [ cos(alpha), -sin(alpha),     0.    ],
+                         [ sin(alpha),  cos(alpha),     0.    ],
+                         [     0     ,      0     ,     1.    ] ], dtype=typ )
+                         
     R_zeta  = np.array([ [  cos(zeta),      0     , sin(zeta) ],
                          [      0,          1     ,     0     ],
                          [ -sin(zeta),      0     , cos(zeta) ] ], dtype=typ )
-
+                         
     R_kappa = np.array([ [ cos(kappa), -sin(kappa),     0     ],
                          [ sin(kappa),  cos(kappa),     0     ],
                          [     0,           0,          1     ] ], dtype=typ )
@@ -129,7 +129,7 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
             3, # Projection center in the object coordinate system.
             3, # Rotation angles.
             3, # Interior orientation i.e. projection center in the camera coordinate system.
-            2, # TODO Lens distortion parameters, not (yet) used here. Adapt this number to your distortion model.
+            4, # TODO Lens distortion parameters, not (yet) used here. Adapt this number to your distortion model.
             3  # Object point.
         )
         # Hence, `PerspectiveCamera` expects 5 parameter blocks, where each block consists of 3 elements
@@ -201,18 +201,30 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
         x_projected = x_0 - c * camPt[0] / camPt[2]
         y_projected = y_0 - c * camPt[1] / camPt[2]
 
+        # Markus: calculate distortion correction:
+        x_ = x_projected - x_0
+        y_ = y_projected - y_0
+        rho = (x_**2 + y_**2) ** (1/2)
 
-        x_s = (self.x_observed - x_0)/2160
-        y_s = (self.y_observed - y_0)/2160
-        rho = (x_s**2+y_s**2)**.5
+        k1 = distortion[0]
+        k2 = distortion[1]
+        p1 = distortion[2]
+        p2 = distortion[3]
 
-        # Radiale Verzeichnung nur 3. Ordnung
-        d_x = x_s*(distortion[0]*(rho**2-1)+distortion[1]*(rho**4-1))
-        d_y = y_s*(distortion[0]*(rho**2-1)+distortion[1]*(rho**4-1))
+        #Radiale und tangeniale Verzeichnung beides 3. und 5. Ordnung
+        delta_x_dist = x_*(k1*(rho**2-5000000) + k2 * (rho ** 4-5000000)) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
+        delta_y_dist = y_*(k1*(rho**2-5000000) + k2 * (rho ** 4-5000000)) + p1 * (rho ** 2 + 2 * y_ ** 2) + 2 * p2 * x_ * y_
+        # delta_x_dist = x_ * (k1 * rho ** 2 + k2 * rho ** 4) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
+        # delta_y_dist = y_ * (k1 * rho ** 2 + k2 * rho ** 4) + 2 * p2 * x_ * y_ + p1 * (rho ** 2 + 2 * y_ ** 2)
+
+
+        x_projected += delta_x_dist
+        y_projected += delta_y_dist
 
         # Compute the residuals.
-        residuals[0] = self.x_observed - (x_projected + d_x)
-        residuals[1] = self.y_observed - (y_projected + d_y)
+        residuals[0] = self.x_observed - x_projected
+        residuals[1] = self.y_observed - y_projected
+
 
         # Return True to indicate a successful computation.
         return True
@@ -537,7 +549,7 @@ def initializeObjectCoordinates( photo_obs, projectionCenters, rotationAngles, i
 
 def printParameters( projectionCenters, rotationAngles, ior, distortion, objPts ):
     def printArr(name, arr, single=False):
-        print("r'{}' : np.array([{}]){}".format(name, ', '.join(f'{el:+8.3f}' for el in arr), '' if single else ','))
+        print("r'{}' : np.array([{}]){}".format(name, ', '.join(f'{el:+8.5e}' for el in arr), '' if single else ','))
 
     printArr( 'ior', ior, single=True )
 
@@ -716,6 +728,7 @@ def plot3d( titleSuffix, projectionCenters, rotationAngles, objPts ):
     set_aspect_equal_3d(ax)
     plt.show(block=False)
 
+
 def bundleBlock():
     photo_obs = loadImageObservations()
 
@@ -744,17 +757,36 @@ def bundleBlock():
     # - nominal focal length equivalent to 35mm film:
     #   26[mm]
     # The nominal image area of 35mm film is: 36 x 24mm (width x height)
-    ior = np.array([3000.,  # x_0
-                   -2000.,  # y_0
-                    4843.   # c [px]
-                    ], float)
+
+    # 18mm --> 29mm (crop factor 1.61)
+    # Sensor: 22.3 × 14.9 mm (diag = 26,8 mm) (APS-C format); 6000 x 4000 (diag = 7211)
+    # --> 29mm / 36mm * 6000 = 4833
+    # ior = np.array([3000.,  # x_0
+    #                -2000.,  # y_0
+    #                 4843.   # c [px]
+    #                 ], float)
+
+    # IOR: [26.715 30.741 62.743]
+
+    ior = np.array([+2.64605e+03, -2.05890e+03, +4.95924e+03])
+
+    # IOR from adjustment with correct datum definition (unconstrained)
+    # a priori 3000, -2000, 4833
+    # distortion
+
+    # nach erstem Ausgleich
+    # ior = np.array([+2660.450, -2019.164, +5313.308])
+    # ior = np.array([+2.55446e+03, -1.98994e+03, +5.14975e+03])
+
     #ior = np.array([+1976.642, -1627.440, +3160.776])
 
     # TODO Distortion parameters.
     # Choose an appropriate model.
     # The number of distortion parameters stated here must match the number of distortion parameters that
     # `PerspectiveCamera` expects. The preliminary number given here only serves as a placeholder.
-    distortion = np.zeros(4, float)
+    distortion = np.array([-1.06494e-08, +7.18140e-16, -9.92606e-07, -4.33932e-07])
+    # np.array([-1.05810e-08, +7.43013e-16, -1.94212e-07, +1.40238e-07])
+    # [1.025e-09 1.390e-16 3.008e-07 2.789e-07]
     #distortion = np.array([0., 0., +105.633,  -56.806,   +2.371,   +2.721])
 
     # `objPts` contains for each point name the object point coordinates as a vector with 3 elements.
@@ -772,10 +804,10 @@ def bundleBlock():
     # Introduce object point coordinates in units of meters.
     objPts['01'] = np.array([0., 0., 0.], float)
     objPts['04'] = np.array([0.6, 0., 0.], float)
-    objPts['02'] = np.array([0, 0, 1.589], float)
+    objPts['02'] = np.array([0, 0., 1.589], float)
 
     # TODO change to False once initial orientation is calculated
-    if True:
+    if False:
         # At the very beginning, let's derive the exterior image orientations via spatial resection.
         # For that purpose, we need object coordinates of at least 4 points manually observed in each image.
         # Since the datum points do not suffice, define additional object coordinates here.
@@ -792,14 +824,16 @@ def bundleBlock():
         #     r'20200411_150233.jpg': np.array([+1.249, +0.271, -1.020]),
         # }
 
-        projectionCenters = {'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3811.JPG': array(
-            [0.24336323, -2.28193662, 0.28172138]),
-         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3812.JPG': array(
-             [0.50874874, -1.6972271, 0.47652172]),
-         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3815.JPG': array(
-             [-0.26366617, -1.94395016, 0.27073273]),
-         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3817.JPG': array(
-             [0.01803747, -1.61388478, 0.6092208])}
+        projectionCenters = {
+            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3811.JPG': np.array(
+                [+6.39322e-01, -2.40875e+00, +4.37130e-01]),
+            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3812.JPG': np.array(
+                [+6.39867e-01, -1.75009e+00, +7.34293e-01]),
+            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3815.JPG': np.array(
+                [+8.23091e-02, -2.21051e+00, +5.47975e-01]),
+            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3817.JPG': np.array(
+                [+8.10278e-02, -1.69944e+00, +7.90615e-01])
+        }
 
         # `rotationAngles` contains for each photo the rotation angles.
         # `PerspectiveCamera` expects them in units of [gon], parameterized for alpha-zeta-kappa.
@@ -815,14 +849,16 @@ def bundleBlock():
         #     r'20200411_150233.jpg': np.array([+22.009, +112.667, +6.396]),
         # }
 
-        rotationAngles = {'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3811.JPG': array(
-            [-101.6655284, 113.09651548, 94.34163806]),
-         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3812.JPG': array(
-             [-93.3407609, 106.56340776, -5.48839231]),
-         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3815.JPG': array(
-             [-116.14201029, 113.78471479, -105.75488384]),
-         'C:\\Users\\marku\\Documents\\UNI\\PhotoVertiefungUe\\data\\IMG_3817.JPG': array(
-             [-111.15246152, 108.67353606, 193.92749854])}
+        rotationAngles = {
+            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3811.JPG': np.array(
+                [-8.49022e+01, +1.07926e+02, +1.00697e+02]),
+            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3812.JPG': np.array(
+                [-8.57618e+01, +1.02326e+02, -2.04879e-02]),
+            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3815.JPG': np.array(
+                [-1.07155e+02, +1.06672e+02, -1.00477e+02]),
+            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3817.JPG': np.array(
+                [-1.06145e+02, +9.92276e+01, +1.99397e+02])
+        }
 
     # Using the initial values of interior and exterior orientations,
     # derive object point coordinates by spatial intersection.
@@ -856,7 +892,7 @@ def bundleBlock():
                                    distortion,
                                    objPts[ptName])
 
-    if False:
+    if True:
         # TODO Once a good enough interior image orientation is known,
         # automatically compute additional tie points.
         featurePoints, featurePointMatches = getAutomaticTiePoints(list(photo_obs.keys()))
@@ -893,7 +929,7 @@ def bundleBlock():
                 continue
             # If residuals are large, then the probability of this feature match being an outlier is high.
             # TODO But how large is *large*?
-            maxResidualNorm = 1000
+            maxResidualNorm = 3
             residuals = np.sum(residuals**2, axis=1)**0.5
             if residuals.max() > maxResidualNorm:
                 continue
@@ -937,8 +973,8 @@ def bundleBlock():
     # The A-matrix queried below will not contain columns for these parameter blocks.
     idsConstantBlocks = [id(el) for el in (objPts['01'],
                                            objPts['04'],
-                                           ior, # TODO Set ior constant?
-                                           distortion # TODO Set distortion constant?
+                                           #ior,  # TODO Set ior constant?
+                                           #distortion  # TODO Set distortion constant?
                                           )]
 
     # Since the unconstrained datum definition shall be accomplished by setting constant 7 object point coordinates,
@@ -950,7 +986,8 @@ def bundleBlock():
     # 1. the size of the parameter block (which is 3 for object points), and
     # 2. a vector of indices of the elements to be set constant.
     # Indexing starts at 0, as usual. Hence, e.g. index 0 sets the X-coordinate constant.
-    subset = oriental.adjust.local_parameterization.Subset(3, np.array([0]))
+
+    subset = oriental.adjust.local_parameterization.Subset(3, np.array([1]))
     block.SetParameterization(objPts['02'], subset)
 
     # Set specific distortion parameters constant?
@@ -976,7 +1013,7 @@ def bundleBlock():
     evaluateOptions.set_parameter_blocks(variableBlocks)
 
     # Iteration loop. Defines a maximum number of iterations, but should be terminated before:
-    for iIter in range(30):
+    for iIter in range(40):
         print("------ Iteration: {}".format(iIter))
         # l consists of the concatenated results of `PerspectiveCamera.Evaluate`
         #   i.e. observed image position minus computed projection.
@@ -1020,10 +1057,11 @@ def bundleBlock():
 
         residuals_aposteriori, = block.Evaluate()
         print("Sum of squared errors: {}".format(residuals_aposteriori @ residuals_aposteriori))
+        print("Termination criterium: {}".format(np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l))))
 
         # When shall the iteration loop be terminated?
         # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
-        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l))  < 1e-5:
+        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l)) < 1e-15:
             print('-->')
             print(residuals_aposteriori.T @ residuals_aposteriori - l.T @ l)
             print('Stopping criterion met! Iteration: {}'.format(iIter))
@@ -1083,14 +1121,15 @@ def bundleBlock():
                 idxQxx += 1
 
         stdDev = sigma0 * qxxDiag**0.5
-        print( "{}: {} (indices: {}:{} )".format(paramBlockName, np.array2string(stdDev, precision=3), idxQxx - variableParameters.sum(), idxQxx))
+        print("{}: {} (indices: {}:{} )".format(paramBlockName, np.array2string(stdDev, precision=3), idxQxx - variableParameters.sum(), idxQxx))
 
     # TODO Check the significance, correlations, etc. of the parameters of the interior orientation and lens distortion.
 
+
     # TODO Derive the wanted distances at the object and their precisions.
+    s_01_13 = np.sqrt(np.sum((objPts['01'] - objPts['13'])**2))
 
 
 if __name__ == '__main__':
     bundleBlock()
     input('Hit key to exit')
-
