@@ -603,5 +603,10 @@ This file is self-contained.
 			<Record Time="2020-08-19 18:35:50.673964" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
 			<Record Time="2020-08-19 18:35:50.678824" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
 		</Run>
-	</oriental:Log>
+		<Run>
+			<Record Time="2020-08-23 20:09:08.194169" Severity="info" Thread="1">OrientAL by GEO, TU WIEN, Austria, licenced to: 120.028 Advanced Photogrammetry, TU Wien, Wiedner Hauptstraße 8, 1040 Vienna, Austria</Record>
+			<Record Time="2020-08-23 20:09:08.205140" Severity="info" Thread="1">Maximum tile cache size is unset.</Record>
+		</Run>
+		<Run>
+al:Log>
 </xsl:stylesheet>

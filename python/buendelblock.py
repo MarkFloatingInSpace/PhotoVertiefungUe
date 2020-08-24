@@ -129,7 +129,7 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
             3, # Projection center in the object coordinate system.
             3, # Rotation angles.
             3, # Interior orientation i.e. projection center in the camera coordinate system.
-            4, # TODO Lens distortion parameters, not (yet) used here. Adapt this number to your distortion model.
+            5, # TODO Lens distortion parameters, not (yet) used here. Adapt this number to your distortion model.
             3  # Object point.
         )
         # Hence, `PerspectiveCamera` expects 5 parameter blocks, where each block consists of 3 elements
@@ -206,14 +206,24 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
         y_ = y_projected - y_0
         rho = (x_**2 + y_**2) ** (1/2)
 
+        # sensor size 6000 x 4000
+        rho0 = (3000 ** 2 + 2000 ** 2) ** (1/2)
+
         k1 = distortion[0]
         k2 = distortion[1]
-        p1 = distortion[2]
-        p2 = distortion[3]
+        k3 = distortion[2]
+        p1 = distortion[3]
+        p2 = distortion[4]
+
+        delta_x_dist = x_*(k1*(rho**2-rho0**2) + k2 * (rho**4-rho0**4) + k3 * (rho**6-rho0**6)) + \
+                       2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
+        delta_y_dist = y_*(k1*(rho**2-rho0**2) + k2 * (rho**4-rho0**4) + k3 * (rho**6-rho0**6))+ \
+                       + p1 * (rho ** 2 + 2 * y_ ** 2) + 2 * p2 * x_ * y_
 
         #Radiale und tangeniale Verzeichnung beides 3. und 5. Ordnung
-        delta_x_dist = x_*(k1*(rho**2-5000000) + k2 * (rho ** 4-5000000)) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
-        delta_y_dist = y_*(k1*(rho**2-5000000) + k2 * (rho ** 4-5000000)) + p1 * (rho ** 2 + 2 * y_ ** 2) + 2 * p2 * x_ * y_
+        # delta_x_dist = x_*(k1*(rho**2-5000000) + k2 * (rho ** 4-5000000)) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
+        # delta_y_dist = y_*(k1*(rho**2-5000000) + k2 * (rho ** 4-5000000)) + p1 * (rho ** 2 + 2 * y_ ** 2) + 2 * p2 * x_ * y_
+
         # delta_x_dist = x_ * (k1 * rho ** 2 + k2 * rho ** 4) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
         # delta_y_dist = y_ * (k1 * rho ** 2 + k2 * rho ** 4) + 2 * p2 * x_ * y_ + p1 * (rho ** 2 + 2 * y_ ** 2)
 
@@ -768,23 +778,14 @@ def bundleBlock():
 
     # IOR: [26.715 30.741 62.743]
 
-    ior = np.array([+2.64605e+03, -2.05890e+03, +4.95924e+03])
-
-    # IOR from adjustment with correct datum definition (unconstrained)
-    # a priori 3000, -2000, 4833
-    # distortion
-
-    # nach erstem Ausgleich
-    # ior = np.array([+2660.450, -2019.164, +5313.308])
-    # ior = np.array([+2.55446e+03, -1.98994e+03, +5.14975e+03])
-
-    #ior = np.array([+1976.642, -1627.440, +3160.776])
+    ior = np.array([+2.66124e+03, -2.06585e+03, +4.83980e+03])
 
     # TODO Distortion parameters.
     # Choose an appropriate model.
     # The number of distortion parameters stated here must match the number of distortion parameters that
     # `PerspectiveCamera` expects. The preliminary number given here only serves as a placeholder.
-    distortion = np.array([-1.06494e-08, +7.18140e-16, -9.92606e-07, -4.33932e-07])
+    distortion = np.array([-1.42194e-08, +1.57961e-15, -7.60975e-23, -8.65930e-07, -2.70674e-07])
+
     # np.array([-1.05810e-08, +7.43013e-16, -1.94212e-07, +1.40238e-07])
     # [1.025e-09 1.390e-16 3.008e-07 2.789e-07]
     #distortion = np.array([0., 0., +105.633,  -56.806,   +2.371,   +2.721])
@@ -825,14 +826,14 @@ def bundleBlock():
         # }
 
         projectionCenters = {
-            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3811.JPG': np.array(
-                [+6.39322e-01, -2.40875e+00, +4.37130e-01]),
-            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3812.JPG': np.array(
-                [+6.39867e-01, -1.75009e+00, +7.34293e-01]),
-            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3815.JPG': np.array(
-                [+8.23091e-02, -2.21051e+00, +5.47975e-01]),
-            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3817.JPG': np.array(
-                [+8.10278e-02, -1.69944e+00, +7.90615e-01])
+            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3811.JPG': np.array(
+                [+6.33802e-01, -2.40045e+00, +4.36501e-01]),
+            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3812.JPG': np.array(
+                [+6.34731e-01, -1.74381e+00, +7.34314e-01]),
+            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3815.JPG': np.array(
+                [+7.81651e-02, -2.20253e+00, +5.46646e-01]),
+            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3817.JPG': np.array(
+                [+7.82526e-02, -1.69157e+00, +7.89037e-01])
         }
 
         # `rotationAngles` contains for each photo the rotation angles.
@@ -850,14 +851,14 @@ def bundleBlock():
         # }
 
         rotationAngles = {
-            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3811.JPG': np.array(
-                [-8.49022e+01, +1.07926e+02, +1.00697e+02]),
-            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3812.JPG': np.array(
-                [-8.57618e+01, +1.02326e+02, -2.04879e-02]),
-            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3815.JPG': np.array(
-                [-1.07155e+02, +1.06672e+02, -1.00477e+02]),
-            r'C:\Users\Filz\PycharmProjects\PhotoVertiefungUe\data\IMG_3817.JPG': np.array(
-                [-1.06145e+02, +9.92276e+01, +1.99397e+02])
+            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3811.JPG': np.array(
+                [-8.51576e+01, +1.07882e+02, +1.00747e+02]),
+            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3812.JPG': np.array(
+                [-8.57572e+01, +1.02160e+02, +6.35086e-02]),
+            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3815.JPG': np.array(
+                [-1.07080e+02, +1.06817e+02, -1.00398e+02]),
+            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3817.JPG': np.array(
+                [-1.06345e+02, +9.94591e+01, +1.99451e+02])
         }
 
     # Using the initial values of interior and exterior orientations,
@@ -892,7 +893,7 @@ def bundleBlock():
                                    distortion,
                                    objPts[ptName])
 
-    if True:
+    if False:
         # TODO Once a good enough interior image orientation is known,
         # automatically compute additional tie points.
         featurePoints, featurePointMatches = getAutomaticTiePoints(list(photo_obs.keys()))
@@ -1061,7 +1062,7 @@ def bundleBlock():
 
         # When shall the iteration loop be terminated?
         # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
-        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l)) < 1e-15:
+        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l)) < 1e-20:
             print('-->')
             print(residuals_aposteriori.T @ residuals_aposteriori - l.T @ l)
             print('Stopping criterion met! Iteration: {}'.format(iIter))
@@ -1127,9 +1128,55 @@ def bundleBlock():
 
 
     # TODO Derive the wanted distances at the object and their precisions.
-    s_01_13 = np.sqrt(np.sum((objPts['01'] - objPts['13'])**2))
+    # ---------------------- 03 - 13 -----------------------------------------------------------------------------------
+    coor_diff = objPts['03'] - objPts['13']
+    s_03_13 = np.sqrt(np.sum(coor_diff**2))
+
+    s = s_03_13
+    A = np.array([[coor_diff[0] / s, coor_diff[1] / s, coor_diff[2] / s, -coor_diff[0] / s, -coor_diff[1] / s,
+                  -coor_diff[2] / s]])
+
+    C_xx_3 = sigma0 ** 2 * Qxx[34:37, 34:37]
+    C_xx_13 = sigma0**2 * Qxx[61:64, 61:64]
+
+    C_xx_3_13 = sigma0**2 * Qxx[34:37, 61:64]
+    C_xx_13_3 = sigma0 ** 2 * Qxx[61:64, 34:37]
+
+    C_xx_comb = np.vstack((
+        np.hstack((C_xx_3, C_xx_3_13)),
+        np.hstack((C_xx_13_3, C_xx_13))
+    ))
+
+    std_s_03_13 = np.sqrt(A @ C_xx_comb @ A.T)
+    print("Strecke 03-13: {}".format(s_03_13))
+    print("STD Strecke 03-13: {}".format(std_s_03_13))
+
+    # ---------------------- 40 - 12 -----------------------------------------------------------------------------------
+    coor_diff = objPts['12'] - objPts['40']
+    s_12_40 = np.sqrt(np.sum(coor_diff ** 2))
+
+    s = s_12_40
+    A = np.array([[coor_diff[0] / s, coor_diff[1] / s, coor_diff[2] / s, -coor_diff[0] / s, -coor_diff[1] / s,
+                   -coor_diff[2] / s]])
+
+    C_xx_12 = sigma0 ** 2 * Qxx[58:61, 58:61]
+    C_xx_40 = sigma0 ** 2 * Qxx[124:127, 124:127]
+
+    C_xx_12_40 = sigma0 ** 2 * Qxx[58:61, 124:127]
+    C_xx_40_12 = sigma0 ** 2 * Qxx[124:127, 58:61]
+
+    C_xx_comb = np.vstack((
+        np.hstack((C_xx_12, C_xx_12_40)),
+        np.hstack((C_xx_40_12, C_xx_40))
+    ))
+
+    std_s_12_40 = np.sqrt(A @ C_xx_comb @ A.T)
+    print("Strecke 12-40: {}".format(s_12_40))
+    print("STD Strecke 12-40: {}".format(std_s_12_40))
 
 
 if __name__ == '__main__':
     bundleBlock()
     input('Hit key to exit')
+
+
