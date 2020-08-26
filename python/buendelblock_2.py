@@ -745,7 +745,7 @@ def bundleBlock():
     # Deactivate points.
     # This may be necessary if their intersection angles are small and image orientations are still imprecise.
     # Once better estimates of interior and exterior image orientations are available, they may be activated, again.
-    pointsToIgnore = ['17', '19'] #'28 29 30 31 32'.split()
+    pointsToIgnore = ['17', '19', '08', '20', '21', '22', '52'] #'28 29 30 31 32'.split()
     for obs in photo_obs.values():
         for pointName in pointsToIgnore:
             obs.pop(pointName, None)
@@ -773,16 +773,16 @@ def bundleBlock():
     #
     ior = np.array([1500.,  # x_0
                    -2000.,  # y_0
-                    3120.   # c [px]
+                    4960.   # c [px]
                     ], float)
 
-    # IOR: [26.715 30.741 62.743]
+    ior = np.array([+1.49177e+03, -1.98762e+03, +4.45595e+03])
 
     # TODO Distortion parameters.
     # Choose an appropriate model.
     # The number of distortion parameters stated here must match the number of distortion parameters that
     # `PerspectiveCamera` expects. The preliminary number given here only serves as a placeholder.
-    distortion = np.array([0, 0, 0, 0, 0], float)
+    distortion = np.array([+8.96235e-09, -3.00019e-15, +3.01027e-22, -4.24624e-07, -2.13253e-07])
 
     # np.array([-1.05810e-08, +7.43013e-16, -1.94212e-07, +1.40238e-07])
     # [1.025e-09 1.390e-16 3.008e-07 2.789e-07]
@@ -806,7 +806,7 @@ def bundleBlock():
     objPts['04'] = np.array([0, 0., 0], float)
 
     # TODO change to False once initial orientation is calculated
-    if True:
+    if False:
         # At the very beginning, let's derive the exterior image orientations via spatial resection.
         # For that purpose, we need object coordinates of at least 4 points manually observed in each image.
         # Since the datum points do not suffice, define additional object coordinates here.
@@ -824,14 +824,10 @@ def bundleBlock():
         # }
 
         projectionCenters = {
-            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3811.JPG': np.array(
-                [+6.33802e-01, -2.40045e+00, +4.36501e-01]),
-            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3812.JPG': np.array(
-                [+6.34731e-01, -1.74381e+00, +7.34314e-01]),
-            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3815.JPG': np.array(
-                [+7.81651e-02, -2.20253e+00, +5.46646e-01]),
-            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3817.JPG': np.array(
-                [+7.82526e-02, -1.69157e+00, +7.89037e-01])
+            r'1.jpg': np.array([+2.36506e-01, -1.26043e+00, +9.40541e-01]),
+            r'2.jpg': np.array([+1.48141e-01, -1.67852e+00, +6.02067e-01]),
+            r'3.jpg': np.array([+6.89515e-01, -1.70342e+00, +5.81075e-01]),
+            r'4.jpg': np.array([+6.39841e-01, -1.49087e+00, +8.11608e-01])
         }
 
         # `rotationAngles` contains for each photo the rotation angles.
@@ -849,14 +845,10 @@ def bundleBlock():
         # }
 
         rotationAngles = {
-            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3811.JPG': np.array(
-                [-8.51576e+01, +1.07882e+02, +1.00747e+02]),
-            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3812.JPG': np.array(
-                [-8.57572e+01, +1.02160e+02, +6.35086e-02]),
-            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3815.JPG': np.array(
-                [-1.07080e+02, +1.06817e+02, -1.00398e+02]),
-            r'C:\Users\marku\Documents\UNI\PhotoVertiefungUe\data\IMG_3817.JPG': np.array(
-                [-1.06345e+02, +9.94591e+01, +1.99451e+02])
+            r'1.jpg': np.array([-1.00062e+02, +8.69583e+01, +9.91641e+01]),
+            r'2.jpg': np.array([-1.06962e+02, +9.90409e+01, -7.60140e-01]),
+            r'3.jpg': np.array([-9.09183e+01, +9.99431e+01, -1.98898e+02]),
+            r'4.jpg': np.array([-8.53713e+01, +9.16614e+01, -9.87502e+01])
         }
 
     # Using the initial values of interior and exterior orientations,
@@ -928,10 +920,11 @@ def bundleBlock():
                 continue
             # If residuals are large, then the probability of this feature match being an outlier is high.
             # TODO But how large is *large*?
-            maxResidualNorm = 3
+            maxResidualNorm = 300
             residuals = np.sum(residuals**2, axis=1)**0.5
             if residuals.max() > maxResidualNorm:
-                continue
+                pass
+                # continue
             # Another way to detect outliers is e.g. to check for extreme object point coordinates.
 
             # Create a name for the automatically determined tie point by prefixing the index with an 'a'.
@@ -973,7 +966,7 @@ def bundleBlock():
     idsConstantBlocks = [id(el) for el in (objPts['03'],
                                            objPts['04'],
                                            # ior,  # TODO Set ior constant?
-                                           distortion  # TODO Set distortion constant?
+                                           # distortion  # TODO Set distortion constant?
                                           )]
 
     # Since the unconstrained datum definition shall be accomplished by setting constant 7 object point coordinates,
@@ -1060,7 +1053,7 @@ def bundleBlock():
 
         # When shall the iteration loop be terminated?
         # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
-        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l)) < 1e-20:
+        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l)) < 1e-15:
             print('-->')
             print(residuals_aposteriori.T @ residuals_aposteriori - l.T @ l)
             print('Stopping criterion met! Iteration: {}'.format(iIter))
