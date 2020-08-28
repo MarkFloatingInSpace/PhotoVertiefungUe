@@ -130,7 +130,7 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
             3, # Projection center in the object coordinate system.
             3, # Rotation angles.
             3, # Interior orientation i.e. projection center in the camera coordinate system.
-            5, # TODO Lens distortion parameters, not (yet) used here. Adapt this number to your distortion model.
+            4, # TODO Lens distortion parameters, not (yet) used here. Adapt this number to your distortion model.
             3  # Object point.
         )
         # Hence, `PerspectiveCamera` expects 5 parameter blocks, where each block consists of 3 elements
@@ -208,22 +208,27 @@ class PerspectiveCamera( oriental.adjust.cost.AutoDiff ):
         rho = (x_**2 + y_**2) ** (1/2)
 
         # sensor size 6000 x 4000
-        rho0 = (3000 ** 2 + 2000 ** 2) ** (1/2)
+        rho0 = (2000 ** 2 + 1500 ** 2) ** (1/2) /2
 
         k1 = distortion[0]
         k2 = distortion[1]
-        k3 = distortion[2]
-        p1 = distortion[3]
-        p2 = distortion[4]
+        #k3 = distortion[2]
+        p1 = distortion[2]
+        p2 = distortion[3]
 
-        delta_x_dist = x_*(k1*(rho**2-rho0**2) + k2 * (rho**4-rho0**4) + k3 * (rho**6-rho0**6)) + \
-                       2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
-        delta_y_dist = y_*(k1*(rho**2-rho0**2) + k2 * (rho**4-rho0**4) + k3 * (rho**6-rho0**6))+ \
-                       + p1 * (rho ** 2 + 2 * y_ ** 2) + 2 * p2 * x_ * y_
+        #delta_x_dist = x_*(k1*(rho**2-rho0**2) + k2 * (rho**4-rho0**4) + k3 * (rho**6-rho0**6)) + \
+         #              2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
+        #delta_y_dist = y_*(k1*(rho**2-rho0**2) + k2 * (rho**4-rho0**4) + k3 * (rho**6-rho0**6))+ \
+         #              + p1 * (rho ** 2 + 2 * y_ ** 2) + 2 * p2 * x_ * y_
 
         #Radiale und tangeniale Verzeichnung beides 3. und 5. Ordnung
-        # delta_x_dist = x_*(k1*(rho**2-5000000) + k2 * (rho ** 4-5000000)) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
-        # delta_y_dist = y_*(k1*(rho**2-5000000) + k2 * (rho ** 4-5000000)) + p1 * (rho ** 2 + 2 * y_ ** 2) + 2 * p2 * x_ * y_
+        delta_x_dist = x_*(k1*(rho**2-rho0**2) + k2 * (rho ** 4-rho0**4)) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
+        delta_y_dist = y_*(k1*(rho**2-rho0**2) + k2 * (rho ** 4-rho0**4)) + p1 * (rho ** 2 + 2 * y_ ** 2) + 2 * p2 * x_ * y_
+
+        #NUR radiale Verzeichnung
+        #delta_x_dist = x_*(k1 * (rho**2-rho0**2) + k2 * (rho**4-rho0**4))
+        #delta_y_dist = y_ * (k1 * (rho**2-rho0**2) + k2 * (rho**4-rho0**4))
+
 
         # delta_x_dist = x_ * (k1 * rho ** 2 + k2 * rho ** 4) + 2 * p1 * x_ * y_ + p2 * (rho ** 2 + 2 * x_ ** 2)
         # delta_y_dist = y_ * (k1 * rho ** 2 + k2 * rho ** 4) + 2 * p2 * x_ * y_ + p1 * (rho ** 2 + 2 * y_ ** 2)
@@ -772,18 +777,19 @@ def bundleBlock():
     # 27mm 35 mm equivalent --> 3.95 mm
     # Sensor Pixel Size	1.22 µm = 0.00122 mm
     #
-    ior = np.array([1500.,  # x_0
-                   -2000.,  # y_0
-                    4960.   # c [px]
+    ior = np.array([1488.,  # x_0
+                   -1984.,  # y_0
+                    3280.   # c [px]
                     ], float)
 
-    ior = np.array([+1.49177e+03, -1.98762e+03, +4.45595e+03])
+    ior = np.array([+1.49556e+03, -1.97559e+03, +3.27654e+03])
 
     # TODO Distortion parameters.
     # Choose an appropriate model.
     # The number of distortion parameters stated here must match the number of distortion parameters that
     # `PerspectiveCamera` expects. The preliminary number given here only serves as a placeholder.
-    distortion = np.array([+8.96235e-09, -3.00019e-15, +3.01027e-22, -4.24624e-07, -2.13253e-07])
+    #distortion = np.array([0.,0.,0.,0.])
+    distortion = np.array([+1.06134e-08, -2.30856e-15, -1.61414e-07, -2.26608e-07])
 
     # np.array([-1.05810e-08, +7.43013e-16, -1.94212e-07, +1.40238e-07])
     # [1.025e-09 1.390e-16 3.008e-07 2.789e-07]
@@ -825,10 +831,10 @@ def bundleBlock():
         # }
 
         projectionCenters = {
-            r'1.jpg': np.array([+2.36506e-01, -1.26043e+00, +9.40541e-01]),
-            r'2.jpg': np.array([+1.48141e-01, -1.67852e+00, +6.02067e-01]),
-            r'3.jpg': np.array([+6.89515e-01, -1.70342e+00, +5.81075e-01]),
-            r'4.jpg': np.array([+6.39841e-01, -1.49087e+00, +8.11608e-01])
+            r'C:\Users\Clemens\Desktop\fotos_neu\1.jpg' : np.array([+2.29921e-01, -1.26317e+00, +9.35633e-01]),
+r'C:\Users\Clemens\Desktop\fotos_neu\2.jpg' : np.array([+1.41056e-01, -1.67736e+00, +5.95851e-01]),
+r'C:\Users\Clemens\Desktop\fotos_neu\3.jpg' : np.array([+6.80918e-01, -1.70399e+00, +5.76155e-01]),
+r'C:\Users\Clemens\Desktop\fotos_neu\4.jpg' : np.array([+6.32630e-01, -1.49340e+00, +8.06792e-01])
         }
 
         # `rotationAngles` contains for each photo the rotation angles.
@@ -846,10 +852,10 @@ def bundleBlock():
         # }
 
         rotationAngles = {
-            r'1.jpg': np.array([-1.00062e+02, +8.69583e+01, +9.91641e+01]),
-            r'2.jpg': np.array([-1.06962e+02, +9.90409e+01, -7.60140e-01]),
-            r'3.jpg': np.array([-9.09183e+01, +9.99431e+01, -1.98898e+02]),
-            r'4.jpg': np.array([-8.53713e+01, +9.16614e+01, -9.87502e+01])
+            r'C:\Users\Clemens\Desktop\fotos_neu\1.jpg': np.array([-1.00372e+02, +8.74556e+01, +9.93522e+01]),
+            r'C:\Users\Clemens\Desktop\fotos_neu\2.jpg': np.array([-1.07422e+02, +9.92266e+01, -6.06626e-01]),
+            r'C:\Users\Clemens\Desktop\fotos_neu\3.jpg': np.array([-9.09047e+01, +1.00237e+02, -1.98674e+02]),
+            r'C:\Users\Clemens\Desktop\fotos_neu\4.jpg': np.array([-8.55208e+01, +9.16289e+01, -9.85251e+01])
         }
 
     # Using the initial values of interior and exterior orientations,
@@ -866,6 +872,7 @@ def bundleBlock():
 
     # The central object for the definition and solution of adjustment problems:
     block = oriental.adjust.Problem()
+
 
     # Iterate over all photos.
     for photo, observations in photo_obs.items():
@@ -907,7 +914,7 @@ def bundleBlock():
             # not yet adjusted image orientations!
             # Hence, their initial values must be sufficiently accurate in order to reliably detect outliers here!
 
-            if len(imageObs) < 2:
+            if len(imageObs) < 3:
                 continue # Drop feature matches in only 2 photos, since their redundancy is low and hence, outlier residuals may be small.
 
             observations = []
@@ -921,7 +928,7 @@ def bundleBlock():
                 continue
             # If residuals are large, then the probability of this feature match being an outlier is high.
             # TODO But how large is *large*?
-            maxResidualNorm = 0.5
+            maxResidualNorm = 1
             residuals = np.sum(residuals**2, axis=1)**0.5
             if residuals.max() > maxResidualNorm:
                 continue
@@ -965,8 +972,8 @@ def bundleBlock():
     # The A-matrix queried below will not contain columns for these parameter blocks.
     idsConstantBlocks = [id(el) for el in (objPts['03'],
                                            objPts['04'],
-                                           # ior,  # TODO Set ior constant?
-                                           # distortion  # TODO Set distortion constant?
+                                            #ior,  # TODO Set ior constant?
+                                            #distortion  # TODO Set distortion constant?
                                           )]
 
     # Since the unconstrained datum definition shall be accomplished by setting constant 7 object point coordinates,
@@ -1004,6 +1011,7 @@ def bundleBlock():
     # Pass the parameter blocks for which the A-matrix shall contain columns, in the wanted order.
     evaluateOptions.set_parameter_blocks(variableBlocks)
 
+    #print(1 % 0)
     # Iteration loop. Defines a maximum number of iterations, but should be terminated before:
     for iIter in range(40):
         print("------ Iteration: {}".format(iIter))
