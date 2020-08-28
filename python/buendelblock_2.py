@@ -59,6 +59,7 @@ oriental.log.setLogFileName('')
 import oriental.utils.filePaths
 import os
 from pathlib import Path
+from scipy.stats import t
 
 # The file path of the data base of image measurements done in MonoScope.
 # Assumes that it lies in the directory of this script, and that the default file name is used.
@@ -883,7 +884,7 @@ def bundleBlock():
                                    distortion,
                                    objPts[ptName])
 
-    if False:
+    if True:
         # TODO Once a good enough interior image orientation is known,
         # automatically compute additional tie points.
         featurePoints, featurePointMatches = getAutomaticTiePoints(list(photo_obs.keys()))
@@ -906,7 +907,7 @@ def bundleBlock():
             # not yet adjusted image orientations!
             # Hence, their initial values must be sufficiently accurate in order to reliably detect outliers here!
 
-            if len(imageObs) < 3:
+            if len(imageObs) < 2:
                 continue # Drop feature matches in only 2 photos, since their redundancy is low and hence, outlier residuals may be small.
 
             observations = []
@@ -920,11 +921,10 @@ def bundleBlock():
                 continue
             # If residuals are large, then the probability of this feature match being an outlier is high.
             # TODO But how large is *large*?
-            maxResidualNorm = 300
+            maxResidualNorm = 0.5
             residuals = np.sum(residuals**2, axis=1)**0.5
             if residuals.max() > maxResidualNorm:
-                pass
-                # continue
+                continue
             # Another way to detect outliers is e.g. to check for extreme object point coordinates.
 
             # Create a name for the automatically determined tie point by prefixing the index with an 'a'.
@@ -1053,7 +1053,7 @@ def bundleBlock():
 
         # When shall the iteration loop be terminated?
         # TODO Define an appropriate stopping criterion here and break the loop early as soon as it is met.
-        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l)) < 1e-15:
+        if np.abs((l.T @ l - residuals_aposteriori.T @ residuals_aposteriori) / (l.T @ l)) < 1e-14:
             print('-->')
             print(residuals_aposteriori.T @ residuals_aposteriori - l.T @ l)
             print('Stopping criterion met! Iteration: {}'.format(iIter))
@@ -1095,6 +1095,11 @@ def bundleBlock():
     C = linalg.cholesky(N, lower=False)
     Qxx = linalg.cho_solve((C,False), np.eye(C.shape[0]))
 
+    # save indices of the relevant Qxx entries:
+    relevant_pts = ['16', '45', '33']
+    relevant_ior_paramBlocks = ['IOR', 'Distortion']
+    pt_Qxx_indices = {}
+
     print("Standard deviations of unknowns")
     idxQxx=0
     for paramBlockName, paramBlockValue in paramBlockNamesAndValues:
@@ -1115,55 +1120,98 @@ def bundleBlock():
         stdDev = sigma0 * qxxDiag**0.5
         print("{}: {} (indices: {}:{} )".format(paramBlockName, np.array2string(stdDev, precision=3), idxQxx - variableParameters.sum(), idxQxx))
 
-    # TODO Check the significance, correlations, etc. of the parameters of the interior orientation and lens distortion.
+        if len(paramBlockName.split()) > 1 and paramBlockName.split()[1] in relevant_pts:
+            pt_Qxx_indices[paramBlockName.split()[1]] = [idxQxx - variableParameters.sum(), idxQxx]
+        elif paramBlockName in relevant_ior_paramBlocks:
+            pt_Qxx_indices[paramBlockName] = [idxQxx - variableParameters.sum(), idxQxx]
 
+    # TODO Check the significance, correlations, etc. of the parameters of the interior orientation and lens distortion.
+    Qxx_ior = Qxx[pt_Qxx_indices['IOR'][0]: pt_Qxx_indices['IOR'][1], pt_Qxx_indices['IOR'][0]: pt_Qxx_indices['IOR'][1]]
+    Qxx_dis = Qxx[pt_Qxx_indices['Distortion'][0]: pt_Qxx_indices['Distortion'][1],
+              pt_Qxx_indices['Distortion'][0]: pt_Qxx_indices['Distortion'][1]]
+    Qxx_ior_dis = Qxx[pt_Qxx_indices['IOR'][0]: pt_Qxx_indices['IOR'][1],
+                      pt_Qxx_indices['Distortion'][0]: pt_Qxx_indices['Distortion'][1]]
+
+    C_xx_comb = sigma0**2 * np.vstack((
+        np.hstack((Qxx_ior, Qxx_ior_dis)),
+        np.hstack((Qxx_ior_dis.T, Qxx_dis))
+    ))
+
+    v = np.sqrt(np.diag(C_xx_comb))
+    outer_v = np.outer(v, v)
+    correlation = C_xx_comb / outer_v
+    correlation[C_xx_comb == 0] = 0
+
+    plt.matshow(correlation, cmap='RdBu')
+    plt.colorbar()
+
+    np.save('ior_correlation.npy', correlation)
+
+    # t - test
+    alpha = 0.05
+    test_qunatiles = t.cdf([alpha/2, 1-alpha/2], redundancy)
+    test_values = np.append(ior, distortion) / np.sqrt(np.diag(C_xx_comb))
+
+    #significant = test_qunatiles[0] < test_values < test_qunatiles[1]
+    print('t-test quntiles: {}'.format(test_qunatiles))
+    print('t-test values: {}'.format(test_values))
 
     # TODO Derive the wanted distances at the object and their precisions.
-    # ---------------------- 03 - 13 -----------------------------------------------------------------------------------
-    # coor_diff = objPts['03'] - objPts['13']
-    # s_03_13 = np.sqrt(np.sum(coor_diff**2))
-    #
-    # s = s_03_13
-    # A = np.array([[coor_diff[0] / s, coor_diff[1] / s, coor_diff[2] / s, -coor_diff[0] / s, -coor_diff[1] / s,
-    #               -coor_diff[2] / s]])
-    #
-    # C_xx_3 = sigma0 ** 2 * Qxx[34:37, 34:37]
-    # C_xx_13 = sigma0**2 * Qxx[61:64, 61:64]
-    #
-    # C_xx_3_13 = sigma0**2 * Qxx[34:37, 61:64]
-    # C_xx_13_3 = sigma0 ** 2 * Qxx[61:64, 34:37]
-    #
-    # C_xx_comb = np.vstack((
-    #     np.hstack((C_xx_3, C_xx_3_13)),
-    #     np.hstack((C_xx_13_3, C_xx_13))
-    # ))
-    #
-    # std_s_03_13 = np.sqrt(A @ C_xx_comb @ A.T)
-    # print("Strecke 03-13: {}".format(s_03_13))
-    # print("STD Strecke 03-13: {}".format(std_s_03_13))
-    #
-    # # ---------------------- 40 - 12 -----------------------------------------------------------------------------------
-    # coor_diff = objPts['12'] - objPts['40']
-    # s_12_40 = np.sqrt(np.sum(coor_diff ** 2))
-    #
-    # s = s_12_40
-    # A = np.array([[coor_diff[0] / s, coor_diff[1] / s, coor_diff[2] / s, -coor_diff[0] / s, -coor_diff[1] / s,
-    #                -coor_diff[2] / s]])
-    #
-    # C_xx_12 = sigma0 ** 2 * Qxx[58:61, 58:61]
-    # C_xx_40 = sigma0 ** 2 * Qxx[124:127, 124:127]
-    #
-    # C_xx_12_40 = sigma0 ** 2 * Qxx[58:61, 124:127]
-    # C_xx_40_12 = sigma0 ** 2 * Qxx[124:127, 58:61]
-    #
-    # C_xx_comb = np.vstack((
-    #     np.hstack((C_xx_12, C_xx_12_40)),
-    #     np.hstack((C_xx_40_12, C_xx_40))
-    # ))
-    #
-    # std_s_12_40 = np.sqrt(A @ C_xx_comb @ A.T)
-    # print("Strecke 12-40: {}".format(s_12_40))
-    # print("STD Strecke 12-40: {}".format(std_s_12_40))
+    # -------------------------------------- Geschosshöhe: 16 - 45 -----------------------------------------------------
+    coor_diff = objPts['16'] - objPts['45']
+    s_16_45 = np.sqrt(np.sum(coor_diff**2))
+
+    s = s_16_45
+    A = np.array([[coor_diff[0] / s, coor_diff[1] / s, coor_diff[2] / s, -coor_diff[0] / s, -coor_diff[1] / s,
+                  -coor_diff[2] / s]])
+
+    Qxx_16 = Qxx[pt_Qxx_indices['16'][0]: pt_Qxx_indices['16'][1], pt_Qxx_indices['16'][0]: pt_Qxx_indices['16'][1]]
+    Qxx_45 = Qxx[pt_Qxx_indices['45'][0]: pt_Qxx_indices['45'][1], pt_Qxx_indices['45'][0]: pt_Qxx_indices['45'][1]]
+
+    Qxx_16_45 = Qxx[pt_Qxx_indices['16'][0]: pt_Qxx_indices['16'][1], pt_Qxx_indices['45'][0]: pt_Qxx_indices['45'][1]]
+    Qxx_45_16 = Qxx[pt_Qxx_indices['45'][0]: pt_Qxx_indices['45'][1], pt_Qxx_indices['16'][0]: pt_Qxx_indices['16'][1]]
+
+    C_xx_comb = sigma0**2 * np.vstack((
+        np.hstack((Qxx_16, Qxx_16_45)),
+        np.hstack((Qxx_45_16, Qxx_45))
+    ))
+
+    std_s_16_45 = np.sqrt(A @ C_xx_comb @ A.T)
+    print("Strecke 16-45: {}".format(s_16_45))
+    print("STD Strecke 16-45: {}".format(std_s_16_45))
+    print("relative STD Strecke 16-45: {}%".format(std_s_16_45 / s_16_45 * 100))
+
+    # ---------------------------------- Fassadenabstand: 04 - 33 ------------------------------------------------------
+    coor_diff = objPts['04'] - objPts['33']
+    s_04_33 = np.sqrt(np.sum(coor_diff ** 2))
+
+    s = s_04_33
+    A = np.array([[coor_diff[0] / s, coor_diff[1] / s, coor_diff[2] / s, -coor_diff[0] / s, -coor_diff[1] / s,
+                   -coor_diff[2] / s]])
+
+    C_xx_04 = np.zeros((3,3))
+    C_xx_33 = Qxx[pt_Qxx_indices['33'][0]: pt_Qxx_indices['33'][1], pt_Qxx_indices['33'][0]: pt_Qxx_indices['33'][1]]
+
+    C_xx_04_33 = np.zeros((3,3))
+    C_xx_33_04 = np.zeros((3,3))
+
+    C_xx_comb = sigma0**2 * np.vstack((
+        np.hstack((C_xx_04, C_xx_04_33)),
+        np.hstack((C_xx_33_04, C_xx_33))
+    ))
+
+    std_s_04_33 = np.sqrt(A @ C_xx_comb @ A.T)
+    print("Strecke 04-33: {}".format(s_04_33))
+    print("STD Strecke 04-33: {}".format(std_s_04_33))
+    print("relative STD Strecke 04-33: {}%".format(std_s_04_33 / s_04_33 * 100))
+
+    # Fassadenabstand
+    dy_04_33 = coor_diff[1]
+    std_dY_04_33 = sigma0 * np.sqrt(C_xx_33[1, 1])
+
+    print("dy 04-33: {}".format(dy_04_33))
+    print("STD dy 04-33: {}".format(std_dY_04_33))
+    print("relative STD dy 04-33: {}%".format(std_dY_04_33 / dy_04_33 * 100))
 
 
 if __name__ == '__main__':
